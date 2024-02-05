@@ -1,3 +1,50 @@
+import { useState, useEffect } from "react";
+import { Doctor } from "./@types/doctors";
+import "./App.css";
+
+export default function App() {
+  const [allDoctors, setAllDoctors] = useState<Doctor[]>([]);
+
+  useEffect(() => {
+    const fetchAllDoctors = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/doctors/all");
+        // console.log(response);
+
+        if (!response.ok) {
+          throw new Error("Network response is not ok");
+        }
+
+        const data = await response.json();
+        // console.log("Data", data.allDoctors);
+
+        const foundDoctors = data.allDoctors as Doctor[];
+        // console.log(foundDoctors.allDoctors[0].name);
+
+        setAllDoctors(foundDoctors);
+      } catch (error) {
+        console.error("Error fetching data", error);
+      }
+    };
+    fetchAllDoctors();
+  }, []);
+
+  return (
+    <>
+      <h1>Here is my doctors list:</h1>
+      {allDoctors.map((doctor) => (
+        <div key={doctor._id}>
+          <p>{doctor.name}</p>
+        </div>
+      ))}
+    </>
+  );
+}
+
+// GET COLLECTION NAMES
+// db.getCollectionNames()
+
+// ================================================================================================
 // import "./App.css";
 // import { useEffect, useRef, useState } from "react";
 // import { User } from "./@types/users.tsx";
@@ -75,14 +122,3 @@
 // }
 
 // export default App;
-/////////////////////
-/////////////////////
-/////////////////////
-
-import "./App.css";
-
-function App() {
-  return <h1>Hallo</h1>;
-}
-
-export default App;
