@@ -6,6 +6,7 @@ import userRouter from "./routes/userRoutes.js";
 import doctorRouter from "./routes/doctorRoutes.js"
 import mongoose from "mongoose";
 import cafeRestaurantRouter from "./routes/cafeRestaurantRoutes.js";
+import collectionNameRouter from "./routes/collectionNamesRoutes.js";
 
 // Initializing Express ==========
 const app = express();
@@ -25,8 +26,6 @@ const addMiddlewares = () => {
 }
 // ===============================
 
-
-
 // Define my first API endpoint using Express
 // Basic structure => app.METHOD(PATH, HANDLER)
 // app.get("/", (request, response) => {
@@ -37,10 +36,26 @@ const addRoutes = () => {
     app.use("/api/users", userRouter);
     app.use("/api/doctors", doctorRouter);
     app.use("/api/cafes-restaurants", cafeRestaurantRouter)
+    app.use("/api/collections", collectionNameRouter)
+
+     // Route to display collection names
+    // app.get("/api/collections", async (request, response) => {
+
+    //     try {
+    //         const collections = await mongoose.collection.db.listCollections().toArray();
+    //         const collectionNames = collections.map((collection) => collection.name);
+    //         response.json(collectionNames)
+            
+    //     } catch (error) {
+    //         console.error("Error fetching collection names", error);
+    //         response.status(500).json({ error: "Interntal Server Error"});
+    //     }
+    // })
+
     app.use("*", (request, response) => 
     response.status(404).json({ error: "Endpoint not found"}));
-}
 
+};
 
 const startServer = () => {
     const port = process.env.PORT || 5000;

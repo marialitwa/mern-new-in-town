@@ -1,42 +1,76 @@
 import { useState, useEffect } from "react";
-import { Doctor } from "./@types/doctors";
+// import { Doctor } from "./@types/doctors";
 import "./App.css";
 
 export default function App() {
-  const [allDoctors, setAllDoctors] = useState<Doctor[]>([]);
+  const [collectionNames, setCollectionNames] = useState<string[]>([""]);
+  // const [allDoctors, setAllDoctors] = useState<Doctor[]>([]);
+
+  // FETCH FUNCTION FOR ALL COLLECTION NAMES FROM MONGO DB
+  const fetchCollectionNames = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/api/collections/all");
+
+      if (!response.ok) {
+        throw new Error("Network response is not ok");
+      }
+      const data = await response.json();
+      console.log("data", data);
+      const collectionNames = data.collectionNames as string[];
+
+      setCollectionNames(collectionNames);
+    } catch (error) {
+      console.error("Error fetching collection names", error);
+    }
+  };
+
+  // FETCH FUNCTION FOR ALL DOCTORS FROM MONGO DB
+  // const fetchAllDoctors = async () => {
+  //   try {
+  //     const response = await fetch("http://localhost:5000/api/doctors/all");
+  //     console.log(response);
+
+  //     if (!response.ok) {
+  //       throw new Error("Network response is not ok");
+  //     }
+
+  //     const data = await response.json();
+  //     console.log("data", data.allDoctors);
+
+  //     const foundDoctors = data.allDoctors as Doctor[];
+  //     // console.log(foundDoctors.allDoctors[0].name);
+
+  //     setAllDoctors(foundDoctors);
+  //   } catch (error) {
+  //     console.error("Error fetching data", error);
+  //   }
+  // };
 
   useEffect(() => {
-    const fetchAllDoctors = async () => {
-      try {
-        const response = await fetch("http://localhost:5000/api/doctors/all");
-        // console.log(response);
-
-        if (!response.ok) {
-          throw new Error("Network response is not ok");
-        }
-
-        const data = await response.json();
-        // console.log("Data", data.allDoctors);
-
-        const foundDoctors = data.allDoctors as Doctor[];
-        // console.log(foundDoctors.allDoctors[0].name);
-
-        setAllDoctors(foundDoctors);
-      } catch (error) {
-        console.error("Error fetching data", error);
-      }
-    };
-    fetchAllDoctors();
+    fetchCollectionNames();
+    // fetchAllDoctors();
   }, []);
 
   return (
     <>
-      <h1>Here is my doctors list:</h1>
-      {allDoctors.map((doctor) => (
-        <div key={doctor._id}>
-          <p>{doctor.name}</p>
-        </div>
-      ))}
+      <div>
+        <h1>All Collection names:</h1>
+        <ul>
+          {collectionNames.map((collection, index) => (
+            <li key={index}>{collection}</li>
+          ))}
+        </ul>
+      </div>
+
+      {/* <div>
+        <h2>Here is my doctors list:</h2>
+
+        {allDoctors.map((doctor) => (
+          <div key={doctor._id}>
+            <p>{doctor.name}</p>
+          </div>
+        ))}
+      </div> */}
     </>
   );
 }
