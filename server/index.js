@@ -37,21 +37,6 @@ const addRoutes = () => {
     app.use("/api/doctors", doctorRouter);
     app.use("/api/cafes-restaurants", cafeRestaurantRouter)
     app.use("/api/collections", collectionNameRouter)
-
-     // Route to display collection names
-    // app.get("/api/collections", async (request, response) => {
-
-    //     try {
-    //         const collections = await mongoose.collection.db.listCollections().toArray();
-    //         const collectionNames = collections.map((collection) => collection.name);
-    //         response.json(collectionNames)
-            
-    //     } catch (error) {
-    //         console.error("Error fetching collection names", error);
-    //         response.status(500).json({ error: "Interntal Server Error"});
-    //     }
-    // })
-
     app.use("*", (request, response) => 
     response.status(404).json({ error: "Endpoint not found"}));
 

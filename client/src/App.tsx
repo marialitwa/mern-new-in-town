@@ -1,158 +1,99 @@
-import { useState, useEffect } from "react";
-// import { Doctor } from "./@types/doctors";
+// import { useEffect, useState } from "react";
 import "./App.css";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 export default function App() {
-  const [collectionNames, setCollectionNames] = useState<string[]>([""]);
-  // const [allDoctors, setAllDoctors] = useState<Doctor[]>([]);
+  // const [collectionNames, setCollectionNames] = useState<string[]>([""]);
 
   // FETCH FUNCTION FOR ALL COLLECTION NAMES FROM MONGO DB
-  const fetchCollectionNames = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/api/collections/all");
-
-      if (!response.ok) {
-        throw new Error("Network response is not ok");
-      }
-      const data = await response.json();
-      console.log("data", data);
-      const collectionNames = data.collectionNames as string[];
-
-      setCollectionNames(collectionNames);
-    } catch (error) {
-      console.error("Error fetching collection names", error);
-    }
-  };
-
-  // FETCH FUNCTION FOR ALL DOCTORS FROM MONGO DB
-  // const fetchAllDoctors = async () => {
+  // const fetchCollectionNames = async () => {
   //   try {
-  //     const response = await fetch("http://localhost:5000/api/doctors/all");
-  //     console.log(response);
+  //     const response = await fetch("http://localhost:5000/api/collections/all");
 
   //     if (!response.ok) {
   //       throw new Error("Network response is not ok");
   //     }
-
   //     const data = await response.json();
-  //     console.log("data", data.allDoctors);
+  //     console.log("data", data);
+  //     const collectionNames = data.collectionNames as string[];
 
-  //     const foundDoctors = data.allDoctors as Doctor[];
-  //     // console.log(foundDoctors.allDoctors[0].name);
-
-  //     setAllDoctors(foundDoctors);
+  //     setCollectionNames(collectionNames);
   //   } catch (error) {
-  //     console.error("Error fetching data", error);
+  //     console.error("Error fetching collection names", error);
   //   }
   // };
 
-  useEffect(() => {
-    fetchCollectionNames();
-    // fetchAllDoctors();
-  }, []);
+  // useEffect(() => {
+  //   fetchCollectionNames();
+  // }, []);
 
   return (
     <>
-      <div>
-        <h1>All Collection names:</h1>
-        <ul>
+      <main className="min-h-screen bg-gray-100 flex flex-col items-center text-gray-900">
+        <h1 className="mt-20 text-4xl font-semibold ">New in Town.</h1>
+        <p className="mt-10 mx-5 text-center">
+          Collect all new spots in one app to discover the place you have moved
+          to
+        </p>
+
+        <LinkContainer>
+          <LinkStyled to={"/doctors"}>Doctors</LinkStyled>
+          <LinkStyled to={"/cafes-restaurants"}>Cafés & Restaurants</LinkStyled>
+          <LinkStyled to={"/trips"}>Trips</LinkStyled>
+          <LinkStyled to={"/cultural"}>Cultural</LinkStyled>
+          <LinkStyled to={"beauty-wellness"}>Beauty & Wellness</LinkStyled>
+        </LinkContainer>
+
+        {/* <ul>
           {collectionNames.map((collection, index) => (
             <li key={index}>{collection}</li>
           ))}
-        </ul>
-      </div>
-
-      {/* <div>
-        <h2>Here is my doctors list:</h2>
-
-        {allDoctors.map((doctor) => (
-          <div key={doctor._id}>
-            <p>{doctor.name}</p>
-          </div>
-        ))}
-      </div> */}
+        </ul> */}
+      </main>
     </>
   );
 }
 
-// GET COLLECTION NAMES
-// db.getCollectionNames()
+// STYLING
 
-// ================================================================================================
-// import "./App.css";
-// import { useEffect, useRef, useState } from "react";
-// import { User } from "./@types/users.tsx";
-// import { ResponseNotOk } from "./@types/index.ts";
+const LinkContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 3em auto 0;
+`;
 
-// function App() {
-//   const [allUsers, setAllUsers] = useState<User[]>([]);
-//   const [foundUser, setFoundUser] = useState<User | null>(null);
+const LinkStyled = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5em;
+  padding: 2em;
+  border: none;
+  text-decoration: none;
+  width: 150px;
+  height: 100px;
+  font-size: 1rem;
+  font-weight: 400;
 
-//   const inputValue = useRef("");
+  //glass effect
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 
-//   const handleClick = async () => {
-//     if (!inputValue.current)
-//       return alert("Please write something in the text field");
-//     // ABOVE: Validation on Frontend: check that this is an email + Validation in backend
-//     // in userController function that whatever you are getting is also an email
-//     // Important: always check on frontend and backend
-//     try {
-//       const response = await fetch(
-//         `http://localhost:5000/api/users/find/${inputValue.current}`
-//       );
-//       if (!response.ok) {
-//         const result = (await response.json()) as ResponseNotOk;
-//         return console.log(result);
-//       }
-//       const result = (await response.json()) as User;
-//       setFoundUser(result);
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-
-//   useEffect(() => {
-//     const fetchAllUsers = () => {
-//       fetch("http://localhost:5000/api/users/all")
-//         .then((response) => response.json())
-//         .then((response) => {
-//           const foundUsers = response as User[];
-//           setAllUsers(foundUsers);
-//         })
-//         .catch((error) => console.error(error));
-//     };
-//     fetchAllUsers();
-//   }, []);
-
-//   return (
-//     <div>
-//       <h2>Here are all users:</h2>
-//       {allUsers.map((user) => {
-//         return (
-//           <div key={user._id}>
-//             <p>{user.email}</p>
-//           </div>
-//         );
-//       })}
-//       <label>Find a user: </label>
-//       <input
-//         className="bg-gray-100 rounded p-2 m-2 border-black border-solid border-2"
-//         type="text"
-//         onChange={(event) => (inputValue.current = event.target.value)}
-//       />
-//       <button
-//         className="bg-gray-100 rounded p-2 m-2 border-black border-solid border-2"
-//         onClick={handleClick}
-//       >
-//         Find User
-//       </button>
-//       {foundUser && (
-//         <div>
-//           <p>{foundUser.email}</p>
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-
-// export default App;
+  &:hover {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+`;
