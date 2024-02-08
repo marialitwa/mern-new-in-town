@@ -7,9 +7,7 @@ export default function Error404() {
   return (
     <>
       <h1>Error Page 404</h1>
-      <Button onClick={() => navigate("/", { replace: true })}>
-        Go to Homepage
-      </Button>
+      <Button onClick={() => navigate("/", { replace: true })}>Homepage</Button>
     </>
   );
 }
