@@ -1,10 +1,8 @@
-// import React from 'react'
+// import React from "react";
 import { Doctor } from "../@types/doctors.ts";
 import { useEffect, useState } from "react";
 import DoctorCard from "../components/DoctorCard";
 import styled from "styled-components";
-
-// type Props = {}
 
 const apiUrl = "http://localhost:5000/api/doctors/all";
 
@@ -59,6 +57,8 @@ const HeadingContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+
   margin-bottom: 1.5em;
   background-color: #eee;
 `;
