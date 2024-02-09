@@ -13,14 +13,14 @@ export default function DoctorsPage() {
   const fetchAllDoctors = async () => {
     try {
       const response = await fetch("http://localhost:5000/api/doctors/all");
-      console.log(response);
+      // console.log("RESPONSE", response);
 
       if (!response.ok) {
         throw new Error("Network response is not ok");
       }
 
       const data = await response.json();
-      console.log("data", data.allDoctors);
+      console.log("DATA", data.allDoctors);
 
       const foundDoctors = data.allDoctors as Doctor[];
       // console.log(foundDoctors.allDoctors[0].name);

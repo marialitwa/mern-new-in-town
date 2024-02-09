@@ -33,8 +33,8 @@ export default function App() {
       <main className="min-h-screen bg-gray-100 flex flex-col items-center text-gray-900">
         <h1 className="mt-20 text-4xl font-semibold ">New in Town.</h1>
         <p className="mt-10 mx-5 text-center">
-          Collect all new spots in one app to discover the place you have moved
-          to
+          Collect all new favorite spots in one app to discover the place you
+          have moved to
         </p>
 
         <LinkContainer>
