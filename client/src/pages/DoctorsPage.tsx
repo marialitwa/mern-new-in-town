@@ -2,7 +2,6 @@
 import { Doctor } from "../@types/doctors.ts";
 import { useEffect, useState } from "react";
 import DoctorCard from "../components/DoctorCard";
-import { Link } from "react-router-dom";
 
 // type Props = {}
 
@@ -38,8 +37,6 @@ export default function DoctorsPage() {
 
   return (
     <>
-      <Link to={"/"}>Homepage</Link>
-
       <h1>My New Doctors.</h1>
       <DoctorCard />
 

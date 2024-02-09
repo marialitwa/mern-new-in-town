@@ -1,16 +1,11 @@
 // import React from 'react'
 
-import { Link } from "react-router-dom";
-
 // type Props = {}
 
-function CulturalPage() {
+export default function CulturalPage() {
   return (
     <>
-      <Link to={"/"}>Homepage</Link>
-      <div>Cultural Page.</div>
+      <h1>Cultural Page</h1>
     </>
   );
 }
-
-export default CulturalPage;

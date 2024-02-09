@@ -35,7 +35,7 @@ export default function App() {
         <h1 className="mt-16 text-4xl font-semibold ">New in Town.</h1>
         <p className="mt-7 mx-5 text-center">
           Collect all new favorite spots in one app to discover the place you
-          have moved to
+          have moved to.
         </p>
 
         <LinkContainer>
@@ -45,7 +45,6 @@ export default function App() {
           <LinkStyled to={"/cultural"}>Cultural</LinkStyled>
           <LinkStyled to={"beauty-wellness"}>Beauty & Wellness</LinkStyled>
         </LinkContainer>
-
         {/* <ul>
           {collectionNames.map((collection, index) => (
             <li key={index}>{collection}</li>
