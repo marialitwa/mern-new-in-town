@@ -42,7 +42,6 @@ const Navigation = styled.nav`
 // Überprüft, ob der Prop isActive wahr ist.
 
 const LinkStyled = styled(Link)<LinkProps>`
-  _border: 1px solid green;
   padding: 1em 2em;
 
   ${({ isActive }) =>
