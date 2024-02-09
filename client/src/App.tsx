@@ -2,6 +2,7 @@
 import "./App.css";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import NavBar from "./components/NavBar";
 
 export default function App() {
   // const [collectionNames, setCollectionNames] = useState<string[]>([""]);
@@ -30,11 +31,11 @@ export default function App() {
 
   return (
     <>
-      <main className="min-h-screen bg-gray-100 flex flex-col items-center text-gray-900">
-        <h1 className="mt-20 text-4xl font-semibold ">New in Town.</h1>
-        <p className="mt-10 mx-5 text-center">
+      <main className="min-h-screen bg-gray-50 flex flex-col items-center text-gray-900">
+        <h1 className="mt-16 text-4xl font-semibold ">New in Town.</h1>
+        <p className="mt-7 mx-5 text-center">
           Collect all new favorite spots in one app to discover the place you
-          have moved to
+          have moved to.
         </p>
 
         <LinkContainer>
@@ -44,12 +45,12 @@ export default function App() {
           <LinkStyled to={"/cultural"}>Cultural</LinkStyled>
           <LinkStyled to={"beauty-wellness"}>Beauty & Wellness</LinkStyled>
         </LinkContainer>
-
         {/* <ul>
           {collectionNames.map((collection, index) => (
             <li key={index}>{collection}</li>
           ))}
         </ul> */}
+        <NavBar />
       </main>
     </>
   );
@@ -64,7 +65,7 @@ const LinkContainer = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin: 3em auto 0;
+  margin: 2.3em auto 0;
 `;
 
 const LinkStyled = styled(Link)`
