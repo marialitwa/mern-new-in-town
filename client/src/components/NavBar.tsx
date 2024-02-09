@@ -43,19 +43,19 @@ const Navigation = styled.nav`
 
 const LinkStyled = styled(Link)<LinkProps>`
   padding: 1em 2em;
+  text-decoration: none;
 
   ${({ isActive }) =>
     isActive &&
     css`
       color: #b5838d;
-      text-decoration: none;
       font-weight: bold;
+      background-color: #e2d9d9;
     `}
 
   ${({ isActive }) =>
     !isActive &&
     css`
       color: #6d6875;
-      text-decoration: none;
     `}
 `;
