@@ -48,7 +48,7 @@ const LinkStyled = styled(Link)<LinkProps>`
   ${({ isActive }) =>
     isActive &&
     css`
-      color: #b5838d;
+      color: palevioletred;
       font-weight: bold;
       background-color: #e2d9d9;
     `}

@@ -10,6 +10,7 @@ import CulturalPage from "./pages/CulturalPage.tsx";
 import BeautyWellnessPage from "./pages/BeautyWellnessPage.tsx";
 import Error404 from "./pages/Error404.tsx";
 import Layout from "./components/Layout.tsx";
+import DoctorDetailsPage from "./pages/DoctorDetailsPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/doctors",
         element: <DoctorsPage />,
+      },
+      {
+        path: "/doctors/:id",
+        element: <DoctorDetailsPage />,
       },
       {
         path: "/cafes-restaurants",

@@ -1,20 +1,30 @@
 // import React from 'react'
 import styled from "styled-components";
 import { Doctor } from "../@types/doctors";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   doctor: Doctor;
 };
 
 export default function DoctorCard({ doctor }: Props) {
+  const navigate = useNavigate();
+
+  function handleClick() {
+    const id = doctor._id;
+    // console.log("Button clicked");
+    navigate(`/doctors/${id}`, {
+      state: { name: doctor.name },
+    });
+  }
+
   return (
     <>
       <CardContainer>
         <p>{doctor.medical_specialty}</p>
         <p>{doctor.name}</p>
         <p>{doctor.city_district}</p>
-        <p>{doctor.address}</p>
-        <p>{doctor.phone_number}</p>
+        <Button onClick={handleClick}>Show more</Button>
       </CardContainer>
     </>
   );
@@ -45,4 +55,14 @@ const CardContainer = styled.div`
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
+`;
+
+const Button = styled.button`
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  padding: 0.3em;
+  border-radius: 0.4em;
+  width: 50%;
+  background-color: lightpink;
+  background-color: plum;
 `;
