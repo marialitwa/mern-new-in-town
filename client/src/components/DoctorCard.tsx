@@ -1,12 +1,23 @@
 // import React from 'react'
 import styled from "styled-components";
 import { Doctor } from "../@types/doctors";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   doctor: Doctor;
 };
 
 export default function DoctorCard({ doctor }: Props) {
+  const navigate = useNavigate();
+
+  function handleClick() {
+    const id = doctor._id;
+    // console.log("Button clicked");
+    navigate(`/doctors/${id}`, {
+      state: { name: doctor.name },
+    });
+  }
+
   return (
     <>
       <CardContainer>
@@ -15,6 +26,7 @@ export default function DoctorCard({ doctor }: Props) {
         <p>{doctor.city_district}</p>
         <p>{doctor.address}</p>
         <p>{doctor.phone_number}</p>
+        <button onClick={handleClick}>Show more</button>
       </CardContainer>
     </>
   );
