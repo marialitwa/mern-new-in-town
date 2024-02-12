@@ -24,9 +24,7 @@ export default function DoctorCard({ doctor }: Props) {
         <p>{doctor.medical_specialty}</p>
         <p>{doctor.name}</p>
         <p>{doctor.city_district}</p>
-        <p>{doctor.address}</p>
-        <p>{doctor.phone_number}</p>
-        <button onClick={handleClick}>Show more</button>
+        <Button onClick={handleClick}>Show more</Button>
       </CardContainer>
     </>
   );
@@ -57,4 +55,14 @@ const CardContainer = styled.div`
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
+`;
+
+const Button = styled.button`
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  padding: 0.3em;
+  border-radius: 0.4em;
+  width: 50%;
+  background-color: lightpink;
+  background-color: plum;
 `;
