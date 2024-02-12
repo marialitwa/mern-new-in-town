@@ -42,21 +42,20 @@ const Navigation = styled.nav`
 // Überprüft, ob der Prop isActive wahr ist.
 
 const LinkStyled = styled(Link)<LinkProps>`
-  _border: 1px solid green;
   padding: 1em 2em;
+  text-decoration: none;
 
   ${({ isActive }) =>
     isActive &&
     css`
       color: #b5838d;
-      text-decoration: none;
       font-weight: bold;
+      background-color: #e2d9d9;
     `}
 
   ${({ isActive }) =>
     !isActive &&
     css`
       color: #6d6875;
-      text-decoration: none;
     `}
 `;

@@ -1,17 +1,17 @@
-// import React from 'react'
+// import React from "react";
 import { Doctor } from "../@types/doctors.ts";
 import { useEffect, useState } from "react";
 import DoctorCard from "../components/DoctorCard";
+import styled from "styled-components";
 
-// type Props = {}
+const apiUrl = "http://localhost:5000/api/doctors/all";
 
 export default function DoctorsPage() {
   const [allDoctors, setAllDoctors] = useState<Doctor[]>([]);
 
-  // FETCH FUNCTION FOR ALL DOCTORS FROM MONGO DB
   const fetchAllDoctors = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/doctors/all");
+      const response = await fetch(`${apiUrl}`);
       // console.log("RESPONSE", response);
 
       if (!response.ok) {
@@ -31,22 +31,34 @@ export default function DoctorsPage() {
   };
 
   useEffect(() => {
-    // fetchCollectionNames();
     fetchAllDoctors();
   }, []);
 
   return (
     <>
-      <h1>My New Doctors.</h1>
-      <DoctorCard />
+      <HeadingContainer>
+        <h1 className="text-3xl font-semibold">My New Doctors.</h1>
+      </HeadingContainer>
 
       <div>
-        {allDoctors.map((doctor) => (
-          <div key={doctor._id}>
-            <p>{doctor.name}</p>
-          </div>
-        ))}
+        {allDoctors.map((doctor) => {
+          return <DoctorCard key={doctor._id} doctor={doctor} />;
+        })}
       </div>
     </>
   );
 }
+
+// STYLING
+
+const HeadingContainer = styled.div`
+  width: 100%;
+  height: 25vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  margin-bottom: 1.5em;
+  background-color: #eee;
+`;
