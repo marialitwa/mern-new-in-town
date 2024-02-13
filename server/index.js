@@ -7,6 +7,7 @@ import doctorRouter from "./routes/doctorRoutes.js"
 import mongoose from "mongoose";
 import cafeRestaurantRouter from "./routes/cafeRestaurantRoutes.js";
 import collectionNameRouter from "./routes/collectionNamesRoutes.js";
+import cosmeticRouter from "./routes/cosmeticRoutes.js";
 
 // Initializing Express ==========
 const app = express();
@@ -37,6 +38,7 @@ const addRoutes = () => {
     app.use("/api/doctors", doctorRouter);
     app.use("/api/cafes-restaurants", cafeRestaurantRouter)
     app.use("/api/collections", collectionNameRouter)
+    app.use("/api/cosmetics", cosmeticRouter)
     app.use("*", (request, response) => 
     response.status(404).json({ error: "Endpoint not found"}));
 
