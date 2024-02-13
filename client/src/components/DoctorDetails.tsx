@@ -14,9 +14,11 @@ export default function DoctorDetails({ doctor }: Props) {
         <Card>
           <p>{doctor.medical_specialty}</p>
           <p>{doctor.name}</p>
+          <p>{doctor.medical_practice}</p>
           <p>{doctor.city_district}</p>
           <p>{doctor.address}</p>
           <p>{doctor.phone_number}</p>
+          <p>{doctor.website}</p>
         </Card>
       </CardContainer>
     </>
