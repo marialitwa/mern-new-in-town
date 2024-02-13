@@ -8,6 +8,8 @@ import mongoose from "mongoose";
 import cafeRestaurantRouter from "./routes/cafeRestaurantRoutes.js";
 import collectionNameRouter from "./routes/collectionNamesRoutes.js";
 import cosmeticRouter from "./routes/cosmeticRoutes.js";
+import culturalRouter from "./routes/culturalRoutes.js";
+import foodRouter from "./routes/foodRoutes.js";
 
 // Initializing Express ==========
 const app = express();
@@ -39,6 +41,8 @@ const addRoutes = () => {
     app.use("/api/cafes-restaurants", cafeRestaurantRouter)
     app.use("/api/collections", collectionNameRouter)
     app.use("/api/cosmetics", cosmeticRouter)
+    app.use("/api/culturals", culturalRouter);
+    app.use("/api/foods", foodRouter);
     app.use("*", (request, response) => 
     response.status(404).json({ error: "Endpoint not found"}));
 
