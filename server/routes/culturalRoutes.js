@@ -1,8 +1,8 @@
 import express from "express";
-import getAllCulturalSpots from "../controllers/culturalController.js";
+import getAllCulturalLocations from "../controllers/culturalController.js";
 
 const culturalRouter = express.Router();
 
-culturalRouter.get("/all", getAllCulturalSpots);
+culturalRouter.get("/all", getAllCulturalLocations);
 
 export default culturalRouter;

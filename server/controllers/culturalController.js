@@ -1,13 +1,13 @@
 import CulturalModel from "../models/culturalModel.js";
 
-const getAllCulturalSpots = async(request, response) => {
+const getAllCulturalLocations = async(request, response) => {
 
     try {
 
-        const allCulturalSpots = await CulturalModel.find();
+        const allCulturalLocations = await CulturalModel.find();
         response.status(200).json({
-            number: allCulturalSpots.length,
-            allCulturalSpots
+            number: allCulturalLocations.length,
+            allCulturalLocations
         })
         
     } catch (error) {
@@ -18,7 +18,7 @@ const getAllCulturalSpots = async(request, response) => {
      }
 }
 
-export default getAllCulturalSpots;
+export default getAllCulturalLocations;
 
 
 

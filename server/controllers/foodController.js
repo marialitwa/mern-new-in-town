@@ -1,13 +1,13 @@
 import FoodModel from "../models/foodModel.js"
 
-const getAllFoodSpots = async(request, response) => {
+const getAllFoodLocations = async(request, response) => {
 
     try {
         
-        const allFoodSpots = await FoodModel.find();
+        const allFoodLocations = await FoodModel.find();
         response.status(200).json({
-            number: allFoodSpots.length,
-            allFoodSpots
+            number: allFoodLocations.length,
+            allFoodLocations
         })
     } catch (error) {
         console.error("Error", error) ;
@@ -18,4 +18,4 @@ const getAllFoodSpots = async(request, response) => {
     }
 }
 
-export default getAllFoodSpots;
+export default getAllFoodLocations;

@@ -1,12 +1,12 @@
 import TripModel from "../models/tripModel.js";
 
-const getAllTrips = async(request, response) => {
+const getAllTripLocations = async(request, response) => {
 
     try {
-        const allTrips = await TripModel.find();
+        const allTripLocations = await TripModel.find();
         response.status(200).json({
-            number: allTrips.length,
-            allTrips
+            number: allTripLocations.length,
+            allTripLocations
         })
     } catch (error) {
         console.error("Error", error) ;
@@ -16,4 +16,4 @@ const getAllTrips = async(request, response) => {
     }
 }
 
-export default getAllTrips;
+export default getAllTripLocations;

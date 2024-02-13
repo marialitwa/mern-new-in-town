@@ -1,8 +1,8 @@
 import express from "express";
-import getAllFoodSpots from "../controllers/foodController.js";
+import getAllFoodLocations from "../controllers/foodController.js";
 
 const foodRouter = express.Router();
 
-foodRouter.get("/all", getAllFoodSpots)
+foodRouter.get("/all", getAllFoodLocations)
 
 export default foodRouter;

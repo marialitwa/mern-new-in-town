@@ -11,6 +11,7 @@ import cosmeticRouter from "./routes/cosmeticRoutes.js";
 import culturalRouter from "./routes/culturalRoutes.js";
 import foodRouter from "./routes/foodRoutes.js";
 import tripRouter from "./routes/tripRoutes.js";
+import sportRouter from "./routes/sportRoutes.js";
 
 // Initializing Express ==========
 const app = express();
@@ -44,7 +45,8 @@ const addRoutes = () => {
     app.use("/api/cosmetics", cosmeticRouter)
     app.use("/api/culturals", culturalRouter);
     app.use("/api/foods", foodRouter);
-    app.use("/api/trips", tripRouter)
+    app.use("/api/trips", tripRouter);
+    app.use("/api/sports", sportRouter);
     app.use("*", (request, response) => 
     response.status(404).json({ error: "Endpoint not found"}));
 
