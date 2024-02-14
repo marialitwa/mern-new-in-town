@@ -5,7 +5,6 @@ import "dotenv/config";
 import userRouter from "./routes/userRoutes.js";
 import doctorRouter from "./routes/doctorRoutes.js"
 import mongoose from "mongoose";
-import cafeRestaurantRouter from "./routes/cafeRestaurantRoutes.js";
 import collectionNameRouter from "./routes/collectionNamesRoutes.js";
 import cosmeticRouter from "./routes/cosmeticRoutes.js";
 import culturalRouter from "./routes/culturalRoutes.js";
@@ -40,7 +39,6 @@ const addMiddlewares = () => {
 const addRoutes = () => {
     app.use("/api/users", userRouter);
     app.use("/api/doctors", doctorRouter);
-    app.use("/api/cafes-restaurants", cafeRestaurantRouter)
     app.use("/api/collections", collectionNameRouter)
     app.use("/api/cosmetics", cosmeticRouter)
     app.use("/api/culturals", culturalRouter);
