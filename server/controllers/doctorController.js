@@ -34,6 +34,8 @@ const addCard = async (request, response) => {
   // response.send("testing");
   
   console.log(request.body);
+  
+  if (!request.body.name) return response.status(400).json({ error: "Name must be included."})
 
   try {
     const newEntry = await DoctorModel.create(request.body)
@@ -44,6 +46,8 @@ const addCard = async (request, response) => {
     
   } catch (error) {
     console.error(error);
+
+    if (error.code === 11000) response.status(400).json({ error: "Item already listed" })
     response.status(500).json({ error: error.message })
   }
 }
