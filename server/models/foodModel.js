@@ -9,7 +9,7 @@ const foodSchema = new mongoose.Schema({
     address: { type: String, required: false },
     phone_number: { type: String, required: false},
     website: { type: String, required: false }
-})
+}, { timestamps: true});
 
  const FoodModel = mongoose.model("food", foodSchema);
 

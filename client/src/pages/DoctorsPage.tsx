@@ -45,6 +45,9 @@ export default function DoctorsPage() {
           return <DoctorCard key={doctor._id} doctor={doctor} />;
         })}
       </div>
+      <ButtonContainer>
+        <Button>+</Button>
+      </ButtonContainer>
     </>
   );
 }
@@ -61,4 +64,16 @@ const HeadingContainer = styled.div`
 
   margin-bottom: 1.5em;
   background-color: #eee;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+`;
+
+const Button = styled.button`
+  margin: 0 auto;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background-color: olive;
 `;

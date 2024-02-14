@@ -17,8 +17,6 @@ const getAllDoctors = async(request, response) => {
     }
 }
 
-
-
 const getDoctorById = async(request, response) => {
 
   const id = request.params.id
@@ -27,9 +25,28 @@ const getDoctorById = async(request, response) => {
   console.log("Found Doctor", foundDoctor);
 
   response.status(200).json(foundDoctor);
-
   console.log(request)
 }
 
-export { getAllDoctors, getDoctorById }
+const addCard = async (request, response) => {
+
+  // Start with test in Postman
+  // response.send("testing");
+  
+  console.log(request.body);
+
+  try {
+    const newEntry = await DoctorModel.create(request.body)
+    console.log(newEntry);
+
+    if (newEntry) response.status(201).json(newEntry);
+    else response.status(400).json({ error: "New entry could not be created"})
+    
+  } catch (error) {
+    console.error(error);
+    response.status(500).json({ error: error.message })
+  }
+}
+
+export { getAllDoctors, getDoctorById, addCard }
 
