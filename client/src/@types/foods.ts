@@ -1,10 +1,11 @@
-export interface Doctor {
+export interface Food {
+
     _id: string,
-    medical_specialty?: string,
+    type?: string,
     name: string,
-    medical_practice?: string,
+    is_vegan?: boolean,
     city_district?: string,
     address?: string,
     phone_number?: string,
-    website?: string
+    website?: string,
 }

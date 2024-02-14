@@ -4,13 +4,13 @@ import "./index.css";
 import App from "./App.tsx";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import DoctorsPage from "./pages/DoctorsPage.tsx";
-import CafesRestaurantsPage from "./pages/CafesRestaurantsPage.tsx";
 import TripsPage from "./pages/TripsPage.tsx";
 import CulturalPage from "./pages/CulturalPage.tsx";
 import BeautyWellnessPage from "./pages/BeautyWellnessPage.tsx";
 import Error404 from "./pages/Error404.tsx";
 import Layout from "./components/Layout.tsx";
 import DoctorDetailsPage from "./pages/DoctorDetailsPage.tsx";
+import FoodDrinksPage from "./pages/FoodDrinksPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -33,8 +33,8 @@ const router = createBrowserRouter([
         element: <DoctorDetailsPage />,
       },
       {
-        path: "/cafes-restaurants",
-        element: <CafesRestaurantsPage />,
+        path: "/foods",
+        element: <FoodDrinksPage />,
       },
       {
         path: "/trips",

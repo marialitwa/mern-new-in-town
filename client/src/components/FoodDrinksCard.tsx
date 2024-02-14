@@ -1,24 +1,24 @@
 // import React from 'react'
 
 import styled from "styled-components";
-import { CafeRestaurant } from "../@types/cafesRestaurants";
+import { Food } from "../@types/foods";
 
 type Props = {
-  cafeRestaurant: CafeRestaurant;
+  food: Food;
 };
 
-function CafeRestaurantCard({ cafeRestaurant }: Props) {
+function FoodDrinksCard({ food }: Props) {
   return (
     <>
       <CardContainer>
-        <p>{cafeRestaurant.name}</p>
-        <p>{cafeRestaurant.city_district}</p>
+        <p>{food.name}</p>
+        <p>{food.city_district}</p>
       </CardContainer>
     </>
   );
 }
 
-export default CafeRestaurantCard;
+export default FoodDrinksCard;
 
 // STYLING
 
