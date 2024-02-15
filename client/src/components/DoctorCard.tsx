@@ -21,8 +21,8 @@ export default function DoctorCard({ doctor }: Props) {
   return (
     <>
       <CardContainer>
-        <p>{doctor.medical_specialty}</p>
         <p>{doctor.name}</p>
+        <p>{doctor.medical_specialty}</p>
         <p>{doctor.city_district}</p>
         <Button onClick={handleClick}>Show more</Button>
       </CardContainer>

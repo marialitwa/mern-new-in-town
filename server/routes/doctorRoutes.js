@@ -3,11 +3,11 @@ import { addCard, getAllDoctors, getDoctorById } from "../controllers/doctorCont
 
 const doctorRouter = express.Router();
 
-// Read data
+// Read data from manually created MongoDB database collection
 doctorRouter.get("/all", getAllDoctors);
 doctorRouter.get("/:id", getDoctorById);
 
-// Add data
+// Add data from frontend (or Postman) to MongoDb database collection
 doctorRouter.post("/new-entry", addCard)
 
 export default doctorRouter;

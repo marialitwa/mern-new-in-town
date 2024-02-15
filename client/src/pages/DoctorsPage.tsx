@@ -3,6 +3,7 @@ import { Doctor } from "../@types/doctors.ts";
 import { useEffect, useState } from "react";
 import DoctorCard from "../components/DoctorCard";
 import styled from "styled-components";
+// import FormModal from "../components/FormModal.tsx";
 
 const apiUrl = "http://localhost:5000/api/doctors/all";
 
@@ -39,15 +40,18 @@ export default function DoctorsPage() {
       <HeadingContainer>
         <h1 className="text-3xl font-semibold">My New Doctors.</h1>
       </HeadingContainer>
+      <ButtonContainer>
+        <Button>+</Button>
+      </ButtonContainer>
 
       <div>
         {allDoctors.map((doctor) => {
           return <DoctorCard key={doctor._id} doctor={doctor} />;
         })}
       </div>
-      <ButtonContainer>
-        <Button>+</Button>
-      </ButtonContainer>
+
+      {/* make conditional Form that renders an input rega */}
+      {/* <FormModal medicalSpecialty={medicalSpecialty} /> */}
     </>
   );
 }
@@ -61,13 +65,18 @@ const HeadingContainer = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-
   margin-bottom: 1.5em;
   background-color: #eee;
+  _border: 2px solid yellow;
+  position: relative;
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
+  _border: 2px solid hotpink;
+  position: absolute:
+  top: 0;
+  z-index: 1;
 `;
 
 const Button = styled.button`
@@ -76,4 +85,5 @@ const Button = styled.button`
   width: 40px;
   height: 40px;
   background-color: olive;
+  border: 2px solid blue;
 `;
