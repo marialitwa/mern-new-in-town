@@ -1,31 +1,85 @@
 // import React from 'react'
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+// import { ResponseNotOk } from "../@types";
 
-type Props = {
-  submit: (name: string) => Promise<void>;
+type FormType = {
+  name: string;
+  medical_specialty?: string;
+  medical_practice?: string;
+  city_district?: string;
+  address?: string;
+  phone_number?: string;
+  website?: string;
 };
 
-const DoctorForm = ({ submit }: Props) => {
-  const [inputValues, setInputValues] = useState({ name: "" });
-  console.log("Input Values", inputValues);
+export default function DoctorForm() {
+  const [inputValues, setInputValues] = useState<FormType>({} as FormType);
+  // console.log("Input Values", inputValues);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const navigate = useNavigate();
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     if (!inputValues.name) return alert("Name must be included");
-    await submit(inputValues.name);
-  };
+    // console.log("EVENT", event);
+    // const form = event.target;
+    // console.log("FORM", form);
+    // const input = form.elements.input.value.trim();
+    // if (input === "") return alert("Please fill out the form");
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValues({ ...inputValues, [event.target.type]: event.target.value });
-  };
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/doctors/new-entry",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(inputValues),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Something went wrong");
+      }
+
+      console.log("Sending data successfull");
+    } catch (error) {
+      console.error("Data is not send to server", error);
+    }
+
+    // form.reset();
+    navigate("/doctors");
+  }
+
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    // console.log("event.target.value", event.target.value);
+    // console.log("event", event);
+    // console.log("event.target.type", event.target.type);
+    setInputValues({
+      ...inputValues,
+      [event.target.name]: event.target.value,
+    });
+  }
+
+  function handleReset() {
+    setInputValues({
+      name: "",
+      medical_specialty: "",
+      medical_practice: "",
+      city_district: "",
+      address: "",
+      phone_number: "",
+      website: "",
+    });
+  }
 
   return (
     <>
       <div>
         {/* DOCTOR FORM ============================== */}
-        <form>
+        <form onSubmit={handleSubmit}>
           <fieldset className="flex flex-col m-10">
             <legend className="text-center font-light text-xl">
               Add a new doctor.
@@ -40,8 +94,10 @@ const DoctorForm = ({ submit }: Props) => {
             </label>
             <input
               type="text"
+              // name property needs to be corresponding to model/database object-key naming!
               name="name"
               id="name"
+              onChange={handleInputChange}
               value={inputValues.name}
               placeholder="Dr. Anne Ärztin"
               className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
@@ -49,13 +105,20 @@ const DoctorForm = ({ submit }: Props) => {
             />
 
             {/* MEDICAL SPECIALTY  =============== */}
-            <label htmlFor="type" className="text-stone-700 text-base">
+            <label
+              htmlFor="medical_specialty"
+              className="text-stone-700 text-base"
+            >
               Medical Specialty
             </label>
             <input
               type="text"
-              name="type"
-              id="type"
+              // name value needs to be corresponding to Model/database object-key naming!
+              // must be medical_speciality, not medical-specialty!
+              name="medical_specialty"
+              id="medical_specialty"
+              onChange={handleInputChange}
+              value={inputValues.medical_specialty}
               placeholder="Orthopädin"
               className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
             />
@@ -63,27 +126,30 @@ const DoctorForm = ({ submit }: Props) => {
             {/* MEDICAL PRACTICE  =============== */}
             {/* 
           <label
-            htmlFor="medical-practice"
+            htmlFor="medical_practice"
             className="text-stone-700 text-base"
           >
             Medical Practice
           </label>
           <input
             type="text"
-            name="medical-practice"
-            id="medical-practice"
+            name="medical_practice"
+            id="medical_practice"
+            onChange={handleInputChange}
             placeholder="Arztpraxis Berlin"
             className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
           /> */}
 
             {/* CITY DISTRICT  =============== */}
-            <label htmlFor="city-district" className="text-stone-700 text-base">
+            <label htmlFor="city_district" className="text-stone-700 text-base">
               City District
             </label>
             <input
               type="text"
-              name="city-district"
-              id="city-district"
+              name="city_district"
+              id="city_district"
+              onChange={handleInputChange}
+              value={inputValues.city_district}
               placeholder="Wedding"
               className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
             />
@@ -96,19 +162,23 @@ const DoctorForm = ({ submit }: Props) => {
               type="text"
               name="address"
               id="address"
+              onChange={handleInputChange}
+              value={inputValues.address}
               placeholder="Straße usw."
               className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
             />
 
             {/* PHONE NUMBER  =============== */}
 
-            <label htmlFor="phone-number" className="text-stone-700 text-base">
+            <label htmlFor="phone_number" className="text-stone-700 text-base">
               Phone Number
             </label>
             <input
               type="tel"
-              name="phone-number"
-              id="phone-number"
+              name="phone_number"
+              id="phone_number"
+              onChange={handleInputChange}
+              value={inputValues.phone_number}
               // RESEARCH: pattern=""
               placeholder="030-1234567"
               className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
@@ -121,14 +191,16 @@ const DoctorForm = ({ submit }: Props) => {
             </label>
             <input
               type="url"
-              name="url"
+              name="website"
               id="url"
+              onChange={handleInputChange}
+              value={inputValues.website}
               placeholder="www.arztpraxis.berlin"
               className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
             />
 
             {/* TEXTFIELD FOR NOTES  =============== */}
-            <label htmlFor="notes" className="text-stone-700 text-base">
+            {/* <label htmlFor="notes" className="text-stone-700 text-base">
               Notes
             </label>
             <textarea
@@ -136,10 +208,8 @@ const DoctorForm = ({ submit }: Props) => {
               id="notes"
               placeholder="Write your personal notes here ..."
               className="w-auto rounded-md py-2.5 px-4 mb-3 border text-sm outline-[#007bff]"
-            >
-              Write your personal notes here
-            </textarea>
-            {/* INFOTEXT: Required fields */}
+            ></textarea> */}
+            {/* INFOTEXT: Required fields =========== */}
             <p className="italic mt-2 text-sm text-stone-600">
               * required fields
             </p>
@@ -147,13 +217,14 @@ const DoctorForm = ({ submit }: Props) => {
 
           <div className="flex flex-col justify-center items-center">
             <button
-              submit="{handleSubmit}"
               type="submit"
-              className="w-1/2 rounded-md py-2.5 px-4 mt-8 border text-sm outline-[#007bff] bg-pink-200"
+              className="w-1/2 rounded-md py-2.5 px-4 mt-8 border text-sm outline-[#007bff] bg-pink-400"
             >
               Submit
             </button>
             <button
+              // onClick={() => console.log("Button clicked")}
+              onClick={handleReset}
               type="reset"
               className="w-1/2 rounded-md py-2.5 px-4 mt-4 mb-40 border text-sm outline-[#007bff] bg-gray-300"
             >
@@ -164,6 +235,4 @@ const DoctorForm = ({ submit }: Props) => {
       </div>
     </>
   );
-};
-
-export default DoctorForm;
+}

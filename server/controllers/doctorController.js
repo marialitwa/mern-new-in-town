@@ -33,13 +33,13 @@ const addCard = async (request, response) => {
   // Start with test in Postman
   // response.send("testing");
   
-  console.log(request.body);
+  console.log("req.body", request.body);
   
   if (!request.body.name) return response.status(400).json({ error: "Name must be included."})
 
   try {
     const newEntry = await DoctorModel.create(request.body)
-    console.log(newEntry);
+    console.log("newEntry", newEntry);
 
     if (newEntry) response.status(201).json(newEntry);
     else response.status(400).json({ error: "New entry could not be created"})
