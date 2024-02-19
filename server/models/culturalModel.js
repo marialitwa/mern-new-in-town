@@ -8,7 +8,7 @@ const culturalSchema = new mongoose.Schema({
     address: { type: String, required: false },
     website: { type: String, required: false }
 
-})
+}, { timestamps: true});
 
 const CulturalModel = mongoose.model("cultural", culturalSchema)
 

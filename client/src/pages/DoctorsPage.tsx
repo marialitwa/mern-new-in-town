@@ -3,11 +3,19 @@ import { Doctor } from "../@types/doctors.ts";
 import { useEffect, useState } from "react";
 import DoctorCard from "../components/DoctorCard";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+// import FormModal from "../components/FormModal.tsx";
 
 const apiUrl = "http://localhost:5000/api/doctors/all";
 
 export default function DoctorsPage() {
   const [allDoctors, setAllDoctors] = useState<Doctor[]>([]);
+
+  const navigate = useNavigate();
+
+  function handleClick() {
+    navigate("/form");
+  }
 
   const fetchAllDoctors = async () => {
     try {
@@ -36,20 +44,32 @@ export default function DoctorsPage() {
 
   return (
     <>
-      <HeadingContainer>
-        <h1 className="text-3xl font-semibold">My New Doctors.</h1>
-      </HeadingContainer>
+      <Main>
+        <HeadingContainer>
+          <h1 className="text-3xl font-semibold">My New Doctors.</h1>
+        </HeadingContainer>
+        <ButtonContainer>
+          <Button onClick={handleClick}>+</Button>
+        </ButtonContainer>
 
-      <div>
-        {allDoctors.map((doctor) => {
-          return <DoctorCard key={doctor._id} doctor={doctor} />;
-        })}
-      </div>
+        <div>
+          {allDoctors.map((doctor) => {
+            return <DoctorCard key={doctor._id} doctor={doctor} />;
+          })}
+        </div>
+
+        {/* make conditional Form that renders an input rega */}
+        {/* <FormModal medicalSpecialty={medicalSpecialty} /> */}
+      </Main>
     </>
   );
 }
 
 // STYLING
+
+const Main = styled.main`
+  margin-bottom: 8em;
+`;
 
 const HeadingContainer = styled.div`
   width: 100%;
@@ -58,7 +78,22 @@ const HeadingContainer = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-
   margin-bottom: 1.5em;
   background-color: #eee;
+  _border: 2px solid yellow;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  margin-top: -3em;
+  z-index: 1;
+  _border: 2px solid hotpink;
+`;
+
+const Button = styled.button`
+  margin: 0 auto;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background-color: olive;
 `;

@@ -15,6 +15,9 @@ export default function NavBar() {
         <LinkStyled to={"/"} isActive={location.pathname === "/"}>
           Home
         </LinkStyled>
+        <LinkStyled to={"/form"} isActive={location.pathname === "/form"}>
+          Form
+        </LinkStyled>
         <LinkStyled to={"#"} isActive={location.pathname === "/account"}>
           Account
         </LinkStyled>
@@ -30,7 +33,7 @@ const Navigation = styled.nav`
   align-items: center;
   justify-content: space-between;
   gap: 1em;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;

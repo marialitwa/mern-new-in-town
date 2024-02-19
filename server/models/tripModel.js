@@ -7,7 +7,7 @@ const tripSchema = new mongoose.Schema({
     city_district: { type: String, required: false},
     address: { type: String, required: false},
     website: { type: String, required: false}
-})
+}, { timestamps: true});
 
 const TripModel = mongoose.model("trip", tripSchema)
 
