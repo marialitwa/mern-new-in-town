@@ -199,6 +199,7 @@ export default function DoctorForm() {
               className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
             />
 
+            {/* UPADTE MODEL in server */}
             {/* TEXTFIELD FOR NOTES  =============== */}
             {/* <label htmlFor="notes" className="text-stone-700 text-base">
               Notes

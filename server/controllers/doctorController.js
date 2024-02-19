@@ -2,6 +2,7 @@ import DoctorModel from "../models/doctorModel.js"
 
 const getAllDoctors = async(request, response) => {
 
+  // sort method here to reverse order
     try {
       const allDoctors = await DoctorModel.find();
       response.status(200).json({
