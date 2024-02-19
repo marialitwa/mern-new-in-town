@@ -218,7 +218,7 @@ export default function DoctorForm() {
           <div className="flex flex-col justify-center items-center">
             <button
               type="submit"
-              className="w-1/2 rounded-md py-2.5 px-4 mt-8 border text-sm outline-[#007bff] bg-pink-400"
+              className="w-1/2 rounded-md py-2.5 px-4 mt-8 border text-sm bg-pink-400"
             >
               Submit
             </button>
@@ -226,7 +226,7 @@ export default function DoctorForm() {
               // onClick={() => console.log("Button clicked")}
               onClick={handleReset}
               type="reset"
-              className="w-1/2 rounded-md py-2.5 px-4 mt-4 mb-40 border text-sm outline-[#007bff] bg-gray-300"
+              className="w-1/2 rounded-md py-2.5 px-4 mt-4 mb-40 border text-sm bg-gray-300"
             >
               Reset all fields
             </button>
