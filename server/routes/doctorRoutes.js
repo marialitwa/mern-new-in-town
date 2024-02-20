@@ -1,5 +1,5 @@
 import express from "express";
-import { addCard, getAllDoctors, getDoctorById } from "../controllers/doctorController.js";
+import { addCard, deleteCard, getAllDoctors, getDoctorById } from "../controllers/doctorController.js";
 
 const doctorRouter = express.Router();
 
@@ -9,5 +9,9 @@ doctorRouter.get("/:id", getDoctorById);
 
 // Add data from frontend (or Postman) to MongoDb database collection
 doctorRouter.post("/new-entry", addCard)
+
+// Delete data from frontend (or Postman) to MongoDb database collection
+doctorRouter.delete("/delete/:id", deleteCard)
+
 
 export default doctorRouter;

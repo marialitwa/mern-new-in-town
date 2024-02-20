@@ -57,9 +57,6 @@ export default function DoctorsPage() {
             return <DoctorCard key={doctor._id} doctor={doctor} />;
           })}
         </div>
-
-        {/* make conditional Form that renders an input rega */}
-        {/* <FormModal medicalSpecialty={medicalSpecialty} /> */}
       </Main>
     </>
   );

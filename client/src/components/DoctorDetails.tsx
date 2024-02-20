@@ -2,10 +2,34 @@
 
 import styled from "styled-components";
 import { Doctor } from "../@types/doctors";
+import { FaTrash } from "react-icons/fa";
 
 type Props = {
   doctor: Doctor;
 };
+
+async function handleDeleteCard(getCurrentId: string) {
+  console.log("CURRENT ID", getCurrentId);
+  try {
+    const response = await fetch(
+      `http://localhost:5000/api/doctors/delete/${getCurrentId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (response.ok) {
+      console.log("Card deleted successfully");
+    } else {
+      console.log("Failed to delete card");
+    }
+  } catch (error) {
+    console.error("Error deleting card", error);
+  }
+}
 
 export default function DoctorDetails({ doctor }: Props) {
   return (
@@ -19,6 +43,9 @@ export default function DoctorDetails({ doctor }: Props) {
           <p>{doctor.address}</p>
           <p>{doctor.phone_number}</p>
           <p>{doctor.website}</p>
+          <div>
+            <FaTrash onClick={() => handleDeleteCard(doctor._id)} size={20} />
+          </div>
         </Card>
       </CardContainer>
     </>
