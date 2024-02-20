@@ -64,6 +64,8 @@ const addCard = async (request, response) => {
 
 const deleteCard = async(request, response) => {
 
+  console.log(request.params)
+
   const id = request.params.id;
 
   try {

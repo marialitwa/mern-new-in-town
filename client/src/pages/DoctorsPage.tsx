@@ -27,7 +27,7 @@ export default function DoctorsPage() {
       }
 
       const data = await response.json();
-      console.log("DATA", data.allDoctors);
+      // console.log("DATA", data.allDoctors);
 
       const foundDoctors = data.allDoctors as Doctor[];
       // console.log(foundDoctors.allDoctors[0].name);

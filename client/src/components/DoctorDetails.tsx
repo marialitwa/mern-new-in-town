@@ -3,50 +3,66 @@
 import styled from "styled-components";
 import { Doctor } from "../@types/doctors";
 import { FaTrash } from "react-icons/fa";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   doctor: Doctor;
 };
 
-async function handleDeleteCard(getCurrentId: string) {
-  console.log("CURRENT ID", getCurrentId);
-  try {
-    const response = await fetch(
-      `http://localhost:5000/api/doctors/delete/${getCurrentId}`,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    if (response.ok) {
-      console.log("Card deleted successfully");
-    } else {
-      console.log("Failed to delete card");
-    }
-  } catch (error) {
-    console.error("Error deleting card", error);
-  }
-}
-
 export default function DoctorDetails({ doctor }: Props) {
+  const [doctors, setDoctors] = useState<Doctor[]>([doctor]);
+
+  const navigate = useNavigate();
+
+  async function handleDeleteCard(getCurrentId: string) {
+    // console.log("CURRENT ID", getCurrentId);
+
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/doctors/delete/${getCurrentId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.ok) {
+        console.log("Card deleted successfully");
+        setDoctors((prevDoctors) =>
+          prevDoctors.filter((doctor) => doctor._id !== getCurrentId)
+        );
+        alert(
+          "This Card is deleted now. You will be redirected to your doctors list."
+        );
+        navigate("/doctors");
+      } else {
+        console.log("Failed to delete card");
+      }
+    } catch (error) {
+      console.error("Error deleting card", error);
+    }
+  }
+
   return (
     <>
       <CardContainer>
-        <Card>
-          <p>{doctor.name}</p>
-          <p>{doctor.medical_specialty}</p>
-          <p>{doctor.city_district}</p>
-          {/* <p>{doctor.medical_practice}</p> */}
-          <p>{doctor.address}</p>
-          <p>{doctor.phone_number}</p>
-          <p>{doctor.website}</p>
-          <div>
-            <FaTrash onClick={() => handleDeleteCard(doctor._id)} size={20} />
-          </div>
-        </Card>
+        {doctors.map((doctor) => (
+          <Card key={doctor._id}>
+            <p>{doctor.name}</p>
+            <p>{doctor.medical_specialty}</p>
+            <p>{doctor.city_district}</p>
+            {/* <p>{doctor.medical_practice}</p> */}
+            <p>{doctor.address}</p>
+            <p>{doctor.phone_number}</p>
+            <p>{doctor.website}</p>
+            <div>
+              <FaTrash onClick={() => handleDeleteCard(doctor._id)} size={20} />
+            </div>
+          </Card>
+        ))}
       </CardContainer>
     </>
   );
