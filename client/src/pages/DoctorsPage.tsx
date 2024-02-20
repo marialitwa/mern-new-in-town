@@ -27,7 +27,7 @@ export default function DoctorsPage() {
       }
 
       const data = await response.json();
-      console.log("DATA", data.allDoctors);
+      // console.log("DATA", data.allDoctors);
 
       const foundDoctors = data.allDoctors as Doctor[];
       // console.log(foundDoctors.allDoctors[0].name);
@@ -57,9 +57,6 @@ export default function DoctorsPage() {
             return <DoctorCard key={doctor._id} doctor={doctor} />;
           })}
         </div>
-
-        {/* make conditional Form that renders an input rega */}
-        {/* <FormModal medicalSpecialty={medicalSpecialty} /> */}
       </Main>
     </>
   );
