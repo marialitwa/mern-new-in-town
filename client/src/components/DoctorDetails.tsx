@@ -31,9 +31,17 @@ export default function DoctorDetails({ doctor }: Props) {
 
       if (response.ok) {
         console.log("Card deleted successfully");
+
         setDoctors((prevDoctors) =>
           prevDoctors.filter((doctor) => doctor._id !== getCurrentId)
         );
+        // (prevDoctors) => ... : Funktion, die den vorherigen Zustand prevDoctors als Argument nimmt.
+        // Der vorherige Zustand ist das vorherige Array von Ärzten, das durch doctors repräsentiert wird.
+        // prevDoctors.filter((doctor) => doctor._id !== getCurrentId): prevDoctors wird gefiltert und erstellt ein neues Array,
+        // das nur die Elemente enthält, für die die Bedingung   "doctor._id !== getCurrentId" wahr ist.
+        // doctor._id !== getCurrentId: diese Bedingung überprüft, ob die id des aktuellen Arztes NICHT mit der übergebenen Id
+        // "getCurrentId" übereinstimmt. Heißt: Wenn die Id's übereinstimmen, wird das Element/der Arzt gelöscht, wenn nicht
+        // wird das Element im neuen Array behalten.
         alert(
           "This Card is deleted now. You will be redirected to your doctors list."
         );

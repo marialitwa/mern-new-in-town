@@ -4,7 +4,7 @@ import DoctorModel from "../models/doctorModel.js"
 // GET ALL DOCUMENTS FROM MY DB COLLECTION => complete list of all doctors
 const getAllDoctors = async(request, response) => {
 
-  // sort method here to reverse order
+  // sort method here to reverse order => newest added comes first
     try {
       const allDoctors = await DoctorModel.find();
       response.status(200).json({
