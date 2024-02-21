@@ -1,4 +1,6 @@
 import DoctorModel from "../models/doctorModel.js"
+import colors from "colors";
+
 
 
 // GET ALL DOCUMENTS FROM MY DB COLLECTION => complete list of all doctors
@@ -39,7 +41,7 @@ const addCard = async (request, response) => {
   // Start with test in Postman
   // response.send("testing");
   
-  console.log("req.body", request.body);
+  // console.log("req.body", request.body);
   
   if (!request.body.name) return response.status(400).json({ error: "Name must be included."})
 
@@ -61,12 +63,9 @@ const addCard = async (request, response) => {
 
 
 // DELETE A DOCTOR / DOCUMENT FROM MY DB COLLECTION => delete a specific doctor 
-
 const deleteCard = async(request, response) => {
-
-  console.log(request.params)
-
-  const id = request.params.id;
+  
+  const id = request.body.id
 
   try {
     const findCurrentCard = await DoctorModel.findByIdAndDelete(id)
@@ -83,6 +82,40 @@ const deleteCard = async(request, response) => {
   }
 }
 
+// UPDATE A DOCTOR / DOCUMENT FROM MY DB COLLECTION => edit dataset of a specific doctor 
+const updateCard = async(request, response) => {
 
-export { getAllDoctors, getDoctorById, addCard, deleteCard }
+  const id = request.body.id
+
+  const { medical_specialty, name, medical_practice, city_district, address, phone_number, website } = request.body;
+  let currentCardToUpdate
+
+
+  try {
+    currentCardToUpdate = await DoctorModel.findByIdAndUpdate(id, currentCardToUpdate, { new: true})
+
+    //do some validation and inputs sanitation
+
+    if (!currentCardToUpdate) {
+      return response.status(404).json({ message: "Card not found" })
+    }
+
+    if (!currentCardToUpdate.name) {
+      return response.status(400).json({ error: "Name must be included."}) 
+    }
+
+  } catch (error) {
+    console.error("Error", error)
+    return response.status(500).json({ message: "Something went wrong while updating! Please try again." })
+  }
+
+  if (!currentCardToUpdate) {
+    return response.status(500).json({ message: "Unable to update card."})
+  }
+
+  return response.status(200).json({ currentCardToUpdate, message: "Card is now updated."})
+}
+
+
+export { getAllDoctors, getDoctorById, addCard, deleteCard, updateCard }
 

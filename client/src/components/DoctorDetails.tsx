@@ -17,21 +17,28 @@ export default function DoctorDetails({ doctor }: Props) {
 
   async function handleDeleteCard(getCurrentId: string) {
     // console.log("CURRENT ID", getCurrentId);
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+    const urlencoded = new URLSearchParams();
+    urlencoded.append("id", getCurrentId);
+
+    const requestOptions = {
+      method: "DELETE",
+      headers: myHeaders,
+      body: urlencoded,
+    };
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/doctors/delete/${getCurrentId}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        `http://localhost:5000/api/doctors/delete`,
+        requestOptions
       );
 
       if (response.ok) {
         console.log("Card deleted successfully");
-
+        const result = await response.json();
+        console.log("result", result);
         setDoctors((prevDoctors) =>
           prevDoctors.filter((doctor) => doctor._id !== getCurrentId)
         );
