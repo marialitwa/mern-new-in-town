@@ -1,8 +1,5 @@
-// import React from 'react'
-
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-// import { ResponseNotOk } from "../@types";
+import { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 type FormType = {
   name: string;
@@ -16,29 +13,50 @@ type FormType = {
 
 export default function DoctorForm() {
   const [inputValues, setInputValues] = useState<FormType>({} as FormType);
-  // console.log("Input Values", inputValues);
+  const [isEdit, setIsEdit] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
+  // console.log("location>>>>", location);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (!inputValues.name) return alert("Name must be included");
+    if (!inputValues.name) return alert("Name must be included.");
+
+    // INSPECT WHY FORM TRIM DOES NOT WORK
     // console.log("EVENT", event);
     // const form = event.target;
     // console.log("FORM", form);
     // const input = form.elements.input.value.trim();
     // if (input === "") return alert("Please fill out the form");
 
+    const urlencoded = new URLSearchParams();
+    if (location.state) {
+      urlencoded.append("id", location.state.getCurrentDoctor._id);
+    }
+
+    for (const [key, value] of Object.entries(inputValues)) {
+      // console.log("KEY", key, "VALUE", value);
+      urlencoded.append(key, value);
+    }
+
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/doctors/new-entry",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(inputValues),
-        }
-      );
+      const response = isEdit
+        ? await fetch(
+            `http://localhost:5000/api/doctors/update`,
+
+            {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(inputValues),
+            }
+          )
+        : await fetch("http://localhost:5000/api/doctors/new-entry", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(inputValues),
+          });
 
       if (!response.ok) {
         throw new Error("Something went wrong");
@@ -48,8 +66,6 @@ export default function DoctorForm() {
     } catch (error) {
       console.error("Data is not send to server", error);
     }
-
-    // form.reset();
     navigate("/doctors");
   }
 
@@ -75,6 +91,28 @@ export default function DoctorForm() {
     });
   }
 
+  useEffect(() => {
+    console.log(location);
+
+    if (location.state) {
+      const { getCurrentDoctor } = location.state;
+      setIsEdit(true);
+      setInputValues(getCurrentDoctor);
+      // Equivalent to:
+      // setInputValues({
+      //   medical_specialty: getCurrentDoctor.medical_specialty,
+      //   name: getCurrentDoctor.name,
+      //   medical_practice: getCurrentDoctor.medical_practice,
+      //   city_district: getCurrentDoctor.city_district,
+      //   address: getCurrentDoctor.address,
+      //   phone_number: getCurrentDoctor.phone_number,
+      //   website: getCurrentDoctor.website,
+      // });
+    } else {
+      setIsEdit(false);
+    }
+  }, [location]);
+
   return (
     <>
       <div>
@@ -82,14 +120,10 @@ export default function DoctorForm() {
         <form onSubmit={handleSubmit}>
           <fieldset className="flex flex-col m-10">
             <legend className="text-center font-light text-xl">
-              Add a new doctor.
+              {isEdit ? `Edit details.` : `Add a new doctor.`}
             </legend>
             {/* NAME  =============== */}
-            <label
-              htmlFor="name"
-              className="text-stone-700 text-base mt-8"
-              // className="sm:text-yellow-500 md:text-blue-500 lg:text-red-500  xl:text-green-500 2xl:text-pink-500"
-            >
+            <label htmlFor="name" className="text-stone-700 text-base mt-8">
               Name*
             </label>
             <input
@@ -101,7 +135,7 @@ export default function DoctorForm() {
               value={inputValues.name}
               placeholder="Dr. Anne Ärztin"
               className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
-              required
+              // required
             />
 
             {/* MEDICAL SPECIALTY  =============== */}
@@ -221,7 +255,7 @@ export default function DoctorForm() {
               type="submit"
               className="w-1/2 rounded-md py-2.5 px-4 mt-8 border text-sm bg-pink-400"
             >
-              Submit
+              {isEdit ? `Update` : `Add doctor`}
             </button>
             <button
               // onClick={() => console.log("Button clicked")}

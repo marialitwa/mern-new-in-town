@@ -12,7 +12,6 @@ export default function DoctorCard({ doctor }: Props) {
 
   function handleClick() {
     const id = doctor._id;
-    // console.log("Button clicked");
     navigate(`/doctors/${id}`, {
       state: { name: doctor.name },
     });

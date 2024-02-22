@@ -14,6 +14,6 @@ doctorRouter.post("/new-entry", addCard)
 doctorRouter.delete("/delete", deleteCard)
 
 // Update data from frontend (or Postman) to MongoDb database collection
-doctorRouter.put("/update/:id", updateCard)
+doctorRouter.put("/update", updateCard)
 
 export default doctorRouter;

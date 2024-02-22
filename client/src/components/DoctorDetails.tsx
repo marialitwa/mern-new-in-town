@@ -1,8 +1,6 @@
-// // import React from 'react'
-
 import styled from "styled-components";
 import { Doctor } from "../@types/doctors";
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaEdit } from "react-icons/fa";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -14,6 +12,11 @@ export default function DoctorDetails({ doctor }: Props) {
   const [doctors, setDoctors] = useState<Doctor[]>([doctor]);
 
   const navigate = useNavigate();
+
+  function handleEdit(getCurrentDoctor: Doctor) {
+    console.log(getCurrentDoctor);
+    navigate("/form", { state: { getCurrentDoctor } });
+  }
 
   async function handleDeleteCard(getCurrentId: string) {
     // console.log("CURRENT ID", getCurrentId);
@@ -37,7 +40,9 @@ export default function DoctorDetails({ doctor }: Props) {
 
       if (response.ok) {
         console.log("Card deleted successfully");
+
         const result = await response.json();
+
         console.log("result", result);
         setDoctors((prevDoctors) =>
           prevDoctors.filter((doctor) => doctor._id !== getCurrentId)
@@ -66,6 +71,10 @@ export default function DoctorDetails({ doctor }: Props) {
       <CardContainer>
         {doctors.map((doctor) => (
           <Card key={doctor._id}>
+            <IconsContainer>
+              <FaEdit onClick={() => handleEdit(doctor)} size={20} />
+              <FaTrash onClick={() => handleDeleteCard(doctor._id)} size={20} />
+            </IconsContainer>
             <p>{doctor.name}</p>
             <p>{doctor.medical_specialty}</p>
             <p>{doctor.city_district}</p>
@@ -73,17 +82,20 @@ export default function DoctorDetails({ doctor }: Props) {
             <p>{doctor.address}</p>
             <p>{doctor.phone_number}</p>
             <p>{doctor.website}</p>
-            <div>
-              <FaTrash onClick={() => handleDeleteCard(doctor._id)} size={20} />
-            </div>
           </Card>
         ))}
       </CardContainer>
     </>
   );
 }
-
 // STYLING
+
+const IconsContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1em;
+  margin-top: 0;
+`;
 
 const CardContainer = styled.main`
   display: flex;
@@ -93,7 +105,7 @@ const CardContainer = styled.main`
 
 const Card = styled.div`
   margin-top: 6em;
-  padding: 2em;
+  padding: 1.5em 2em 2em;
 
   //glass effect
   background: rgba(255, 255, 255, 0.2);

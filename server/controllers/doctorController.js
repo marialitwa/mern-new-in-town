@@ -85,35 +85,44 @@ const deleteCard = async(request, response) => {
 // UPDATE A DOCTOR / DOCUMENT FROM MY DB COLLECTION => edit dataset of a specific doctor 
 const updateCard = async(request, response) => {
 
-  const id = request.body.id
+  const id = request.body._id
+  console.log('request.body::::', request.body)
 
   const { medical_specialty, name, medical_practice, city_district, address, phone_number, website } = request.body;
-  let currentCardToUpdate
-
-
+  
+  const inputFieldsToUpdate = {
+    medical_specialty: medical_specialty,
+    name: name,
+    medical_practice: medical_practice,
+    city_district: city_district,
+    address: address,
+    phone_number: phone_number,
+    website: website
+  }
+console.log('inputFieldsToUpdate', inputFieldsToUpdate)
   try {
-    currentCardToUpdate = await DoctorModel.findByIdAndUpdate(id, currentCardToUpdate, { new: true})
-
-    //do some validation and inputs sanitation
+   const  currentCardToUpdate = await DoctorModel.findByIdAndUpdate(id, inputFieldsToUpdate, { new: true})
+console.log('currentCardToUpdate', currentCardToUpdate)
+    
+// validation and inputs sanitation
 
     if (!currentCardToUpdate) {
       return response.status(404).json({ message: "Card not found" })
     }
-
+   
     if (!currentCardToUpdate.name) {
       return response.status(400).json({ error: "Name must be included."}) 
     }
-
+    if (currentCardToUpdate) {
+console.log("This card is updated now.")
+      // alert("This card is updated now.")
+      return response.status(200).json({ currentCardToUpdate, message: "Card is now updated."})
+    }
   } catch (error) {
     console.error("Error", error)
     return response.status(500).json({ message: "Something went wrong while updating! Please try again." })
   }
-
-  if (!currentCardToUpdate) {
-    return response.status(500).json({ message: "Unable to update card."})
-  }
-
-  return response.status(200).json({ currentCardToUpdate, message: "Card is now updated."})
+ 
 }
 
 

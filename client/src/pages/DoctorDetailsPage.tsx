@@ -33,6 +33,7 @@ export default function DoctorDetailsPage() {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (
