@@ -1,4 +1,6 @@
 import DoctorModel from "../models/doctorModel.js"
+import colors from "colors";
+
 
 
 // GET ALL DOCUMENTS FROM MY DB COLLECTION => complete list of all doctors
@@ -39,7 +41,7 @@ const addCard = async (request, response) => {
   // Start with test in Postman
   // response.send("testing");
   
-  console.log("req.body", request.body);
+  // console.log("req.body", request.body);
   
   if (!request.body.name) return response.status(400).json({ error: "Name must be included."})
 
@@ -61,12 +63,9 @@ const addCard = async (request, response) => {
 
 
 // DELETE A DOCTOR / DOCUMENT FROM MY DB COLLECTION => delete a specific doctor 
-
 const deleteCard = async(request, response) => {
-
-  console.log(request.params)
-
-  const id = request.params.id;
+  
+  const id = request.body.id
 
   try {
     const findCurrentCard = await DoctorModel.findByIdAndDelete(id)
@@ -83,6 +82,49 @@ const deleteCard = async(request, response) => {
   }
 }
 
+// UPDATE A DOCTOR / DOCUMENT FROM MY DB COLLECTION => edit dataset of a specific doctor 
+const updateCard = async(request, response) => {
 
-export { getAllDoctors, getDoctorById, addCard, deleteCard }
+  const id = request.body._id
+  console.log('request.body::::', request.body)
+
+  const { medical_specialty, name, medical_practice, city_district, address, phone_number, website } = request.body;
+  
+  const inputFieldsToUpdate = {
+    medical_specialty: medical_specialty,
+    name: name,
+    medical_practice: medical_practice,
+    city_district: city_district,
+    address: address,
+    phone_number: phone_number,
+    website: website
+  }
+console.log('inputFieldsToUpdate', inputFieldsToUpdate)
+  try {
+   const  currentCardToUpdate = await DoctorModel.findByIdAndUpdate(id, inputFieldsToUpdate, { new: true})
+console.log('currentCardToUpdate', currentCardToUpdate)
+    
+// validation and inputs sanitation
+
+    if (!currentCardToUpdate) {
+      return response.status(404).json({ message: "Card not found" })
+    }
+   
+    if (!currentCardToUpdate.name) {
+      return response.status(400).json({ error: "Name must be included."}) 
+    }
+    if (currentCardToUpdate) {
+console.log("This card is updated now.")
+      // alert("This card is updated now.")
+      return response.status(200).json({ currentCardToUpdate, message: "Card is now updated."})
+    }
+  } catch (error) {
+    console.error("Error", error)
+    return response.status(500).json({ message: "Something went wrong while updating! Please try again." })
+  }
+ 
+}
+
+
+export { getAllDoctors, getDoctorById, addCard, deleteCard, updateCard }
 
