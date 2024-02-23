@@ -1,11 +1,16 @@
-// import React from 'react'
+import { useNavigate } from "react-router-dom";
+import { Main, PageTitle, Button } from "../components/CommonUI.tsx";
 
-function TripsPage() {
+export default function TripsPage() {
+  const navigate = useNavigate();
   return (
     <>
-      <h1>Trips Page</h1>
+      <Main>
+        <PageTitle>Trips Page</PageTitle>
+        <Button onClick={() => navigate("/", { replace: true })}>
+          Homepage
+        </Button>
+      </Main>
     </>
   );
 }
-
-export default TripsPage;

@@ -1,9 +1,16 @@
-// import React from 'react'
+import { useNavigate } from "react-router-dom";
+import { Main, PageTitle, Button } from "../components/CommonUI.tsx";
 
 export default function BeautyWellnessPage() {
+  const navigate = useNavigate();
   return (
     <>
-      <div>Beauty & Wellness Page</div>
+      <Main>
+        <PageTitle>Beauty & Wellness Page</PageTitle>
+        <Button onClick={() => navigate("/", { replace: true })}>
+          Homepage
+        </Button>
+      </Main>
     </>
   );
 }

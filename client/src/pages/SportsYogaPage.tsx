@@ -1,9 +1,16 @@
-// import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Main, PageTitle, Button } from "../components/CommonUI.tsx";
 
 export default function SportsYogaPage() {
+  const navigate = useNavigate();
   return (
     <>
-      <div>Sports & Yoga Page</div>
+      <Main>
+        <PageTitle>Sports & Yoga Page</PageTitle>
+        <Button onClick={() => navigate("/", { replace: true })}>
+          Homepage
+        </Button>
+      </Main>
     </>
   );
 }
