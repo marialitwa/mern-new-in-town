@@ -41,8 +41,9 @@ export default function App() {
         <LinkContainer>
           <LinkStyled to={"/doctors"}>Doctors</LinkStyled>
           <LinkStyled to={"/foods"}>Cafés & Restaurants</LinkStyled>
-          <LinkStyled to={"/trips"}>Trips</LinkStyled>
+          <LinkStyled to={"sports-yoga"}>Sports & Yoga</LinkStyled>
           <LinkStyled to={"/cultural"}>Cultural</LinkStyled>
+          <LinkStyled to={"/trips"}>Trips</LinkStyled>
           <LinkStyled to={"beauty-wellness"}>Beauty & Wellness</LinkStyled>
         </LinkContainer>
         {/* <ul>

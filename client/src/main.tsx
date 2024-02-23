@@ -12,6 +12,7 @@ import Layout from "./components/Layout.tsx";
 import DoctorDetailsPage from "./pages/DoctorDetailsPage.tsx";
 import FoodDrinksPage from "./pages/FoodDrinksPage.tsx";
 import FormPage from "./pages/FormPage.tsx";
+import SportsYogaPage from "./pages/SportsYogaPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "beauty-wellness",
         element: <BeautyWellnessPage />,
+      },
+      {
+        path: "sports-yoga",
+        element: <SportsYogaPage />,
       },
     ],
   },
