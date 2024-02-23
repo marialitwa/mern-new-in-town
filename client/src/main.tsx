@@ -9,7 +9,7 @@ import TripsPage from "./pages/TripsPage.tsx";
 import CulturalPage from "./pages/CulturalPage.tsx";
 import BeautyWellnessPage from "./pages/BeautyWellnessPage.tsx";
 import Error404 from "./pages/Error404.tsx";
-import Layout from "./components/Layout.tsx";
+import Layout from "./components/Layout/Layout.tsx";
 import DoctorDetailsPage from "./pages/DoctorDetailsPage.tsx";
 import FoodDrinksPage from "./pages/FoodDrinksPage.tsx";
 import FormPage from "./pages/FormPage.tsx";

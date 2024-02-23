@@ -1,7 +1,7 @@
 // import React from "react";
 import { Doctor } from "../@types/doctors.ts";
 import { useEffect, useState } from "react";
-import DoctorCard from "../components/DoctorCard";
+import DoctorCard from "../components/Doctor/DoctorCard.tsx";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 // import FormModal from "../components/FormModal.tsx";

@@ -10,7 +10,7 @@ export default function NavBar() {
   //   console.log("LOCATION", location.pathname);
 
   return (
-    <>
+    <footer>
       <Navigation>
         <LinkStyled to={"/"} isActive={location.pathname === "/"}>
           Home
@@ -19,7 +19,7 @@ export default function NavBar() {
           Account
         </LinkStyled>
       </Navigation>
-    </>
+    </footer>
   );
 }
 

@@ -2,7 +2,7 @@
 import "./App.css";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/Footer/NavBar";
 
 export default function App() {
   // const [collectionNames, setCollectionNames] = useState<string[]>([""]);

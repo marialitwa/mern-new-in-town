@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Doctor } from "../@types/doctors";
+import { Doctor } from "../../@types/doctors";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
