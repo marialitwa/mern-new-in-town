@@ -9,7 +9,8 @@ const doctorSchema = new mongoose.Schema({
     address: { type: String, required: false},
     phone_number: { type: String, required: false},
     website: { type: String, required: false},
-    user_id: { type: mongoose.Schema.Types.ObjectId, ref: "user", required: true}
+    notes: { type: String, required: false},
+    user_id: { type: mongoose.Schema.Types.ObjectId, ref: "user", required: false}
 
 }, { timestamps: true});
 

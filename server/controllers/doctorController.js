@@ -88,7 +88,7 @@ const updateCard = async(request, response) => {
   const id = request.body._id
   console.log('request.body::::', request.body)
 
-  const { medical_specialty, name, medical_practice, city_district, address, phone_number, website } = request.body;
+  const { medical_specialty, name, medical_practice, city_district, address, phone_number, website, notes } = request.body;
   
   const inputFieldsToUpdate = {
     medical_specialty: medical_specialty,
@@ -97,7 +97,8 @@ const updateCard = async(request, response) => {
     city_district: city_district,
     address: address,
     phone_number: phone_number,
-    website: website
+    website: website,
+    notes: notes
   }
 console.log('inputFieldsToUpdate', inputFieldsToUpdate)
   try {

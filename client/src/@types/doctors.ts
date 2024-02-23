@@ -6,5 +6,6 @@ export interface Doctor {
     city_district?: string,
     address?: string,
     phone_number?: string,
-    website?: string
+    website?: string,
+    notes?: string,
 }

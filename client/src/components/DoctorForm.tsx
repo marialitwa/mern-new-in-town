@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import styled from "styled-components";
 
 type FormType = {
   name: string;
@@ -9,6 +10,7 @@ type FormType = {
   address?: string;
   phone_number?: string;
   website?: string;
+  notes?: string;
 };
 
 export default function DoctorForm() {
@@ -19,7 +21,11 @@ export default function DoctorForm() {
   const location = useLocation();
   // console.log("location>>>>", location);
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(
+    event:
+      | React.FormEvent<HTMLFormElement>
+      | React.FormEvent<HTMLTextAreaElement>
+  ) {
     event.preventDefault();
 
     if (!inputValues.name) return alert("Name must be included.");
@@ -69,7 +75,11 @@ export default function DoctorForm() {
     navigate("/doctors");
   }
 
-  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleInputChange(
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) {
     // console.log("event.target.value", event.target.value);
     // console.log("event", event);
     // console.log("event.target.type", event.target.type);
@@ -88,6 +98,7 @@ export default function DoctorForm() {
       address: "",
       phone_number: "",
       website: "",
+      notes: "",
     });
   }
 
@@ -107,6 +118,7 @@ export default function DoctorForm() {
       //   address: getCurrentDoctor.address,
       //   phone_number: getCurrentDoctor.phone_number,
       //   website: getCurrentDoctor.website,
+      //   notes: getCurrentDoctor.notes,
       // });
     } else {
       setIsEdit(false);
@@ -117,6 +129,9 @@ export default function DoctorForm() {
     <>
       <div>
         {/* DOCTOR FORM ============================== */}
+        <ButtonContainer>
+          <Button onClick={() => navigate(-1)}>Back</Button>
+        </ButtonContainer>
         <form onSubmit={handleSubmit}>
           <fieldset className="flex flex-col m-10">
             <legend className="text-center font-light text-xl">
@@ -235,15 +250,17 @@ export default function DoctorForm() {
 
             {/* UPADTE MODEL in server */}
             {/* TEXTFIELD FOR NOTES  =============== */}
-            {/* <label htmlFor="notes" className="text-stone-700 text-base">
+            <label htmlFor="notes" className="text-stone-700 text-base">
               Notes
             </label>
             <textarea
               name="notes"
               id="notes"
+              onChange={handleInputChange}
+              value={inputValues.notes}
               placeholder="Write your personal notes here ..."
               className="w-auto rounded-md py-2.5 px-4 mb-3 border text-sm outline-[#007bff]"
-            ></textarea> */}
+            ></textarea>
             {/* INFOTEXT: Required fields =========== */}
             <p className="italic mt-2 text-sm text-stone-600">
               * required fields
@@ -271,3 +288,18 @@ export default function DoctorForm() {
     </>
   );
 }
+
+// STYLING
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+`;
+
+const Button = styled.button`
+  margin: 1em;
+  width: 60px;
+  background-color: whitesmoke;
+  padding: 0.5em 1em;
+  border-radius: 1em;
+`;

@@ -82,6 +82,7 @@ export default function DoctorDetails({ doctor }: Props) {
             <p>{doctor.address}</p>
             <p>{doctor.phone_number}</p>
             <p>{doctor.website}</p>
+            <p>{doctor.notes}</p>
           </Card>
         ))}
       </CardContainer>

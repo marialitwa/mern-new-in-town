@@ -8,7 +8,9 @@ const foodSchema = new mongoose.Schema({
     city_district: { type: String, required: false },
     address: { type: String, required: false },
     phone_number: { type: String, required: false},
-    website: { type: String, required: false }
+    website: { type: String, required: false },
+    user_id: { type: mongoose.Schema.Types.ObjectId, ref: "user", required: false}
+
 }, { timestamps: true});
 
  const FoodModel = mongoose.model("food", foodSchema);
