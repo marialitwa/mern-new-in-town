@@ -48,15 +48,16 @@ export default function DoctorsPage() {
         <HeadingContainer>
           <h1 className="text-3xl font-semibold">My New Doctors.</h1>
         </HeadingContainer>
-        <ButtonContainer>
-          <Button onClick={handleClick}>+</Button>
-        </ButtonContainer>
+        {/* <ButtonContainerTop>
+          <ButtonTop onClick={handleClick}>+</ButtonTop>
+        </ButtonContainerTop> */}
 
         <div>
           {allDoctors.map((doctor) => {
             return <DoctorCard key={doctor._id} doctor={doctor} />;
           })}
         </div>
+        <ButtonBottom onClick={handleClick}>+</ButtonBottom>
       </Main>
     </>
   );
@@ -77,20 +78,35 @@ const HeadingContainer = styled.div`
   text-align: center;
   margin-bottom: 1.5em;
   background-color: #eee;
-  _border: 2px solid yellow;
 `;
 
-const ButtonContainer = styled.div`
-  display: flex;
-  margin-top: -3em;
-  z-index: 1;
-  _border: 2px solid hotpink;
-`;
+// const ButtonContainerTop = styled.div`
+//   display: flex;
+//   margin-top: -3em;
+//   z-index: 1;
+//   _border: 2px solid hotpink;
+// `;
 
-const Button = styled.button`
-  margin: 0 auto;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
+// const ButtonTop = styled.button`
+//   margin: 0 auto;
+//   border-radius: 50%;
+//   width: 40px;
+//   height: 40px;
+//   background-color: olive;
+// `;
+
+const ButtonBottom = styled.button`
+  position: fixed;
+  bottom: 30px;
+  right: 43.5%;
+  _font-size: 3rem;
   background-color: olive;
+  z-index: 50;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  box-shadow:
+    rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
+    rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+    rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
 `;

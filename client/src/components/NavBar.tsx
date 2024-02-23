@@ -15,9 +15,6 @@ export default function NavBar() {
         <LinkStyled to={"/"} isActive={location.pathname === "/"}>
           Home
         </LinkStyled>
-        <LinkStyled to={"/form"} isActive={location.pathname === "/form"}>
-          Form
-        </LinkStyled>
         <LinkStyled to={"#"} isActive={location.pathname === "/account"}>
           Account
         </LinkStyled>
