@@ -15,6 +15,7 @@ import FoodDrinksPage from "./pages/FoodDrinksPage.tsx";
 import FormPage from "./pages/FormPage.tsx";
 import SportsYogaPage from "./pages/SportsYogaPage.tsx";
 import { AuthContextProvider } from "./context/AuthContext.tsx";
+import { AuthPage } from "./pages/AuthPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "sports-yoga",
         element: <SportsYogaPage />,
+      },
+      {
+        path: "auth",
+        element: <AuthPage />,
       },
     ],
   },

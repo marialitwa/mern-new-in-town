@@ -15,6 +15,9 @@ export default function NavBar() {
         <LinkStyled to={"/"} isActive={location.pathname === "/"}>
           Home
         </LinkStyled>
+        <LinkStyled to={"/auth"} isActive={location.pathname === "/auth"}>
+          Login
+        </LinkStyled>
         <LinkStyled to={"#"} isActive={location.pathname === "/account"}>
           Account
         </LinkStyled>
