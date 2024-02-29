@@ -298,8 +298,10 @@ const ButtonContainer = styled.div`
 
 const Button = styled.button`
   margin: 1em;
-  width: 60px;
   background-color: whitesmoke;
-  padding: 0.5em 1em;
+  padding: 1em;
+  font-size: 1em;
   border-radius: 1em;
+  line-height: 0;
+  text-align: center;
 `;

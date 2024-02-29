@@ -59,9 +59,10 @@ const CardContainer = styled.div`
 const Button = styled.button`
   margin-top: 1em;
   margin-bottom: 0.5em;
-  padding: 0.3em;
+  padding: 0.5em 0.3em;
   border-radius: 0.4em;
   width: 50%;
   background-color: lightpink;
   background-color: plum;
+  font-size: 0.9rem;
 `;

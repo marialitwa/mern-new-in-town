@@ -1,5 +1,6 @@
 import DoctorModel from "../models/doctorModel.js"
 import colors from "colors";
+import UserModel from "../models/userModel.js";
 
 
 
@@ -49,7 +50,11 @@ const addCard = async (request, response) => {
     const newEntry = await DoctorModel.create(request.body)
     console.log("newEntry", newEntry);
 
-    if (newEntry) response.status(201).json(newEntry);
+    if (newEntry) {
+
+      const addCardToUser = await UserModel.findByIdAndUpdate(request.body.userId, { $push: { created_cards: newEntry}}, {new: true})
+      response.status(201).json({newEntry, addCardToUser});
+    }
     else response.status(400).json({ error: "New entry could not be created"})
     
   } catch (error) {

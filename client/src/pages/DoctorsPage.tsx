@@ -99,7 +99,8 @@ const ButtonBottom = styled.button`
   position: fixed;
   bottom: 30px;
   right: 43.5%;
-  _font-size: 3rem;
+  font-size: 2rem;
+  line-height: 0;
   background-color: olive;
   z-index: 50;
   border-radius: 50%;

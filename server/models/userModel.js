@@ -5,7 +5,9 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true},
     username: String,
     // line above shorthand for => username: { type: String }
-    created_cards: [{ type: mongoose.Schema.Types.ObjectId, ref: "doctor" }]
+    // created_cards: [{ type: mongoose.Schema.Types.ObjectId, ref: "doctor" }]
+    created_cards: [{ type: Object }]
+
     // RESEARCH HOW TO INCLUDE A SET OF COLLECTIONS
     // created_cards: [{ type: mongoose.Schema.Types.ObjectId, ref: "doctor, cosmetic, cultural, food, sport, trip" }]
 
