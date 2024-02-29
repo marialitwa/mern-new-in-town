@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Doctor } from "../@types/doctors";
-import DoctorDetails from "../components/DoctorDetails";
+import DoctorDetails from "../components/Doctor/DoctorDetails";
 import styled from "styled-components";
 
 const apiUrl = "http://localhost:5000/api/doctors";

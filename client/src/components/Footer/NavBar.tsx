@@ -10,33 +10,30 @@ export default function NavBar() {
   //   console.log("LOCATION", location.pathname);
 
   return (
-    <>
+    <footer>
       <Navigation>
         <LinkStyled to={"/"} isActive={location.pathname === "/"}>
           Home
-        </LinkStyled>
-        <LinkStyled to={"/form"} isActive={location.pathname === "/form"}>
-          Form
         </LinkStyled>
         <LinkStyled to={"#"} isActive={location.pathname === "/account"}>
           Account
         </LinkStyled>
       </Navigation>
-    </>
+    </footer>
   );
 }
 
 // CSS STYLING
 
 const Navigation = styled.nav`
+  position: fixed;
+  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1em;
-  position: fixed;
-  bottom: 0;
-  left: 0;
   width: 100%;
+  _height: 60px;
   background-color: #eee;
 `;
 
@@ -45,15 +42,15 @@ const Navigation = styled.nav`
 // Überprüft, ob der Prop isActive wahr ist.
 
 const LinkStyled = styled(Link)<LinkProps>`
-  padding: 1em 2em;
   text-decoration: none;
+  padding: 1em 2em;
 
   ${({ isActive }) =>
     isActive &&
     css`
       color: palevioletred;
       font-weight: bold;
-      background-color: #e2d9d9;
+      _background-color: #e2d9d9;
     `}
 
   ${({ isActive }) =>

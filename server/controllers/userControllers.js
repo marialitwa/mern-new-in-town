@@ -12,7 +12,7 @@ const getAllUsers = async (request, response) => {
     //Find all users and return only the "email" of the users object in my frontend
     // const allUsers = await UserModel.find({}).select("email");
     // Alternative: Find all users and return everything of my object except "-password"
-    const allUsers = await UserModel.find({}).select("-password");
+    const allUsers = await UserModel.find({}).select("-password").populate({ path: "created_cards"});
 
     response.status(200).json(allUsers);
     // alternativ:

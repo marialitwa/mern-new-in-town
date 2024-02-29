@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Doctor } from "../@types/doctors";
+import { Doctor } from "../../@types/doctors";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -82,6 +82,7 @@ export default function DoctorDetails({ doctor }: Props) {
             <p>{doctor.address}</p>
             <p>{doctor.phone_number}</p>
             <p>{doctor.website}</p>
+            <p>{doctor.notes}</p>
           </Card>
         ))}
       </CardContainer>

@@ -1,7 +1,7 @@
 // import React from 'react'
 
 import styled from "styled-components";
-import { Food } from "../@types/foods";
+import { Food } from "../../@types/foods";
 
 type Props = {
   food: Food;

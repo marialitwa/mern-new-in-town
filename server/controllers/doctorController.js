@@ -1,5 +1,6 @@
 import DoctorModel from "../models/doctorModel.js"
 import colors from "colors";
+import UserModel from "../models/userModel.js";
 
 
 
@@ -49,7 +50,11 @@ const addCard = async (request, response) => {
     const newEntry = await DoctorModel.create(request.body)
     console.log("newEntry", newEntry);
 
-    if (newEntry) response.status(201).json(newEntry);
+    if (newEntry) {
+
+      const addCardToUser = await UserModel.findByIdAndUpdate(request.body.userId, { $push: { created_cards: newEntry}}, {new: true})
+      response.status(201).json({newEntry, addCardToUser});
+    }
     else response.status(400).json({ error: "New entry could not be created"})
     
   } catch (error) {
@@ -88,7 +93,7 @@ const updateCard = async(request, response) => {
   const id = request.body._id
   console.log('request.body::::', request.body)
 
-  const { medical_specialty, name, medical_practice, city_district, address, phone_number, website } = request.body;
+  const { medical_specialty, name, medical_practice, city_district, address, phone_number, website, notes } = request.body;
   
   const inputFieldsToUpdate = {
     medical_specialty: medical_specialty,
@@ -97,7 +102,8 @@ const updateCard = async(request, response) => {
     city_district: city_district,
     address: address,
     phone_number: phone_number,
-    website: website
+    website: website,
+    notes: notes
   }
 console.log('inputFieldsToUpdate', inputFieldsToUpdate)
   try {

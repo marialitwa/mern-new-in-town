@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Food } from "../@types/foods.ts";
 import styled from "styled-components";
-import FoodDrinksCard from "../components/FoodDrinksCard";
+import FoodDrinksCard from "../components/FoodDrinks/FoodDrinksCard.tsx";
 
 const apiUrl = "http://localhost:5000/api/foods/all";
 
