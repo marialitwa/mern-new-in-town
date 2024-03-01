@@ -49,20 +49,25 @@ const findUserByEmail = async (request, response) => {
   }
 };
 
-const signup = async (request, response) => {
-  console.log(request.body);
-  const { email, password, username } = request.body;
+async function signup(request, response) {
+
+  // Before writing the function logic I can test it with response.send("string") in Postman
+  // response.send("testing")
+  
+  // console.log(request.body);
+  const { email, password } = request.body;
 
   // Here I can validate separated/individually for email and password to display a specifique message
   if (!email || !password)
     return response.status(400).json({ error: "All fields must be included" });
 
   try {
-    const newUser = await UserModel.create({ email, password, username });
+    const newUser = await UserModel.create({ email, password });
     console.log(newUser);
 
     // Here I can send whatever I need to my frontend
     if (newUser) response.status(201).json(newUser);
+    
     else response.status(400).json({ error: "User couldn't be created" });
   } catch (error) {
     console.error(error);

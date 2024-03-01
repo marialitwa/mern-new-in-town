@@ -1,16 +1,49 @@
 // import React from 'react'
 
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-type SignupFormProps = {
+type RegisterFormProps = {
   submit: (email: string, password: string) => Promise<void>;
 };
 
-export function SignupForm({ submit }: SignupFormProps) {
+export function RegisterForm({ submit }: RegisterFormProps) {
+  const [inputValues, setInputValues] = useState({ email: "", password: "" });
+
+  const navigate = useNavigate();
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const email = inputValues.email.trim();
+    const password = inputValues.password.trim();
+
+    if (!email || !password) return alert("Please fill out all fields.");
+
+    submit(email, password);
+    alert("Welcome! You are now registered with our wonderful app.");
+    navigate("/");
+  }
+
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setInputValues({
+      ...inputValues,
+      [event.target.type]: event.target.value,
+    });
+  }
+
+  function handleReset() {
+    setInputValues({
+      email: "",
+      password: "",
+    });
+  }
+
   return (
     <>
-      <h1>Registere here</h1>
-      <Form>
+      {/* <h1>Registere here</h1> */}
+      <Form onSubmit={handleSubmit}>
         <label htmlFor="email" className="text-stone-700 text-base mt-8">
           Email
         </label>
@@ -18,6 +51,8 @@ export function SignupForm({ submit }: SignupFormProps) {
           type="email"
           id="email"
           placeholder="Your email"
+          value={inputValues.email}
+          onChange={handleChange}
           className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
           required
         />
@@ -28,6 +63,8 @@ export function SignupForm({ submit }: SignupFormProps) {
           type="password"
           id="password"
           placeholder="Your password"
+          value={inputValues.password}
+          onChange={handleChange}
           className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
           required
         />
@@ -40,8 +77,8 @@ export function SignupForm({ submit }: SignupFormProps) {
             Submit
           </button>
           <button
-            onClick={() => console.log("Button clicked")}
-            // onClick={handleReset}
+            // onClick={() => console.log("Button clicked")}
+            onClick={handleReset}
             type="reset"
             className="w-1/2 rounded-md py-2.5 px-4 mt-4 mb-40 border text-sm bg-gray-300"
           >

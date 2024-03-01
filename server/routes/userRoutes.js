@@ -3,7 +3,6 @@ import { getAllUsers, test, findUserByEmail, signup } from "../controllers/userC
 
 const userRouter = express.Router();
 
-userRouter.get("/testing", test);
 userRouter.get("/all", getAllUsers);
 userRouter.get("/find/:email", findUserByEmail);
 

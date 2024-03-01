@@ -150,7 +150,7 @@ export default function DoctorForm() {
               value={inputValues.name}
               placeholder="Dr. Anne Ärztin"
               className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
-              // required
+              required
             />
 
             {/* MEDICAL SPECIALTY  =============== */}
