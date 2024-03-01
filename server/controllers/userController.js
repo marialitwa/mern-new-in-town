@@ -53,22 +53,38 @@ async function signup(request, response) {
 
   // Before writing the function logic I can test it with response.send("string") in Postman
   // response.send("testing")
-  
   // console.log(request.body);
-  const { email, password } = request.body;
+  const { email, password, username } = request.body;
 
   // Here I can validate separated/individually for email and password to display a specifique message
   if (!email || !password)
     return response.status(400).json({ error: "All fields must be included" });
 
   try {
-    const newUser = await UserModel.create({ email, password });
-    console.log(newUser);
 
-    // Here I can send whatever I need to my frontend
-    if (newUser) response.status(201).json(newUser);
-    
-    else response.status(400).json({ error: "User couldn't be created" });
+    // If all credentioals are provided we check if user is already in database
+    const registeredUser = await UserModel.findOne({ email: email })
+    console.log("registered User", registeredUser)
+
+    // User respectivly email already exists
+    if (registeredUser) {
+      response.status(400).json({ error: "Email already registered." });
+    }
+
+    // No user with same email exists in our database
+    if (!registeredUser) {
+
+      const newUser = await UserModel.create({ email, password, username });
+      console.log("NEW USER", newUser);
+
+      // Here I can send whatever I need to my frontend
+      if (newUser) {
+        response.status(201).json(newUser);
+      } else {
+        response.status(400).json({error: "User could not be created" })
+      }
+    }
+
   } catch (error) {
     console.error(error);
     // response.status(500).json({ error: error.message })
