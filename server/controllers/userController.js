@@ -1,4 +1,5 @@
 import UserModel from "../models/userModel.js";
+import encryptPassword from "../utils/encryptPassword.js";
 
 const test = (request, response) => {
   response.send("testing successful");
@@ -50,7 +51,6 @@ const findUserByEmail = async (request, response) => {
 };
 
 async function signup(request, response) {
-
   // Before writing the function logic I can test it with response.send("string") in Postman
   // response.send("testing")
   // console.log(request.body);
@@ -71,17 +71,41 @@ async function signup(request, response) {
       response.status(400).json({ error: "Email already registered." });
     }
 
-    // No user with same email exists in our database
+    // No user with same email exists in our database:
     if (!registeredUser) {
 
-      const newUser = await UserModel.create({ email, password, username });
-      console.log("NEW USER", newUser);
+      // encrypt password
+      try {
+        const hashedPassword = await encryptPassword(password);
+
+        if (!hashedPassword) {
+          response.status(500).json({ message: "Problem encoding password"})
+        }
+
+        // Create new User
+        if (hashedPassword) {
+          const newUser = await UserModel.create({ 
+            email: email, 
+            password: hashedPassword, 
+            username: username 
+          });
 
       // Here I can send whatever I need to my frontend
       if (newUser) {
-        response.status(201).json(newUser);
+        response.status(201).json({
+          message: "Valid user registration",
+          user: {
+            username: newUser.username,
+            email: newUser.email,
+          }
+        });
+
       } else {
         response.status(400).json({error: "User could not be created" })
+      }
+        }
+      } catch (error) {
+        console.log("Error", error)
       }
     }
 
