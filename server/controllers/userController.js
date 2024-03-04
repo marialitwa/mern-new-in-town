@@ -50,10 +50,29 @@ const findUserByEmail = async (request, response) => {
   }
 };
 
+
+// FUNCTION TO REGISTER A NEW USER =======================
+
 async function signup(request, response) {
   // Before writing the function logic I can test it with response.send("string") in Postman
   // response.send("testing")
   // console.log(request.body);
+
+  // TODO Express Validator: Package to validate forms in the backend. Research Validation Chain.
+  // Example: 
+  // app.post(
+  //   '/newsletter',
+  //   // For the `email` field in `req.body`...
+  //   body('email')
+  //     // ...mark the field as optional
+  //     .optional()
+  //     // ...and when it's present, trim its value, then validate it as an email address
+  //     .trim()
+  //     .isEmail(),
+  //   maybeSubscribeToNewsletter,
+  // );
+
+  
   const { email, password, username } = request.body;
 
   // Here I can validate separated/individually for email and password to display a specifique message

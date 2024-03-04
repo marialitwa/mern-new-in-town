@@ -74,7 +74,7 @@ export function RegisterForm({ submit }: RegisterFormProps) {
             type="submit"
             className="w-1/2 rounded-md py-2.5 px-4 mt-8 border text-sm bg-pink-400"
           >
-            Submit
+            Register
           </button>
           <button
             // onClick={() => console.log("Button clicked")}
