@@ -19,5 +19,13 @@ async function encryptPassword(userPassword) {
     }
 } 
 
-export default encryptPassword;
+async function verifyPassword(password, hashedPassword) {
+
+    const isPassword = await bcrypt.compare(password, hashedPassword)
+    // console.log('isPassword', isPassword)
+
+    return isPassword;
+}
+
+export { encryptPassword, verifyPassword };
 
