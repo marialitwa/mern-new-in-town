@@ -1,4 +1,5 @@
 import UserModel from "../models/userModel.js";
+import encryptPassword from "../utils/encryptPassword.js";
 
 const test = (request, response) => {
   response.send("testing successful");
@@ -49,8 +50,10 @@ const findUserByEmail = async (request, response) => {
   }
 };
 
-const signup = async (request, response) => {
-  console.log(request.body);
+async function signup(request, response) {
+  // Before writing the function logic I can test it with response.send("string") in Postman
+  // response.send("testing")
+  // console.log(request.body);
   const { email, password, username } = request.body;
 
   // Here I can validate separated/individually for email and password to display a specifique message
@@ -58,12 +61,54 @@ const signup = async (request, response) => {
     return response.status(400).json({ error: "All fields must be included" });
 
   try {
-    const newUser = await UserModel.create({ email, password, username });
-    console.log(newUser);
 
-    // Here I can send whatever I need to my frontend
-    if (newUser) response.status(201).json(newUser);
-    else response.status(400).json({ error: "User couldn't be created" });
+    // If all credentioals are provided we check if user is already in database
+    const registeredUser = await UserModel.findOne({ email: email })
+    console.log("registered User", registeredUser)
+
+    // User respectivly email already exists
+    if (registeredUser) {
+      response.status(400).json({ error: "Email already registered." });
+    }
+
+    // No user with same email exists in our database:
+    if (!registeredUser) {
+
+      // encrypt password
+      try {
+        const hashedPassword = await encryptPassword(password);
+
+        if (!hashedPassword) {
+          response.status(500).json({ message: "Problem encoding password"})
+        }
+
+        // Create new User
+        if (hashedPassword) {
+          const newUser = await UserModel.create({ 
+            email: email, 
+            password: hashedPassword, 
+            username: username 
+          });
+
+      // Here I can send whatever I need to my frontend
+      if (newUser) {
+        response.status(201).json({
+          message: "Valid user registration",
+          user: {
+            username: newUser.username,
+            email: newUser.email,
+          }
+        });
+
+      } else {
+        response.status(400).json({error: "User could not be created" })
+      }
+        }
+      } catch (error) {
+        console.log("Error", error)
+      }
+    }
+
   } catch (error) {
     console.error(error);
     // response.status(500).json({ error: error.message })
