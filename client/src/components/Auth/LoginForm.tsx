@@ -1,9 +1,8 @@
 // import React from 'react'
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import styled from "styled-components";
 import { PageTitle } from "../CommonUI.tsx";
-
-// import { AuthContext } from "../../context/AuthContext.tsx"
+import { AuthContext } from "../../context/AuthContext.tsx";
 
 type LoginCredentials = {
   email: string;
@@ -11,16 +10,18 @@ type LoginCredentials = {
 };
 
 export function LoginForm() {
-  //   const [loginCredentials, setLoginCredentials] = useState<LoginCredentials | null>(null);
-  const [loginCredentials, setLoginCredentials] = useState<LoginCredentials>({
-    email: "",
-    password: "",
-  });
+  const { login } = useContext(AuthContext);
+  const [loginCredentials, setLoginCredentials] =
+    useState<LoginCredentials | null>(null);
+  // const [loginCredentials, setLoginCredentials] = useState<LoginCredentials>({
+  //   email: "",
+  //   password: "",
+  // });
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     console.log("event.target.value", event.target.name, event.target.value);
     setLoginCredentials({
-      ...loginCredentials,
+      ...(loginCredentials as LoginCredentials),
       [event.target.name]: event.target.value,
     });
   }
@@ -28,13 +29,23 @@ export function LoginForm() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     console.log("Login Credentials", loginCredentials);
-    // await login(loginCredentials?.email, loginCredentials?.password);
+    if (loginCredentials) {
+      await login(loginCredentials.email, loginCredentials.password);
+      alert("You are now logged in");
+    }
+  }
+
+  function handleReset() {
+    setLoginCredentials({
+      email: "",
+      password: "",
+    });
   }
 
   return (
     <>
       <PageTitle>Login with email</PageTitle>
-      <p>Enter the email address and password associated with your account.</p>
+      <p>Enter your email address and password associated with your account.</p>
       <Form onSubmit={handleSubmit}>
         <label htmlFor="email" className="text-stone-700 text-base mt-8">
           Email
@@ -44,7 +55,7 @@ export function LoginForm() {
           name="email"
           id="email"
           placeholder="Your email"
-          value={loginCredentials.email}
+          value={loginCredentials?.email}
           onChange={handleInputChange}
           className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
           required
@@ -57,7 +68,7 @@ export function LoginForm() {
           name="password"
           id="password"
           placeholder="Your password"
-          value={loginCredentials.password}
+          value={loginCredentials?.password}
           onChange={handleInputChange}
           className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
           required
@@ -71,8 +82,8 @@ export function LoginForm() {
             Login
           </button>
           <button
-            onClick={() => console.log("Button clicked")}
-            // onClick={handleReset}
+            // onClick={() => console.log("Button clicked")}
+            onClick={handleReset}
             type="reset"
             className="w-1/2 rounded-md py-2.5 px-4 mt-4 mb-10 border text-sm bg-gray-300"
           >

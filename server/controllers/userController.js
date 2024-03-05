@@ -86,7 +86,7 @@ async function signup(request, response) {
     const registeredUser = await UserModel.findOne({ email: email })
     console.log("registered User", registeredUser)
 
-    // User respectivly email already exists
+    // User respectively email already exists
     if (registeredUser) {
       response.status(400).json({ error: "Email already registered." });
     }
@@ -140,6 +140,7 @@ async function signup(request, response) {
 
 async function login(request, response) {
 
+console.log('Request Body', request.body)
   // 1. Check that required fields are coming in the request.body
   if (!request.body.password || !request.body.email ) {
     // console.log("No credentials")
@@ -199,10 +200,13 @@ async function login(request, response) {
 
       // D.2. : Token is generated
       if (token) {
+
+        // sending these infos from backend to frontend
         const user = {
           username: existingUser.username,
           email: existingUser.email,
           // userimage: existingUser.userimage,
+          created_cards: existingUser.created_cards
         };
 
         response.status(200).json({ 

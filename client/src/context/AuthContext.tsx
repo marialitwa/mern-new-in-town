@@ -1,6 +1,17 @@
-import { PropsWithChildren, createContext, useState } from "react";
+import { PropsWithChildren, createContext, useEffect, useState } from "react";
 import { User } from "../@types/users.ts";
 import { ResponseNotOk } from "../@types";
+
+type LoginDataType = {
+  user: User;
+  token: string;
+};
+
+type LoginResponse = {
+  message: string;
+  error: boolean;
+  data: LoginDataType;
+};
 
 interface AuthContextType {
   user: User | null;
@@ -11,6 +22,7 @@ interface AuthContextType {
   // eine Bestätigung für den Abschluss einer Aktion zurückgeben.
   // In dem Fall, ob die Registrierung erfolgreich war oder nicht
   login: (email: string, password: string) => Promise<void>;
+  logout: () => void;
   loading: boolean;
 }
 
@@ -20,6 +32,9 @@ const defaultValue: AuthContextType = {
     throw new Error("No Provider");
   },
   login: () => {
+    throw new Error("No Provider");
+  },
+  logout: () => {
     throw new Error("No Provider");
   },
   loading: false,
@@ -43,8 +58,8 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
 
     const requestOptions = {
       method: "POST",
-      headers,
-      body,
+      headers: headers,
+      body: body,
     };
 
     try {
@@ -75,8 +90,8 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
 
     const requestOptions = {
       method: "POST",
-      headers,
-      body,
+      headers: headers,
+      body: body,
     };
 
     try {
@@ -84,17 +99,52 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
         "http://localhost:5000/api/users/login",
         requestOptions
       );
+
+      if (!response.ok) {
+        // TODO Handle response NOT ok here
+        console.log("Response not ok", response);
+        const result = await response.json();
+        console.log("Result", result);
+      }
+
       if (response.ok) {
-        const result = (await response.json()) as User;
-        setUser(result);
+        const result = (await response.json()) as LoginResponse;
+        console.log("Result", result);
+
+        if (result.data.token) {
+          // Store token in Local Storage
+          localStorage.setItem("token", result.data.token);
+          setUser(result.data.user);
+        }
       } else {
         const result = (await response.json()) as ResponseNotOk;
         console.log(result);
       }
     } catch (error) {
-      console.log(error);
+      console.log("Error", error);
     }
   }
+
+  function checkUserStatus() {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      console.log("User is logged in");
+    } else {
+      console.log("User is logged out/No user");
+    }
+    // TODO Write a request to backend to get user information back when we refresh the page
+  }
+
+  function logout() {
+    console.log("%c useEffect run", "color: orange");
+    localStorage.removeItem("token");
+    setUser(null);
+  }
+
+  useEffect(() => {
+    checkUserStatus();
+  }, [user?.email]);
 
   return (
     <AuthContext.Provider
@@ -102,6 +152,7 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
         user,
         signup,
         login,
+        logout,
         loading,
       }}
     >

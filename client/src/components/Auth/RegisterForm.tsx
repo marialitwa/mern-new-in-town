@@ -1,15 +1,13 @@
 // import React from 'react'
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { PageTitle } from "../CommonUI.tsx";
+import { AuthContext } from "../../context/AuthContext.tsx";
 
-type RegisterFormProps = {
-  submit: (email: string, password: string) => Promise<void>;
-};
-
-export function RegisterForm({ submit }: RegisterFormProps) {
+export function RegisterForm() {
+  const { signup } = useContext(AuthContext);
   const [inputValues, setInputValues] = useState({ email: "", password: "" });
 
   const navigate = useNavigate();
@@ -22,7 +20,7 @@ export function RegisterForm({ submit }: RegisterFormProps) {
 
     if (!email || !password) return alert("Please fill out all fields.");
 
-    submit(email, password);
+    signup(email, password);
     alert("Welcome! You are now registered with our wonderful app.");
     navigate("/");
   }

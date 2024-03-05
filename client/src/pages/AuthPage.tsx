@@ -1,20 +1,15 @@
-import { useContext, useState } from "react";
-import { AuthContext } from "../context/AuthContext.tsx";
+import { useState } from "react";
 import { RegisterForm } from "../components/Auth/RegisterForm.tsx";
-import { Main, Button } from "../components/CommonUI.tsx";
-import { useNavigate } from "react-router-dom";
+import { Main } from "../components/CommonUI.tsx";
 import { LoginForm } from "../components/Auth/LoginForm.tsx";
 
 export function AuthPage() {
-  const { signup } = useContext(AuthContext);
   // state um LoginForm oder RegisterForm anzuzeigen
   const [showRegisterForm, setShowRegisterForm] = useState(true);
 
-  const navigate = useNavigate();
-
   return (
     <Main>
-      {showRegisterForm ? <RegisterForm submit={signup} /> : <LoginForm />}
+      {showRegisterForm ? <RegisterForm /> : <LoginForm />}
 
       <button onClick={() => setShowRegisterForm(!showRegisterForm)}>
         {showRegisterForm ? "Already have an account?" : "No account?"}{" "}
@@ -35,7 +30,6 @@ export function AuthPage() {
           <span className="font-bold text-green-700">Create one</span>
         </button>
       )} */}
-      <Button onClick={() => navigate("/", { replace: true })}>Homepage</Button>
     </Main>
   );
 }
