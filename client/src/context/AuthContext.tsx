@@ -1,6 +1,7 @@
 import { PropsWithChildren, createContext, useEffect, useState } from "react";
 import { User } from "../@types/users.ts";
 import { ResponseNotOk } from "../@types";
+import { useNavigate } from "react-router-dom";
 
 type LoginDataType = {
   user: User;
@@ -45,6 +46,8 @@ export const AuthContext = createContext(defaultValue);
 export function AuthContextProvider({ children }: PropsWithChildren) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   async function signup(email: string, password: string) {
     if (!email || !password) return alert("Please fill out all fields");
@@ -115,6 +118,7 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
           // Store token in Local Storage
           localStorage.setItem("token", result.data.token);
           setUser(result.data.user);
+          navigate("/");
         }
       } else {
         const result = (await response.json()) as ResponseNotOk;
@@ -140,6 +144,7 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
     console.log("%c useEffect run", "color: orange");
     localStorage.removeItem("token");
     setUser(null);
+    navigate("/");
   }
 
   useEffect(() => {

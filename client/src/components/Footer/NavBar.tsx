@@ -1,5 +1,7 @@
+import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled, { css } from "styled-components";
+import { AuthContext } from "../../context/AuthContext";
 
 interface LinkProps {
   isActive: boolean;
@@ -9,15 +11,24 @@ export default function NavBar() {
   const location = useLocation();
   //   console.log("LOCATION", location.pathname);
 
+  const { user, logout } = useContext(AuthContext);
+
   return (
     <footer>
       <Navigation>
         <LinkStyled to={"/"} isActive={location.pathname === "/"}>
           Home
         </LinkStyled>
-        <LinkStyled to={"/auth"} isActive={location.pathname === "/auth"}>
-          Login
-        </LinkStyled>
+
+        {user ? (
+          <button onClick={logout}>Logout</button>
+        ) : (
+          <LinkStyled to={"/auth"} isActive={location.pathname === "/auth"}>
+            Login
+          </LinkStyled>
+        )}
+        {user ? <p>{user.email}</p> : <p>No user logged in</p>}
+
         <LinkStyled to={"#"} isActive={location.pathname === "/account"}>
           Account
         </LinkStyled>

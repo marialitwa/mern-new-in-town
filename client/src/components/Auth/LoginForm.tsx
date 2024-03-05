@@ -44,7 +44,7 @@ export function LoginForm() {
 
   return (
     <>
-      <PageTitle>Login with email</PageTitle>
+      <PageTitle>Login</PageTitle>
       <p>Enter your email address and password associated with your account.</p>
       <Form onSubmit={handleSubmit}>
         <label htmlFor="email" className="text-stone-700 text-base mt-8">

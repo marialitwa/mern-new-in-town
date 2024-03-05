@@ -41,7 +41,7 @@ export function RegisterForm() {
 
   return (
     <>
-      <PageTitle>Register with email</PageTitle>
+      <PageTitle>Register</PageTitle>
       <p>Enter your email address and a password to create an account.</p>
       <Form onSubmit={handleSubmit}>
         <label htmlFor="email" className="text-stone-700 text-base mt-8">
