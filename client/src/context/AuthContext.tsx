@@ -10,12 +10,16 @@ interface AuthContextType {
   // Häufige Verwendung bei asynchronen Funktionen, die einfach
   // eine Bestätigung für den Abschluss einer Aktion zurückgeben.
   // In dem Fall, ob die Registrierung erfolgreich war oder nicht
+  login: (email: string, password: string) => Promise<void>;
   loading: boolean;
 }
 
 const defaultValue: AuthContextType = {
   user: null,
   signup: () => {
+    throw new Error("No Provider");
+  },
+  login: () => {
     throw new Error("No Provider");
   },
   loading: false,
@@ -61,11 +65,43 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
     }
   }
 
+  async function login(email: string, password: string) {
+    const headers = new Headers();
+    headers.append("Content-Type", "application/x-www-form-urlencoded");
+
+    const body = new URLSearchParams();
+    body.append("email", email);
+    body.append("password", password);
+
+    const requestOptions = {
+      method: "POST",
+      headers,
+      body,
+    };
+
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/users/login",
+        requestOptions
+      );
+      if (response.ok) {
+        const result = (await response.json()) as User;
+        setUser(result);
+      } else {
+        const result = (await response.json()) as ResponseNotOk;
+        console.log(result);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <AuthContext.Provider
       value={{
         user,
         signup,
+        login,
         loading,
       }}
     >
