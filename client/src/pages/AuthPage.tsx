@@ -2,6 +2,7 @@ import { useState } from "react";
 import { RegisterForm } from "../components/Auth/RegisterForm.tsx";
 import { Main } from "../components/CommonUI.tsx";
 import { LoginForm } from "../components/Auth/LoginForm.tsx";
+import styled from "styled-components";
 
 export function AuthPage() {
   // state um LoginForm oder RegisterForm anzuzeigen
@@ -11,12 +12,12 @@ export function AuthPage() {
     <Main>
       {showRegisterForm ? <RegisterForm /> : <LoginForm />}
 
-      <button onClick={() => setShowRegisterForm(!showRegisterForm)}>
+      <Button onClick={() => setShowRegisterForm(!showRegisterForm)}>
         {showRegisterForm ? "Already have an account?" : "No account?"}{" "}
         <span className="font-bold text-green-700">
           {showRegisterForm ? "Login" : "Create one"}
         </span>
-      </button>
+      </Button>
 
       {/* Same code as above */}
       {/* {showRegisterForm ? (
@@ -33,3 +34,9 @@ export function AuthPage() {
     </Main>
   );
 }
+
+// STYING
+
+const Button = styled.button`
+  margin: 2em 0 10em;
+`;

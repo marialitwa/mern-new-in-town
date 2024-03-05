@@ -27,7 +27,7 @@ export default function NavBar() {
             Login
           </LinkStyled>
         )}
-        {user ? <p>{user.email}</p> : <p>No user logged in</p>}
+        {/* {user ? <p>{user.email}</p> : <p>No user logged in</p>} */}
 
         <LinkStyled to={"#"} isActive={location.pathname === "/account"}>
           Account

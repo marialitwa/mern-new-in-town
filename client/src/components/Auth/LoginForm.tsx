@@ -1,7 +1,11 @@
 // import React from 'react'
 import { FormEvent, useContext, useState } from "react";
-import styled from "styled-components";
-import { PageTitle } from "../CommonUI.tsx";
+import {
+  PageTitle,
+  AuthForm,
+  FormHeader,
+  FromInstructionText,
+} from "../CommonUI.tsx";
 import { AuthContext } from "../../context/AuthContext.tsx";
 
 type LoginCredentials = {
@@ -44,9 +48,13 @@ export function LoginForm() {
 
   return (
     <>
-      <PageTitle>Login</PageTitle>
-      <p>Enter your email address and password associated with your account.</p>
-      <Form onSubmit={handleSubmit}>
+      <FormHeader>
+        <PageTitle>Login</PageTitle>
+        <FromInstructionText>
+          Enter your email address and password associated with your account.
+        </FromInstructionText>
+      </FormHeader>
+      <AuthForm onSubmit={handleSubmit}>
         <label htmlFor="email" className="text-stone-700 text-base mt-8">
           Email
         </label>
@@ -90,17 +98,7 @@ export function LoginForm() {
             Reset all fields
           </button>
         </div>
-      </Form>
+      </AuthForm>
     </>
   );
 }
-
-// STYLING
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  border: 1px solid gray;
-  border-radius: 20px;
-  padding: 20px 80px;
-`;

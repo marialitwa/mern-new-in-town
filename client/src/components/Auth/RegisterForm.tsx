@@ -2,8 +2,12 @@
 
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import { PageTitle } from "../CommonUI.tsx";
+import {
+  PageTitle,
+  AuthForm,
+  FormHeader,
+  FromInstructionText,
+} from "../CommonUI.tsx";
 import { AuthContext } from "../../context/AuthContext.tsx";
 
 export function RegisterForm() {
@@ -41,9 +45,13 @@ export function RegisterForm() {
 
   return (
     <>
-      <PageTitle>Register</PageTitle>
-      <p>Enter your email address and a password to create an account.</p>
-      <Form onSubmit={handleSubmit}>
+      <FormHeader>
+        <PageTitle>Register</PageTitle>
+        <FromInstructionText>
+          Enter your email address and a password to create an account.
+        </FromInstructionText>
+      </FormHeader>
+      <AuthForm onSubmit={handleSubmit}>
         <label htmlFor="email" className="text-stone-700 text-base mt-8">
           Email
         </label>
@@ -87,17 +95,22 @@ export function RegisterForm() {
             Reset all fields
           </button>
         </div>
-      </Form>
+      </AuthForm>
     </>
   );
 }
 
 // STYLING
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  border: 1px solid gray;
-  border-radius: 20px;
-  padding: 20px 80px;
-`;
+// const FormHeader = styled.header`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center:
+//   justify-content: center;
+//   margin: 0 1em 2em;
+//   text-align: center;
+// `;
+
+// const FromInstructionText = styled.p`
+//   margin-top: 1em;
+// `;
