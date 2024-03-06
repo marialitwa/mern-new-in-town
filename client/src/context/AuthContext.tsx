@@ -144,6 +144,7 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
     console.log("%c useEffect run", "color: orange");
     localStorage.removeItem("token");
     setUser(null);
+    alert("You are logged out successfully.");
     navigate("/");
   }
 

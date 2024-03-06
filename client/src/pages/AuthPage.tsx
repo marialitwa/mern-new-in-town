@@ -12,25 +12,25 @@ export function AuthPage() {
     <Main>
       {showRegisterForm ? <RegisterForm /> : <LoginForm />}
 
-      <Button onClick={() => setShowRegisterForm(!showRegisterForm)}>
+      {/* <Button onClick={() => setShowRegisterForm(!showRegisterForm)}>
         {showRegisterForm ? "Already have an account?" : "No account?"}{" "}
         <span className="font-bold text-green-700">
           {showRegisterForm ? "Login" : "Create one"}
         </span>
-      </Button>
+      </Button> */}
 
       {/* Same code as above */}
-      {/* {showRegisterForm ? (
-        <button onClick={() => setShowRegisterForm(!showRegisterForm)}>
+      {showRegisterForm ? (
+        <Button onClick={() => setShowRegisterForm(!showRegisterForm)}>
           Already have an account?{" "}
-          <span className="font-bold text-green-700">Login here</span>
-        </button>
+          <span className="font-bold text-green-700">Login</span>
+        </Button>
       ) : (
-        <button onClick={() => setShowRegisterForm(!showRegisterForm)}>
+        <Button onClick={() => setShowRegisterForm(!showRegisterForm)}>
           No account?{" "}
           <span className="font-bold text-green-700">Create one</span>
-        </button>
-      )} */}
+        </Button>
+      )}
     </Main>
   );
 }

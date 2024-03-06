@@ -24,14 +24,13 @@ export default function NavBar() {
           <button onClick={logout}>Logout</button>
         ) : (
           <LinkStyled to={"/auth"} isActive={location.pathname === "/auth"}>
-            Login
+            Register & Login
           </LinkStyled>
         )}
         {/* {user ? <p>{user.email}</p> : <p>No user logged in</p>} */}
-
-        <LinkStyled to={"#"} isActive={location.pathname === "/account"}>
+        {/* <LinkStyled to={"#"} isActive={location.pathname === "/account"}>
           Account
-        </LinkStyled>
+        </LinkStyled> */}
       </Navigation>
     </footer>
   );
