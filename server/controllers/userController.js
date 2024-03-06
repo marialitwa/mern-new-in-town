@@ -232,4 +232,39 @@ console.log('Request Body', request.body)
     } 
   }
 
-export { test, getAllUsers, findUserByEmail, signup, login };
+  async function getProfile(request, response) {
+    // Use Postman for sending and testing the route. Check request in Postman: Get user profile inside MERN Project Coda Academy.
+    // This console.log will be visible in the server terminal after sending it through Postman
+    console.log("Profile from user")
+    console.log('Request', request)
+    
+    const { user } = request;
+    // const user = request.user
+    
+    if (!user) {
+      response.status(500).json({
+        message: "Please login first",
+        error: true,
+        data: null,
+      });
+    }
+
+    if (user) {
+      response.status(200).json({
+        message: "Request successful",
+        error: false,
+        data: {
+          // user: {
+          //   username: user.username,
+          //   email: user.email,
+          //   userImage: user.userImage,
+          // },
+          // username: user.username,
+          email: user.email,
+          // userImage: user.userImage,
+        },
+      });
+    }
+  };
+
+export { test, getAllUsers, findUserByEmail, signup, login, getProfile };

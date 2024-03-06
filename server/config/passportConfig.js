@@ -8,12 +8,13 @@ const options = {
 }
 
 const jwtStrategy = new JwtStrategy(options, async function (
+    
     jwt_payload,
     done
   ) {
     try {
       
-        const user = await UserModel.findOne({ _id: jwt_payload.sub });
+      const user = await UserModel.findOne({ _id: jwt_payload.sub });
       console.log("User", user);
       
       if (!user) {
@@ -26,9 +27,9 @@ const jwtStrategy = new JwtStrategy(options, async function (
         return done(null, user);
       }
 
-    } catch (err) {
+    } catch (error) {
       console.log("Something bad happened");
-      return done(err, false);
+      return done(error, false);
     }
   });
   
