@@ -1,7 +1,5 @@
 // import React from 'react'
-
-import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { FormEvent, useContext, useState } from "react";
 import {
   PageTitle,
   AuthForm,
@@ -10,34 +8,39 @@ import {
 } from "../CommonUI.tsx";
 import { AuthContext } from "../../context/AuthContext.tsx";
 
-export function RegisterForm() {
-  const { signup } = useContext(AuthContext);
-  const [inputValues, setInputValues] = useState({ email: "", password: "" });
+type LoginCredentials = {
+  email: string;
+  password: string;
+};
 
-  const navigate = useNavigate();
+export function LoginForm() {
+  const { login } = useContext(AuthContext);
+  const [loginCredentials, setLoginCredentials] =
+    useState<LoginCredentials | null>(null);
+  // const [loginCredentials, setLoginCredentials] = useState<LoginCredentials>({
+  //   email: "",
+  //   password: "",
+  // });
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    const email = inputValues.email.trim();
-    const password = inputValues.password.trim();
-
-    if (!email || !password) return alert("Please fill out all fields.");
-
-    signup(email, password);
-    alert("Welcome! You are now registered with our wonderful app.");
-    navigate("/");
-  }
-
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setInputValues({
-      ...inputValues,
-      [event.target.type]: event.target.value,
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    console.log("event.target.value", event.target.name, event.target.value);
+    setLoginCredentials({
+      ...(loginCredentials as LoginCredentials),
+      [event.target.name]: event.target.value,
     });
   }
 
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    console.log("Login Credentials", loginCredentials);
+    if (loginCredentials) {
+      await login(loginCredentials.email, loginCredentials.password);
+      alert("You are now logged in");
+    }
+  }
+
   function handleReset() {
-    setInputValues({
+    setLoginCredentials({
       email: "",
       password: "",
     });
@@ -46,9 +49,9 @@ export function RegisterForm() {
   return (
     <>
       <FormHeader>
-        <PageTitle>Register</PageTitle>
+        <PageTitle>Login</PageTitle>
         <FromInstructionText>
-          Enter your email address and a password to create an account.
+          Enter your email address and password associated with your account.
         </FromInstructionText>
       </FormHeader>
       <AuthForm onSubmit={handleSubmit}>
@@ -60,8 +63,8 @@ export function RegisterForm() {
           name="email"
           id="email"
           placeholder="Your email"
-          value={inputValues.email}
-          onChange={handleChange}
+          value={loginCredentials?.email}
+          onChange={handleInputChange}
           className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
           required
         />
@@ -73,8 +76,8 @@ export function RegisterForm() {
           name="password"
           id="password"
           placeholder="Your password"
-          value={inputValues.password}
-          onChange={handleChange}
+          value={loginCredentials?.password}
+          onChange={handleInputChange}
           className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
           required
         />
@@ -84,7 +87,7 @@ export function RegisterForm() {
             type="submit"
             className="w-1/2 rounded-md py-2.5 px-4 mt-8 border text-sm bg-pink-400"
           >
-            Register
+            Login
           </button>
           <button
             // onClick={() => console.log("Button clicked")}
@@ -99,18 +102,3 @@ export function RegisterForm() {
     </>
   );
 }
-
-// STYLING
-
-// const FormHeader = styled.header`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center:
-//   justify-content: center;
-//   margin: 0 1em 2em;
-//   text-align: center;
-// `;
-
-// const FromInstructionText = styled.p`
-//   margin-top: 1em;
-// `;

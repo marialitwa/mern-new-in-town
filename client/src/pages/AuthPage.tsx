@@ -1,19 +1,42 @@
-import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext.tsx";
+import { useState } from "react";
 import { RegisterForm } from "../components/Auth/RegisterForm.tsx";
-import { Main, PageTitle, Button } from "../components/CommonUI.tsx";
-import { useNavigate } from "react-router-dom";
+import { Main } from "../components/CommonUI.tsx";
+import { LoginForm } from "../components/Auth/LoginForm.tsx";
+import styled from "styled-components";
 
 export function AuthPage() {
-  const { signup } = useContext(AuthContext);
-
-  const navigate = useNavigate();
+  // state um LoginForm oder RegisterForm anzuzeigen
+  const [showRegisterForm, setShowRegisterForm] = useState(true);
 
   return (
     <Main>
-      <PageTitle>Register here</PageTitle>
-      <RegisterForm submit={signup} />
-      <Button onClick={() => navigate("/", { replace: true })}>Homepage</Button>
+      {showRegisterForm ? <RegisterForm /> : <LoginForm />}
+
+      {/* <Button onClick={() => setShowRegisterForm(!showRegisterForm)}>
+        {showRegisterForm ? "Already have an account?" : "No account?"}{" "}
+        <span className="font-bold text-green-700">
+          {showRegisterForm ? "Login" : "Create one"}
+        </span>
+      </Button> */}
+
+      {/* Same code as above */}
+      {showRegisterForm ? (
+        <Button onClick={() => setShowRegisterForm(!showRegisterForm)}>
+          Already have an account?{" "}
+          <span className="font-bold text-green-700">Login</span>
+        </Button>
+      ) : (
+        <Button onClick={() => setShowRegisterForm(!showRegisterForm)}>
+          No account?{" "}
+          <span className="font-bold text-green-700">Create one</span>
+        </Button>
+      )}
     </Main>
   );
 }
+
+// STYING
+
+const Button = styled.button`
+  margin: 2em 0 10em;
+`;

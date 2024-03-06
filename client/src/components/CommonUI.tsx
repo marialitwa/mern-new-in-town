@@ -10,7 +10,7 @@ const Main = styled.main`
 const PageTitle = styled.h1`
   text-align: center;
   font-size: 2rem;
-  margin-top: 2em;
+  margin-top: 1.5em;
 `;
 
 const Button = styled.button`
@@ -24,4 +24,28 @@ const Button = styled.button`
   margin-top: 4em;
 `;
 
-export { Main, PageTitle, Button };
+// LOGIN & REGISTER FORMS
+
+const FormHeader = styled.header`
+  display: flex;
+  flex-direction: column;
+  align-items: center:
+  justify-content: center;
+  margin: 0 1.5em;
+  text-align: center;
+`;
+
+const FromInstructionText = styled.p`
+  margin-top: 1em;
+`;
+
+const AuthForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+  padding: 0 4em;
+  margin-top: 1em;
+`;
+
+export { Main, PageTitle, Button, AuthForm, FormHeader, FromInstructionText };
