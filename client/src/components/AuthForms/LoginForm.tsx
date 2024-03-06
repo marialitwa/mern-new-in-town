@@ -23,7 +23,7 @@ export function LoginForm() {
   // });
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
-    console.log("event.target.value", event.target.name, event.target.value);
+    // console.log("event.target.value", event.target.name, event.target.value);
     setLoginCredentials({
       ...(loginCredentials as LoginCredentials),
       [event.target.name]: event.target.value,

@@ -23,7 +23,7 @@ export default function DoctorCard({ doctor }: Props) {
         <p>{doctor.name}</p>
         <p>{doctor.medical_specialty}</p>
         <p>{doctor.city_district}</p>
-        <Button onClick={handleClick}>Show more</Button>
+        <Button onClick={handleClick}>Details</Button>
       </CardContainer>
     </>
   );

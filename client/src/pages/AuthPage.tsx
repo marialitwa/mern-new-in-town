@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { RegisterForm } from "../components/Auth/RegisterForm.tsx";
+import { RegisterForm } from "../components/AuthForms/RegisterForm.tsx";
 import { Main } from "../components/CommonUI.tsx";
-import { LoginForm } from "../components/Auth/LoginForm.tsx";
+import { LoginForm } from "../components/AuthForms/LoginForm.tsx";
 import styled from "styled-components";
 
 export function AuthPage() {
