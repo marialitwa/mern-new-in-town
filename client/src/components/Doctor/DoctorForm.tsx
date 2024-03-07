@@ -275,7 +275,7 @@ export default function DoctorForm() {
           <div className="flex flex-col justify-center items-center">
             <button
               type="submit"
-              className="w-1/2 rounded-md py-2.5 px-4 mt-8 border text-sm bg-pink-400"
+              className="w-1/2 rounded-md py-2.5 px-4 mt-8 border text-sm  bg-gray-800 text-gray-50"
             >
               {isEdit ? `Update` : `Add doctor`}
             </button>

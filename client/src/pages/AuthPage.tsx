@@ -17,12 +17,16 @@ export function AuthPage() {
       {!loginForm ? (
         <Button onClick={() => setLoginForm(true)}>
           Already have an account?{" "}
-          <span className="font-bold text-green-700">Login</span>
+          <span className="font-bold text-gray-900 underline decoration-2">
+            Login
+          </span>
         </Button>
       ) : (
         <Button onClick={() => setLoginForm(!setLoginForm)}>
           No account?{" "}
-          <span className="font-bold text-green-700">Create one</span>
+          <span className="font-bold text-gray-900 underline decoration-2">
+            Create one
+          </span>
         </Button>
       )}
     </Main>

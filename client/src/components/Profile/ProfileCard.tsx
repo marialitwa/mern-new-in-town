@@ -44,6 +44,8 @@ export default function ProfileCard() {
     }
   }
 
+  // useEffect gets the requested data from server when component is rendered,
+  // empty dependency array causes only on the first render of component
   useEffect(() => {
     getProfile();
   }, []);
