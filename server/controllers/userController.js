@@ -82,7 +82,7 @@ async function signup(request, response) {
 
   try {
 
-    // If all credentioals are provided we check if user is already in database
+    // If all credentials are provided we check if user is already in database
     const registeredUser = await UserModel.findOne({ email: email })
     console.log("registered User", registeredUser)
 

@@ -25,8 +25,7 @@ export function RegisterForm() {
     if (!email || !password) return alert("Please fill out all fields.");
 
     signup(email, password);
-    alert("Welcome! You are now registered with our wonderful app.");
-    navigate("/");
+    // navigate to login
   }
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {

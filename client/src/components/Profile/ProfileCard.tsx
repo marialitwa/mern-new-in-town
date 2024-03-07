@@ -1,8 +1,6 @@
-// import React from 'react'
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { User } from "../../@types/users";
-// import { Button } from "../CommonUI.tsx";
+import styled from "styled-components";
 
 type APIResponse<T> = {
   message: string;
@@ -46,19 +44,25 @@ export default function ProfileCard() {
     }
   }
 
+  useEffect(() => {
+    getProfile();
+  }, []);
+
   return (
     <>
-      {/* <h1>User Info</h1> */}
-      <button onClick={() => void getProfile()}>Get Profile</button>
-
       {userProfile && (
         <div>
-          {/* <h3>User Info</h3> */}
           {/* <p>Username: {userProfile.username}</p> */}
-          <p>User email: {userProfile.email}</p>
+          <Text>{userProfile.email}</Text>
           {/* <img src={userProfile.userimage} alt={userProfile.username} style={{width: 150px}} /> */}
         </div>
       )}
     </>
   );
 }
+
+// STYLING
+
+const Text = styled.p`
+  margin-top: 4em;
+`;

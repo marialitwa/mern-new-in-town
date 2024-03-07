@@ -32,10 +32,9 @@ export function LoginForm() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log("Login Credentials", loginCredentials);
+    // console.log("Login Credentials", loginCredentials);
     if (loginCredentials) {
       await login(loginCredentials.email, loginCredentials.password);
-      alert("You are now logged in");
     }
   }
 

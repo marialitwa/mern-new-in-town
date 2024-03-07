@@ -30,22 +30,28 @@ export default function DoctorForm() {
 
     if (!inputValues.name) return alert("Name must be included.");
 
-    // INSPECT WHY FORM TRIM DOES NOT WORK
+    // RESEARCH WHY FORM TRIM DOES NOT WORK
     // console.log("EVENT", event);
     // const form = event.target;
     // console.log("FORM", form);
     // const input = form.elements.input.value.trim();
     // if (input === "") return alert("Please fill out the form");
 
-    const urlencoded = new URLSearchParams();
+    const body = new URLSearchParams();
     if (location.state) {
-      urlencoded.append("id", location.state.getCurrentDoctor._id);
+      body.append("_id", location.state.getCurrentDoctor._id);
     }
 
     for (const [key, value] of Object.entries(inputValues)) {
       // console.log("KEY", key, "VALUE", value);
-      urlencoded.append(key, value);
+      body.append(key, value);
     }
+
+    const token = localStorage.getItem("token");
+    // console.log("token", token);
+
+    const headers = new Headers();
+    headers.append("Authorization", `Bearer ${token}`);
 
     try {
       const response = isEdit
@@ -54,20 +60,19 @@ export default function DoctorForm() {
 
             {
               method: "PUT",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(inputValues),
+              headers: headers,
+              body: body,
             }
           )
         : await fetch("http://localhost:5000/api/doctors/new-entry", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(inputValues),
+            headers: headers,
+            body: body,
           });
 
       if (!response.ok) {
         throw new Error("Something went wrong");
       }
-
       console.log("Sending data successfull");
     } catch (error) {
       console.error("Data is not send to server", error);

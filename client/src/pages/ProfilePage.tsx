@@ -6,7 +6,7 @@ export default function ProfilePage() {
   return (
     <>
       <Main>
-        <PageTitle>Profile</PageTitle>
+        <PageTitle>Your Profile</PageTitle>
         <ProfileCard />
       </Main>
     </>

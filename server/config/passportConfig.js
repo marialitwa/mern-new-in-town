@@ -13,7 +13,7 @@ const jwtStrategy = new JwtStrategy(options, async function (
     done
   ) {
     try {
-      
+    
       const user = await UserModel.findOne({ _id: jwt_payload.sub });
       console.log("User", user);
       

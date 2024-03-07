@@ -7,7 +7,7 @@ import UserModel from "../models/userModel.js";
 // GET ALL DOCUMENTS FROM MY DB COLLECTION => complete list of all doctors
 const getAllDoctors = async(request, response) => {
 
-  // sort method here to reverse order => newest added comes first
+  // TODO sort method here to reverse order => newest added card comes first
     try {
       const allDoctors = await DoctorModel.find();
       response.status(200).json({
@@ -32,13 +32,13 @@ const getDoctorById = async(request, response) => {
   console.log("Found Doctor", foundDoctor);
 
   response.status(200).json(foundDoctor);
-  console.log(request)
+  // console.log(request)
 }
 
 
 // ADD A DOCTOR / DOCUMENT TO MY DB COLLECTION => add a single doctor 
 const addCard = async (request, response) => {
-
+console.log('request.body Addcard', request.body )
   // Start with test in Postman
   // response.send("testing");
   
@@ -91,7 +91,7 @@ const deleteCard = async(request, response) => {
 const updateCard = async(request, response) => {
 
   const id = request.body._id
-  console.log('request.body::::', request.body)
+  // console.log('request.body updateCard::::', request.body)
 
   const { medical_specialty, name, medical_practice, city_district, address, phone_number, website, notes } = request.body;
   

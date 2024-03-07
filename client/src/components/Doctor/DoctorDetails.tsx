@@ -14,22 +14,29 @@ export default function DoctorDetails({ doctor }: Props) {
   const navigate = useNavigate();
 
   function handleEdit(getCurrentDoctor: Doctor) {
-    console.log(getCurrentDoctor);
+    // console.log(getCurrentDoctor);
+
     navigate("/form", { state: { getCurrentDoctor } });
   }
 
   async function handleDeleteCard(getCurrentId: string) {
     // console.log("CURRENT ID", getCurrentId);
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
-    const urlencoded = new URLSearchParams();
-    urlencoded.append("id", getCurrentId);
+    // For Authorization to use this function: 1.st get the token from local storage
+    const token = localStorage.getItem("token");
+
+    const myHeaders = new Headers();
+
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+    myHeaders.append("Authorization", `Bearer ${token}`);
+
+    const body = new URLSearchParams();
+    body.append("id", getCurrentId);
 
     const requestOptions = {
       method: "DELETE",
       headers: myHeaders,
-      body: urlencoded,
+      body: body,
     };
 
     try {
