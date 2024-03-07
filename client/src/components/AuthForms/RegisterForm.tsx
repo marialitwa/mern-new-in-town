@@ -1,7 +1,6 @@
 // import React from 'react'
 
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   PageTitle,
   AuthForm,
@@ -13,8 +12,6 @@ import { AuthContext } from "../../context/AuthContext.tsx";
 export function RegisterForm() {
   const { signup } = useContext(AuthContext);
   const [inputValues, setInputValues] = useState({ email: "", password: "" });
-
-  const navigate = useNavigate();
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -98,18 +95,3 @@ export function RegisterForm() {
     </>
   );
 }
-
-// STYLING
-
-// const FormHeader = styled.header`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center:
-//   justify-content: center;
-//   margin: 0 1em 2em;
-//   text-align: center;
-// `;
-
-// const FromInstructionText = styled.p`
-//   margin-top: 1em;
-// `;
