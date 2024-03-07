@@ -1,6 +1,8 @@
 import colors from "colors";
 import express from "express";
 import cors from "cors";
+import passport from "passport";
+import jwtStrategy from "./config/passportConfig.js";
 import "dotenv/config";
 import userRouter from "./routes/userRoutes.js";
 import doctorRouter from "./routes/doctorRoutes.js"
@@ -27,6 +29,8 @@ const addMiddlewares = () => {
         })
     );
     app.use(cors());
+    app.use(passport.initialize());
+    passport.use(jwtStrategy);
 }
 // ===============================
 

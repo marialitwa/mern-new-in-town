@@ -16,6 +16,7 @@ import FormPage from "./pages/FormPage.tsx";
 import SportsYogaPage from "./pages/SportsYogaPage.tsx";
 import { AuthContextProvider } from "./context/AuthContext.tsx";
 import { AuthPage } from "./pages/AuthPage.tsx";
+import ProfilePage from "./pages/ProfilePage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
       {
         path: "auth",
         element: <AuthPage />,
+      },
+      {
+        path: "profile",
+        element: <ProfilePage />,
       },
     ],
   },

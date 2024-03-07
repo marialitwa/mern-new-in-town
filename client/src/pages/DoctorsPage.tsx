@@ -97,12 +97,13 @@ const HeadingContainer = styled.div`
 
 const ButtonBottom = styled.button`
   position: fixed;
-  bottom: 30px;
+  bottom: 47px;
+  _top: 140px;
   right: 43.5%;
   font-size: 2rem;
   line-height: 0;
   background-color: olive;
-  z-index: 50;
+  z-index: 100;
   border-radius: 50%;
   width: 50px;
   height: 50px;

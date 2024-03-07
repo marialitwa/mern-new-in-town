@@ -70,13 +70,16 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
         "http://localhost:5000/api/users/signup",
         requestOptions
       );
-
+      console.log("response", response);
       if (response.ok) {
         const result = (await response.json()) as User;
         setUser(result);
+        alert("Welcome! You are now registered with our wonderful app.");
+        navigate("/auth");
       } else {
         const result = (await response.json()) as ResponseNotOk;
         console.log(result);
+        alert(`${result.error}`);
       }
     } catch (error) {
       console.error("Error", error);
@@ -117,7 +120,9 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
         if (result.data.token) {
           // Store token in Local Storage
           localStorage.setItem("token", result.data.token);
+          console.log("RESULT TOKEN", result.data.token);
           setUser(result.data.user);
+          alert("You are now logged in");
           navigate("/");
         }
       } else {

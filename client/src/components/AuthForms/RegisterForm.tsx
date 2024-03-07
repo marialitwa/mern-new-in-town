@@ -1,5 +1,6 @@
 // import React from 'react'
-import { FormEvent, useContext, useState } from "react";
+
+import { useContext, useState } from "react";
 import {
   PageTitle,
   AuthForm,
@@ -8,39 +9,31 @@ import {
 } from "../CommonUI.tsx";
 import { AuthContext } from "../../context/AuthContext.tsx";
 
-type LoginCredentials = {
-  email: string;
-  password: string;
-};
+export function RegisterForm() {
+  const { signup } = useContext(AuthContext);
+  const [inputValues, setInputValues] = useState({ email: "", password: "" });
 
-export function LoginForm() {
-  const { login } = useContext(AuthContext);
-  const [loginCredentials, setLoginCredentials] =
-    useState<LoginCredentials | null>(null);
-  // const [loginCredentials, setLoginCredentials] = useState<LoginCredentials>({
-  //   email: "",
-  //   password: "",
-  // });
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
 
-  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
-    console.log("event.target.value", event.target.name, event.target.value);
-    setLoginCredentials({
-      ...(loginCredentials as LoginCredentials),
-      [event.target.name]: event.target.value,
+    const email = inputValues.email.trim();
+    const password = inputValues.password.trim();
+
+    if (!email || !password) return alert("Please fill out all fields.");
+
+    signup(email, password);
+    // navigate to login
+  }
+
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setInputValues({
+      ...inputValues,
+      [event.target.type]: event.target.value,
     });
   }
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    console.log("Login Credentials", loginCredentials);
-    if (loginCredentials) {
-      await login(loginCredentials.email, loginCredentials.password);
-      alert("You are now logged in");
-    }
-  }
-
   function handleReset() {
-    setLoginCredentials({
+    setInputValues({
       email: "",
       password: "",
     });
@@ -49,9 +42,9 @@ export function LoginForm() {
   return (
     <>
       <FormHeader>
-        <PageTitle>Login</PageTitle>
+        <PageTitle>Register</PageTitle>
         <FromInstructionText>
-          Enter your email address and password associated with your account.
+          Enter your email address and a password to create an account.
         </FromInstructionText>
       </FormHeader>
       <AuthForm onSubmit={handleSubmit}>
@@ -63,8 +56,8 @@ export function LoginForm() {
           name="email"
           id="email"
           placeholder="Your email"
-          value={loginCredentials?.email}
-          onChange={handleInputChange}
+          value={inputValues.email}
+          onChange={handleChange}
           className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
           required
         />
@@ -76,8 +69,8 @@ export function LoginForm() {
           name="password"
           id="password"
           placeholder="Your password"
-          value={loginCredentials?.password}
-          onChange={handleInputChange}
+          value={inputValues.password}
+          onChange={handleChange}
           className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
           required
         />
@@ -85,9 +78,9 @@ export function LoginForm() {
         <div className="flex flex-col justify-center items-center">
           <button
             type="submit"
-            className="w-1/2 rounded-md py-2.5 px-4 mt-8 border text-sm bg-pink-400"
+            className="w-1/2 rounded-md py-2.5 px-4 mt-8 border text-sm bg-gray-800 text-gray-50"
           >
-            Login
+            Register
           </button>
           <button
             // onClick={() => console.log("Button clicked")}

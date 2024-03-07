@@ -23,7 +23,7 @@ export default function DoctorCard({ doctor }: Props) {
         <p>{doctor.name}</p>
         <p>{doctor.medical_specialty}</p>
         <p>{doctor.city_district}</p>
-        <Button onClick={handleClick}>Show more</Button>
+        <Button onClick={handleClick}>Details</Button>
       </CardContainer>
     </>
   );
@@ -61,7 +61,7 @@ const Button = styled.button`
   margin-bottom: 0.5em;
   padding: 0.5em 0.3em;
   border-radius: 0.4em;
-  width: 50%;
+  width: 40%;
   background-color: lightpink;
   background-color: plum;
   font-size: 0.9rem;
