@@ -71,7 +71,7 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
         `${baseUrl}/api/users/signup`,
         requestOptions
       );
-      console.log("response", response);
+
       if (response.ok) {
         const result = (await response.json()) as User;
         setUser(result);
@@ -116,12 +116,10 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
 
       if (response.ok) {
         const result = (await response.json()) as LoginResponse;
-        console.log("Result", result);
 
         if (result.data.token) {
           // Store token in Local Storage
           localStorage.setItem("token", result.data.token);
-          console.log("RESULT TOKEN", result.data.token);
           setUser(result.data.user);
           alert("You are now logged in");
           navigate("/");
