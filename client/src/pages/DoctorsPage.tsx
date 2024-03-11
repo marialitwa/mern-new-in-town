@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import DoctorCard from "../components/Doctor/DoctorCard.tsx";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import baseUrl from "../utils/baseUrl.ts";
 
-const apiUrl = "http://localhost:5000/api/doctors/all";
+const apiUrl = `${baseUrl}/api/doctors/all`;
 
 export default function DoctorsPage() {
   const [allDoctors, setAllDoctors] = useState<Doctor[]>([]);

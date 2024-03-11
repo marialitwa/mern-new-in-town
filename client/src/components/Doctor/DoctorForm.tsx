@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
+import baseUrl from "../../utils/baseUrl.ts";
 
 type FormType = {
   name: string;
@@ -54,7 +55,7 @@ export default function DoctorForm() {
     try {
       const response = isEdit
         ? await fetch(
-            `http://localhost:5000/api/doctors/update`,
+            `${baseUrl}/api/doctors/update`,
 
             {
               method: "PUT",
@@ -62,7 +63,7 @@ export default function DoctorForm() {
               body: body,
             }
           )
-        : await fetch("http://localhost:5000/api/doctors/new-entry", {
+        : await fetch(`${baseUrl}/api/doctors/new-entry`, {
             method: "POST",
             headers: headers,
             body: body,

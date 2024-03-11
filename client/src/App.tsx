@@ -3,32 +3,9 @@ import "./App.css";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import NavBar from "./components/Footer/NavBar";
+// import baseUrl from "./utils/baseUrl.ts";
 
 export default function App() {
-  // const [collectionNames, setCollectionNames] = useState<string[]>([""]);
-
-  // FETCH FUNCTION FOR ALL COLLECTION NAMES FROM MONGO DB
-  // const fetchCollectionNames = async () => {
-  //   try {
-  //     const response = await fetch("http://localhost:5000/api/collections/all");
-
-  //     if (!response.ok) {
-  //       throw new Error("Network response is not ok");
-  //     }
-  //     const data = await response.json();
-  //     console.log("data", data);
-  //     const collectionNames = data.collectionNames as string[];
-
-  //     setCollectionNames(collectionNames);
-  //   } catch (error) {
-  //     console.error("Error fetching collection names", error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchCollectionNames();
-  // }, []);
-
   return (
     <>
       <main className="min-h-screen bg-gray-50 flex flex-col items-center text-gray-900">

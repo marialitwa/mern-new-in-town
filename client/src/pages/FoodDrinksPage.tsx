@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { Food } from "../@types/foods.ts";
 import styled from "styled-components";
 import FoodDrinksCard from "../components/FoodDrinks/FoodDrinksCard.tsx";
+import baseUrl from "../utils/baseUrl.ts";
 
-const apiUrl = "http://localhost:5000/api/foods/all";
+const apiUrl = `${baseUrl}/api/foods/all`;
 
 export default function FoodDrinksPage() {
   const [allFoods, setAllFoods] = useState<Food[]>([]);

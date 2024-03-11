@@ -2,6 +2,7 @@ import { PropsWithChildren, createContext, useEffect, useState } from "react";
 import { User } from "../@types/users.ts";
 import { ResponseNotOk } from "../@types";
 import { useNavigate } from "react-router-dom";
+import baseUrl from "../utils/baseUrl.ts";
 
 type LoginDataType = {
   user: User;
@@ -67,7 +68,7 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/users/signup",
+        `${baseUrl}/api/users/signup`,
         requestOptions
       );
       console.log("response", response);
@@ -102,7 +103,7 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/users/login",
+        `${baseUrl}/api/users/login`,
         requestOptions
       );
 

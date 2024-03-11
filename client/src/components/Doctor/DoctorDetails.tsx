@@ -3,6 +3,7 @@ import { Doctor } from "../../@types/doctors";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import baseUrl from "../../utils/baseUrl.ts";
 
 type Props = {
   doctor: Doctor;
@@ -39,9 +40,10 @@ export default function DoctorDetails({ doctor }: Props) {
       body: body,
     };
 
+    // ${baseUrl}
     try {
       const response = await fetch(
-        `http://localhost:5000/api/doctors/delete`,
+        `${baseUrl}/api/doctors/delete`,
         requestOptions
       );
 

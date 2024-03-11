@@ -5,8 +5,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Doctor } from "../@types/doctors";
 import DoctorDetails from "../components/Doctor/DoctorDetails";
 import styled from "styled-components";
+import baseUrl from "../utils/baseUrl.ts";
 
-const apiUrl = "http://localhost:5000/api/doctors";
+const apiUrl = `${baseUrl}/api/doctors`;
 
 export default function DoctorDetailsPage() {
   const [doctor, setDoctor] = useState<Doctor | null>(null);

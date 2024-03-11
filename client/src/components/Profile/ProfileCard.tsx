@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { User } from "../../@types/users";
 import styled from "styled-components";
+import baseUrl from "../../utils/baseUrl.ts";
 
 type APIResponse<T> = {
   message: string;
@@ -29,7 +30,7 @@ export default function ProfileCard() {
 
       try {
         const response = await fetch(
-          "http://localhost:5000/api/users/profile",
+          `${baseUrl}/api/users/profile`,
           requestOptions
         );
 
