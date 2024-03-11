@@ -1,11 +1,12 @@
 import { ExtractJwt, Strategy as JwtStrategy} from "passport-jwt"
 import UserModel from "../models/userModel.js";
+import "dotenv/config";
 
 const options = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: "mySuperSecretPassword",
+    secretOrKey: process.env.TOKEN_SECRET_KEY,
     // secretOrKey corresponding to variable secretOrPrivateKey inside tokenOperations.js in utils folder
-}
+};
 
 const jwtStrategy = new JwtStrategy(options, async function (
     

@@ -32,7 +32,6 @@ const getDoctorById = async(request, response) => {
   console.log("Found Doctor", foundDoctor);
 
   response.status(200).json(foundDoctor);
-  // console.log(request)
 }
 
 
@@ -41,14 +40,12 @@ const addCard = async (request, response) => {
 console.log('request.body Addcard', request.body )
   // Start with test in Postman
   // response.send("testing");
-  
   // console.log("req.body", request.body);
   
   if (!request.body.name) return response.status(400).json({ error: "Name must be included."})
 
   try {
     const newEntry = await DoctorModel.create(request.body)
-    console.log("newEntry", newEntry);
 
     if (newEntry) {
 
@@ -64,7 +61,6 @@ console.log('request.body Addcard', request.body )
     response.status(500).json({ error: error.message })
   }
 }
-
 
 
 // DELETE A DOCTOR / DOCUMENT FROM MY DB COLLECTION => delete a specific doctor 
@@ -91,7 +87,6 @@ const deleteCard = async(request, response) => {
 const updateCard = async(request, response) => {
 
   const id = request.body._id
-  // console.log('request.body updateCard::::', request.body)
 
   const { medical_specialty, name, medical_practice, city_district, address, phone_number, website, notes } = request.body;
   
@@ -105,10 +100,10 @@ const updateCard = async(request, response) => {
     website: website,
     notes: notes
   }
-console.log('inputFieldsToUpdate', inputFieldsToUpdate)
+// console.log('inputFieldsToUpdate', inputFieldsToUpdate)
   try {
    const  currentCardToUpdate = await DoctorModel.findByIdAndUpdate(id, inputFieldsToUpdate, { new: true})
-console.log('currentCardToUpdate', currentCardToUpdate)
+// console.log('currentCardToUpdate', currentCardToUpdate)
     
 // validation and inputs sanitation
 
@@ -120,8 +115,7 @@ console.log('currentCardToUpdate', currentCardToUpdate)
       return response.status(400).json({ error: "Name must be included."}) 
     }
     if (currentCardToUpdate) {
-console.log("This card is updated now.")
-      // alert("This card is updated now.")
+      console.log("This card is updated now.")
       return response.status(200).json({ currentCardToUpdate, message: "Card is now updated."})
     }
   } catch (error) {

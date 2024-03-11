@@ -1,4 +1,3 @@
-// import React from 'react'
 import styled from "styled-components";
 import { Doctor } from "../../@types/doctors";
 import { useNavigate } from "react-router-dom";

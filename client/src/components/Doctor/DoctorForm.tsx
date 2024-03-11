@@ -19,7 +19,6 @@ export default function DoctorForm() {
 
   const navigate = useNavigate();
   const location = useLocation();
-  // console.log("location>>>>", location);
 
   async function handleSubmit(
     event:
@@ -30,7 +29,7 @@ export default function DoctorForm() {
 
     if (!inputValues.name) return alert("Name must be included.");
 
-    // RESEARCH WHY FORM TRIM DOES NOT WORK
+    // REVIEW WHY FORM TRIM DOES NOT WORK
     // console.log("EVENT", event);
     // const form = event.target;
     // console.log("FORM", form);
@@ -48,7 +47,6 @@ export default function DoctorForm() {
     }
 
     const token = localStorage.getItem("token");
-    // console.log("token", token);
 
     const headers = new Headers();
     headers.append("Authorization", `Bearer ${token}`);
@@ -223,7 +221,6 @@ export default function DoctorForm() {
             />
 
             {/* PHONE NUMBER  =============== */}
-
             <label htmlFor="phone_number" className="text-stone-700 text-base">
               Phone Number
             </label>
@@ -239,7 +236,6 @@ export default function DoctorForm() {
             />
 
             {/* WEBSITE  =============== */}
-
             <label htmlFor="url" className="text-stone-700 text-base">
               Website
             </label>
@@ -253,7 +249,6 @@ export default function DoctorForm() {
               className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
             />
 
-            {/* UPADTE MODEL in server */}
             {/* TEXTFIELD FOR NOTES  =============== */}
             <label htmlFor="notes" className="text-stone-700 text-base">
               Notes
@@ -266,6 +261,7 @@ export default function DoctorForm() {
               placeholder="Write your personal notes here ..."
               className="w-auto rounded-md py-2.5 px-4 mb-3 border text-sm outline-[#007bff]"
             ></textarea>
+
             {/* INFOTEXT: Required fields =========== */}
             <p className="italic mt-2 text-sm text-stone-600">
               * required fields
