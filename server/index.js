@@ -77,8 +77,9 @@ const DBConnection = async() => {
 // it is an IIFE function we do not need to call it
 
 (async function backendController() {
-    await DBConnection();
+     
     addMiddlewares();
+    await DBConnection();
     addRoutes();
     startServer();
 })();
