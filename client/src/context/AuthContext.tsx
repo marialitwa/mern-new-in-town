@@ -24,7 +24,7 @@ interface AuthContextType {
   // In dem Fall, ob die Registrierung erfolgreich war oder nicht
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
-  loading: boolean;
+  // loading: boolean;
 }
 
 const defaultValue: AuthContextType = {
@@ -38,14 +38,14 @@ const defaultValue: AuthContextType = {
   logout: () => {
     throw new Error("No Provider");
   },
-  loading: false,
+  // loading: false,
 };
 
 export const AuthContext = createContext(defaultValue);
 
 export function AuthContextProvider({ children }: PropsWithChildren) {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -164,7 +164,7 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
         signup,
         login,
         logout,
-        loading,
+        // loading,
       }}
     >
       {children}
