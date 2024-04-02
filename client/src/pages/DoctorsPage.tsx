@@ -16,25 +16,42 @@ export default function DoctorsPage() {
     navigate("/form");
   }
 
-  const fetchAllDoctors = async () => {
-    try {
-      const response = await fetch(`${apiUrl}`);
+  async function fetchAllDoctors() {
+    const token = localStorage.getItem("token");
 
-      if (!response.ok) {
-        throw new Error("Network response is not ok");
-      }
-
-      const data = await response.json();
-      // console.log("DATA", data.allDoctors);
-
-      const foundDoctors = data.allDoctors as Doctor[];
-      // console.log(foundDoctors.allDoctors[0].name);
-
-      setAllDoctors(foundDoctors);
-    } catch (error) {
-      console.error("Error fetching data", error);
+    if (!token) {
+      alert("Please log in first");
     }
-  };
+
+    if (token) {
+      const headers = new Headers();
+      headers.append("Authorization", `Bearer ${token}`);
+
+      const requestOptions = {
+        method: "GET",
+        headers: headers,
+      };
+
+      try {
+        const response = await fetch(`${apiUrl}`, requestOptions);
+        console.log(response);
+
+        if (!response.ok) {
+          throw new Error("Network response is not ok");
+        }
+
+        const data = await response.json();
+        console.log("DATA", data.allDoctors);
+
+        const foundDoctors = data.allDoctors as Doctor[];
+        // console.log("FOUND DOCTORS", foundDoctors.allDoctors[0].name);
+
+        setAllDoctors(foundDoctors);
+      } catch (error) {
+        console.error("Error fetching data", error);
+      }
+    }
+  }
 
   useEffect(() => {
     fetchAllDoctors();
@@ -47,9 +64,13 @@ export default function DoctorsPage() {
           <h1 className="text-3xl font-semibold">My New Doctors.</h1>
         </HeadingContainer>
         <div>
-          {allDoctors.map((doctor) => {
-            return <DoctorCard key={doctor._id} doctor={doctor} />;
-          })}
+          {allDoctors.length === 0 ? (
+            <p>No content here yet. Please add a doctor.</p>
+          ) : (
+            allDoctors.map((doctor) => {
+              return <DoctorCard key={doctor._id} doctor={doctor} />;
+            })
+          )}
         </div>
         <ButtonBottom onClick={handleClick}>+</ButtonBottom>
       </Main>

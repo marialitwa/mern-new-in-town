@@ -25,7 +25,7 @@ interface AuthContextType {
   // In dem Fall, ob die Registrierung erfolgreich war oder nicht
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
-  // loading: boolean;
+  isLoading: boolean;
 }
 
 const defaultValue: AuthContextType = {
@@ -39,14 +39,14 @@ const defaultValue: AuthContextType = {
   logout: () => {
     throw new Error("No Provider");
   },
-  // loading: false,
+  isLoading: false,
 };
 
 export const AuthContext = createContext(defaultValue);
 
 export function AuthContextProvider({ children }: PropsWithChildren) {
   const [user, setUser] = useState<User | null>(null);
-  // const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
 
@@ -133,11 +133,44 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
     }
   }
 
-  function checkUserStatus() {
+  const apiUrl = `${baseUrl}/api/users/profile`;
+
+  async function checkUserStatus() {
     const token = localStorage.getItem("token");
 
+    if (!token) {
+      alert("Please log in first");
+    }
+
     if (token) {
-      console.log("User is logged in");
+      // console.log("User is logged in");
+      //fetch to the server to endpint "getUser" (sending ONLY the token)
+      const headers = new Headers();
+      headers.append("Authorization", `Bearer ${token}`);
+
+      const requestOptions = {
+        method: "GET",
+        headers: headers,
+      };
+
+      try {
+        const response = await fetch(`${apiUrl}`, requestOptions);
+        console.log(response);
+
+        if (!response.ok) {
+          throw new Error("Network response is not ok");
+        }
+
+        if (response.ok) {
+          const result = await response.json();
+          setUser(result.data.email);
+          setIsLoading(false);
+        }
+      } catch (error) {
+        console.error("Error", error);
+      }
+
+      //if we find the user we setUser(result)
     } else {
       console.log("User is logged out/No user");
     }
@@ -163,7 +196,7 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
         signup,
         login,
         logout,
-        // loading,
+        isLoading,
       }}
     >
       {children}

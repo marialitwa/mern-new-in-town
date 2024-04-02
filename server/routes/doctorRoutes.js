@@ -5,7 +5,7 @@ import jwtAuth from "../middlewares/jwtAuth.js";
 const doctorRouter = express.Router();
 
 // Read data from manually created MongoDB database collection
-doctorRouter.get("/all", getAllDoctors);
+doctorRouter.get("/all", jwtAuth, getAllDoctors);
 doctorRouter.get("/:id", getDoctorById);
 
 // Add data from frontend (or Postman) to MongoDb database collection

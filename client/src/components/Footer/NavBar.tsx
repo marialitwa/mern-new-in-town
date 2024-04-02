@@ -11,7 +11,9 @@ export default function NavBar() {
   const location = useLocation();
   //   console.log("LOCATION", location.pathname);
 
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout, isLoading } = useContext(AuthContext);
+  // console.log("%c user navbar", "color:red", user);
+  // console.log("isLoading", isLoading);
 
   return (
     <footer>
@@ -19,8 +21,10 @@ export default function NavBar() {
         <LinkStyled to={"/"} isActive={location.pathname === "/"}>
           Home
         </LinkStyled>
-
-        {user ? (
+        {/* REVIEW: Empty element instead of text is loading? */}
+        {isLoading ? (
+          <p>...is loading...</p>
+        ) : user ? (
           <>
             <button onClick={logout}>Logout</button>
             <LinkStyled

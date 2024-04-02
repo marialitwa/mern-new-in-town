@@ -9,6 +9,8 @@ type APIResponse<T> = {
   data: T;
 };
 
+// TODO  import user from Auth Context here
+
 export default function ProfileCard() {
   const [userProfile, setUserProfile] = useState<User>({} as User);
 
@@ -55,7 +57,7 @@ export default function ProfileCard() {
     <>
       {userProfile && (
         <div>
-          {/* <p>Username: {userProfile.username}</p> */}
+          {/* <Text>Username: {userProfile.username}</Text> */}
           <Text>{userProfile.email}</Text>
           {/* <img src={userProfile.userimage} alt={userProfile.username} style={{width: 150px}} /> */}
         </div>

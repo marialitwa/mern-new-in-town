@@ -9,12 +9,15 @@ const getAllDoctors = async(request, response) => {
 
   // TODO sort method here to reverse order => newest added card comes first
     try {
-      const allDoctors = await DoctorModel.find();
+      console.log("USER", request.user)
+      const allDoctors = await DoctorModel.find({ user_id: request.user._id} );
       response.status(200).json({
         number: allDoctors.length,
         allDoctors
 
       })  
+
+
     } catch (error) {
        console.error("Error", error) ;
        response.status(500).json({
@@ -37,6 +40,8 @@ const getDoctorById = async(request, response) => {
 
 // ADD A DOCTOR / DOCUMENT TO MY DB COLLECTION => add a single doctor 
 const addCard = async (request, response) => {
+
+  const userId = request.user._id
 console.log('request.body Addcard', request.body )
   // Start with test in Postman
   // response.send("testing");
@@ -44,13 +49,28 @@ console.log('request.body Addcard', request.body )
   
   if (!request.body.name) return response.status(400).json({ error: "Name must be included."})
 
+  
   try {
-    const newEntry = await DoctorModel.create(request.body)
+    const newCard = await DoctorModel.create({ 
+      
+      user_id: userId,
+      name: request.body.name ? request.body.name : "",
+      medical_specialty: request.body.medical_specialty ? request.body.medical_specialty : "",
+      medical_practice: request.body.medical_practice ? request.body.medical_practice : "",
+      city_district: request.body.city_district ? request.body.city_district : "",
+      address: request.body.address ? request.body.address : "",
+      phone_number: request.body.phone_number ? request.body.phone_number : "",
+      website: request.body.website ? request.body.website : "",
+      notes: request.body.notes ? request.body.notes : "",
 
-    if (newEntry) {
+    });
 
-      const addCardToUser = await UserModel.findByIdAndUpdate(request.body.userId, { $push: { created_cards: newEntry}}, {new: true})
-      response.status(201).json({newEntry, addCardToUser});
+    const createCard = await DoctorModel.save()
+
+    if (createCard) {
+
+      const addCardToUser = await UserModel.findByIdAndUpdate(request.body.userId, { $push: { created_cards: createCard}}, {new: true})
+      response.status(201).json({createCard, addCardToUser});
     }
     else response.status(400).json({ error: "New entry could not be created"})
     
