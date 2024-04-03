@@ -57,9 +57,9 @@ export default function ProfileCard() {
     <>
       {userProfile && (
         <div>
-          {/* <Text>Username: {userProfile.username}</Text> */}
+          {/* <Text>userName: {userProfile.userName}</Text> */}
           <Text>{userProfile.email}</Text>
-          {/* <img src={userProfile.userimage} alt={userProfile.username} style={{width: 150px}} /> */}
+          {/* <img src={userProfile.userimage} alt={userProfile.userName} style={{width: 150px}} /> */}
         </div>
       )}
     </>

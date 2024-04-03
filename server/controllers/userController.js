@@ -74,7 +74,7 @@ async function signup(request, response) {
   // );
 
   
-  const { email, password, username } = request.body;
+  const { email, password, userName } = request.body;
 
   // Here I can validate separated/individually for email and password to display a specifique message
   if (!email || !password)
@@ -107,7 +107,7 @@ async function signup(request, response) {
           const newUser = await UserModel.create({ 
             email: email, 
             password: hashedPassword, 
-            username: username 
+            userName: userName 
           });
 
       // Here I can send whatever I need to my frontend
@@ -115,7 +115,7 @@ async function signup(request, response) {
         response.status(201).json({
           message: "Valid user registration",
           user: {
-            username: newUser.username,
+            userName: newUser.userName,
             email: newUser.email,
           }
         });
@@ -203,7 +203,7 @@ console.log('Request Body', request.body)
 
         // sending these infos from backend to frontend
         const user = {
-          username: existingUser.username,
+          userName: existingUser.userName,
           email: existingUser.email,
           // userimage: existingUser.userimage,
           created_cards: existingUser.created_cards
@@ -255,11 +255,11 @@ console.log('Request Body', request.body)
         error: false,
         data: {
           // user: {
-          //   username: user.username,
+          //   userName: user.userName,
           //   email: user.email,
           //   userImage: user.userImage,
           // },
-          // username: user.username,
+          // userName: user.userName,
           email: user.email,
           // userImage: user.userImage,
         },
