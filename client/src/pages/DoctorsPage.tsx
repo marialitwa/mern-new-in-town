@@ -65,7 +65,9 @@ export default function DoctorsPage() {
         </HeadingContainer>
         <div>
           {allDoctors.length === 0 ? (
-            <p>No content here yet. Please add a doctor.</p>
+            <StyledText>
+              Nothing here. To add a doctor use the add button below.
+            </StyledText>
           ) : (
             allDoctors.map((doctor) => {
               return <DoctorCard key={doctor._id} doctor={doctor} />;
@@ -93,6 +95,11 @@ const HeadingContainer = styled.div`
   text-align: center;
   margin-bottom: 1.5em;
   background-color: #eee;
+`;
+
+const StyledText = styled.p`
+  text-align: center;
+  margin: 2rem;
 `;
 
 const ButtonBottom = styled.button`

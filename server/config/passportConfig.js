@@ -16,7 +16,7 @@ const jwtStrategy = new JwtStrategy(options, async function (
     try {
     
       const user = await UserModel.findOne({ _id: jwt_payload.sub });
-      console.log("User", user);
+      // console.log("User", user);
       
       if (!user) {
         console.log("Token invalid");
@@ -24,7 +24,7 @@ const jwtStrategy = new JwtStrategy(options, async function (
       }
 
       if (user) {
-        console.log("User found");
+        // console.log("User found");
         return done(null, user);
       }
 

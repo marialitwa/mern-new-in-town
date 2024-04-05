@@ -17,7 +17,7 @@ type LoginResponse = {
 
 interface AuthContextType {
   user: User | null;
-  signup: (email: string, password: string) => Promise<void>;
+  signup: (userName: string, email: string, password: string) => Promise<void>;
   // Promise<void>: signup-Funktion ist asynchrone Operation
   // void gibt erstmal keinen spezifischen Datenwert zurück
   // Häufige Verwendung bei asynchronen Funktionen, die einfach
@@ -25,6 +25,10 @@ interface AuthContextType {
   // In dem Fall, ob die Registrierung erfolgreich war oder nicht
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
+  updateUser: (values: {
+    email: string;
+    userName: string | undefined;
+  }) => Promise<void>;
   isLoading: boolean;
 }
 
@@ -39,6 +43,9 @@ const defaultValue: AuthContextType = {
   logout: () => {
     throw new Error("No Provider");
   },
+  updateUser: () => {
+    throw new Error("No Provider");
+  },
   isLoading: false,
 };
 
@@ -50,7 +57,7 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
 
   const navigate = useNavigate();
 
-  async function signup(email: string, password: string) {
+  async function signup(userName: string, email: string, password: string) {
     if (!email || !password) return alert("Please fill out all fields");
 
     const headers = new Headers();
@@ -59,6 +66,7 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
     const body = new URLSearchParams();
     body.append("email", email);
     body.append("password", password);
+    body.append("userName", userName);
 
     const requestOptions = {
       method: "POST",
@@ -88,6 +96,7 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
   }
 
   async function login(email: string, password: string) {
+    console.log("email, password", email, password);
     const headers = new Headers();
     headers.append("Content-Type", "application/x-www-form-urlencoded");
 
@@ -107,8 +116,9 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
         requestOptions
       );
 
+      console.log("response", response);
       if (!response.ok) {
-        // TODO Handle response NOT ok here
+        // TODO Handle response NOT ok comes here
         console.log("Response not ok", response);
         const result = await response.json();
         console.log("Result", result);
@@ -116,17 +126,18 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
 
       if (response.ok) {
         const result = (await response.json()) as LoginResponse;
-
+        console.log("result", result);
         if (result.data.token) {
           // Store token in Local Storage
           localStorage.setItem("token", result.data.token);
           setUser(result.data.user);
+          setIsLoading(false);
           alert("You are now logged in");
           navigate("/");
         }
       } else {
         const result = (await response.json()) as ResponseNotOk;
-        console.log(result);
+        console.log("not ok login", result);
       }
     } catch (error) {
       console.log("Error", error);
@@ -140,6 +151,7 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
 
     if (!token) {
       alert("Please log in first");
+      setIsLoading(false);
     }
 
     if (token) {
@@ -155,7 +167,7 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
 
       try {
         const response = await fetch(`${apiUrl}`, requestOptions);
-        console.log(response);
+        console.log("response", response);
 
         if (!response.ok) {
           throw new Error("Network response is not ok");
@@ -163,11 +175,14 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
 
         if (response.ok) {
           const result = await response.json();
-          setUser(result.data.email);
+          console.log("result", result);
+          setUser(result.data);
           setIsLoading(false);
         }
       } catch (error) {
         console.error("Error", error);
+      } finally {
+        setIsLoading(false);
       }
 
       //if we find the user we setUser(result)
@@ -177,10 +192,65 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
     // TODO Write a request to backend to get user information back when we refresh the page
   }
 
+  async function updateUser(values: {
+    email: string;
+    userName: string | undefined;
+  }) {
+    console.log("values", values);
+    const token = localStorage.getItem("token");
+    console.log("token", token);
+    if (!user) {
+      console.log("no user");
+      return;
+    }
+
+    if (!token) alert("you need to login first");
+    if (values.email === "") {
+      alert("no empty email");
+      return;
+    }
+    if (values.email !== "") {
+      const headers = new Headers();
+      headers.append("Authorization", `Bearer ${token}`);
+
+      // const bodyValues = JSON.stringify(values);
+
+      const body = new URLSearchParams();
+      // body.append("values", bodyValues);
+      body.append("email", values.email);
+      body.append("userName", values.userName ? values.userName : "");
+
+      const requestOptions = {
+        method: "POST",
+        headers,
+        body,
+      };
+
+      try {
+        const response = await fetch(
+          `${baseUrl}/api/users/update/${user._id}`,
+          requestOptions
+        );
+
+        if (response.ok) {
+          const data = (await response.json()) as User;
+          setUser(data);
+        } else {
+          const data = (await response.json()) as ResponseNotOk;
+          console.log("data", data);
+          // console.log(data.user);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
+
   function logout() {
     console.log("%c useEffect run", "color: orange");
     localStorage.removeItem("token");
     setUser(null);
+    setIsLoading(false);
     alert("You are logged out successfully.");
     navigate("/");
   }
@@ -196,6 +266,7 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
         signup,
         login,
         logout,
+        updateUser,
         isLoading,
       }}
     >
