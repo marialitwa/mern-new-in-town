@@ -11,29 +11,40 @@ import { AuthContext } from "../../context/AuthContext.tsx";
 
 export function RegisterForm() {
   const { signup } = useContext(AuthContext);
-  const [inputValues, setInputValues] = useState({ email: "", password: "" });
+  const [inputValues, setInputValues] = useState({
+    userName: "",
+    email: "",
+    password: "",
+  });
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    const userName = inputValues.userName.trim();
     const email = inputValues.email.trim();
     const password = inputValues.password.trim();
 
     if (!email || !password) return alert("Please fill out all fields.");
 
-    signup(email, password);
+    signup(userName, email, password);
     // navigate to login
   }
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    console.log(
+      "event.target.name::event.target.value",
+      event.target.name,
+      event.target.value
+    );
     setInputValues({
       ...inputValues,
-      [event.target.type]: event.target.value,
+      [event.target.name]: event.target.value,
     });
   }
 
   function handleReset() {
     setInputValues({
+      userName: "",
       email: "",
       password: "",
     });
@@ -49,7 +60,7 @@ export function RegisterForm() {
       </FormHeader>
       <AuthForm onSubmit={handleSubmit}>
         <label htmlFor="email" className="text-stone-700 text-base mt-8">
-          Email
+          Email*
         </label>
         <input
           type="email"
@@ -62,7 +73,7 @@ export function RegisterForm() {
           required
         />
         <label htmlFor="password" className="text-stone-700 text-base mt-8">
-          Password
+          Password*
         </label>
         <input
           type="password"
@@ -74,6 +85,22 @@ export function RegisterForm() {
           className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
           required
         />
+        <label htmlFor="userName" className="text-stone-700 text-base mt-8">
+          User Name*
+        </label>
+        <input
+          type="text"
+          name="userName"
+          id="userName"
+          placeholder="Your username"
+          value={inputValues.userName}
+          onChange={handleChange}
+          className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
+          required
+        />
+
+        {/* INFOTEXT: Required fields =========== */}
+        <p className="italic mt-2 text-sm text-stone-600">* required fields</p>
 
         <div className="flex flex-col justify-center items-center">
           <button

@@ -1,8 +1,9 @@
 export interface User {
   _id: string;
   email: string;
-  username?: string;
-  // createdAt: Date;
-  // updatedAt: Date;
+  userName?: string;
+  userImage?: string;
+  createdAt: Date;
+  updatedAt: Date;
   // created_cards?: Array<Object>; 
 }
