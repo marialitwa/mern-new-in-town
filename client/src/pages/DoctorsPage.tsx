@@ -4,6 +4,7 @@ import DoctorCard from "../components/Doctor/DoctorCard.tsx";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import baseUrl from "../utils/baseUrl.ts";
+// import toast from "react-hot-toast";
 
 const apiUrl = `${baseUrl}/api/doctors/all`;
 
@@ -20,7 +21,9 @@ export default function DoctorsPage() {
     const token = localStorage.getItem("token");
 
     if (!token) {
+      console.log("no token in doctors");
       alert("Please log in first");
+      // toast.success("No Token. Please login first toasty");
       navigate("/auth");
     }
 
@@ -55,6 +58,7 @@ export default function DoctorsPage() {
   }
 
   useEffect(() => {
+    // console.log("%c useEffect Run", "color: orange");
     fetchAllDoctors();
   }, []);
 

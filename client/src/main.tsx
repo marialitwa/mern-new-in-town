@@ -57,19 +57,19 @@ const router = createBrowserRouter([
         element: <CulturalPage />,
       },
       {
-        path: "beauty-wellness",
+        path: "/beauty-wellness",
         element: <BeautyWellnessPage />,
       },
       {
-        path: "sports-yoga",
+        path: "/sports-yoga",
         element: <SportsYogaPage />,
       },
       {
-        path: "auth",
+        path: "/auth",
         element: <AuthPage />,
       },
       {
-        path: "profile",
+        path: "/profile",
         element: <ProfilePage />,
       },
     ],
@@ -82,9 +82,12 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    {/* <App /> */}
+  // NOTE Try toastify instead of alert in Doctors Page and the REACTIVATE Strict Mode !!!!!
+  // <React.StrictMode>
+  // {/* // <App /> */}
+  <>
     <GlobalStyles />
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </>
+  // </React.StrictMode>
 );
