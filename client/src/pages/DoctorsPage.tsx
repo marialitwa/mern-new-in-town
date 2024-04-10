@@ -21,6 +21,7 @@ export default function DoctorsPage() {
 
     if (!token) {
       alert("Please log in first");
+      navigate("/auth");
     }
 
     if (token) {

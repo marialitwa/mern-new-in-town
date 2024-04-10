@@ -150,7 +150,6 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      alert("Please log in first");
       setIsLoading(false);
     }
 

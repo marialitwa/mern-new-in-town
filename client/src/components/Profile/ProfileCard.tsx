@@ -27,7 +27,7 @@ export default function ProfileCard() {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      alert("Please log in first");
+      alert("Please login first (Message coming from getProfile)");
     }
 
     if (token) {
