@@ -4,7 +4,7 @@ import {
   PageTitle,
   AuthForm,
   FormHeader,
-  FromInstructionText,
+  FormInstructionText,
 } from "../CommonUI.tsx";
 import { AuthContext } from "../../context/AuthContext.tsx";
 
@@ -49,13 +49,13 @@ export function LoginForm() {
     <>
       <FormHeader>
         <PageTitle>Login</PageTitle>
-        <FromInstructionText>
+        <FormInstructionText>
           Enter your email address and password associated with your account.
-        </FromInstructionText>
+        </FormInstructionText>
       </FormHeader>
       <AuthForm onSubmit={handleSubmit}>
-        <label htmlFor="email" className="text-stone-700 text-base mt-8">
-          Email
+        <label htmlFor="email" className="text-stone-700 mt-8 text-[0.95rem]">
+          Email*
         </label>
         <input
           type="email"
@@ -64,11 +64,14 @@ export function LoginForm() {
           placeholder="Your email"
           value={loginCredentials?.email}
           onChange={handleInputChange}
-          className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
+          className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff]"
           required
         />
-        <label htmlFor="password" className="text-stone-700 text-base mt-8">
-          Password
+        <label
+          htmlFor="password"
+          className="text-stone-700 mt-4 text-[0.95rem]"
+        >
+          Password*
         </label>
         <input
           type="password"
@@ -84,7 +87,7 @@ export function LoginForm() {
         <div className="flex flex-col justify-center items-center">
           <button
             type="submit"
-            className="w-1/2 rounded-md py-2.5 px-4 mt-8 border text-sm bg-gray-800 text-gray-50"
+            className="w-full rounded-md py-2.5 px-4 mt-4 border text-sm bg-gray-800 text-gray-50"
           >
             Login
           </button>
@@ -92,11 +95,13 @@ export function LoginForm() {
             // onClick={() => console.log("Button clicked")}
             onClick={handleReset}
             type="reset"
-            className="w-1/2 rounded-md py-2.5 px-4 mt-4 mb-10 border text-sm bg-gray-300"
+            className="w-full rounded-md py-2.5 px-4 mt-3 mb-5 border text-sm bg-gray-300"
           >
             Reset all fields
           </button>
         </div>
+        {/* INFOTEXT: Required fields =========== */}
+        <p className="italic text-sm text-stone-600 mb-4">* required fields</p>
       </AuthForm>
     </>
   );
