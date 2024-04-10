@@ -4,7 +4,6 @@ import DoctorCard from "../components/Doctor/DoctorCard.tsx";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import baseUrl from "../utils/baseUrl.ts";
-// import toast from "react-hot-toast";
 
 const apiUrl = `${baseUrl}/api/doctors/all`;
 
@@ -23,7 +22,6 @@ export default function DoctorsPage() {
     if (!token) {
       console.log("no token in doctors");
       alert("Please log in first");
-      // toast.success("No Token. Please login first toasty");
       navigate("/auth");
     }
 

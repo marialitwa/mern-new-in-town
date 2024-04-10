@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import GlobalStyles from "./components/GlobalStyles";
@@ -82,9 +82,10 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  // NOTE Try toastify instead of alert in Doctors Page and the REACTIVATE Strict Mode !!!!!
+  // NOTE Deactivated React Strict mode because alert in fetchAllDoctors() in DoctorsPage is rendering twice.
+  // Same result with toastify message
   // <React.StrictMode>
-  // {/* // <App /> */}
+  // {/* // // <App /> */}
   <>
     <GlobalStyles />
     <RouterProvider router={router} />
