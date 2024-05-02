@@ -28,6 +28,7 @@ I developed the web app as my _first MERN Stack project_ during my professional 
 - Express
 - Node.js
 - Javascript
+- JSON Web Tokens
 - Styled Components
 - Tailwind CSS
 
