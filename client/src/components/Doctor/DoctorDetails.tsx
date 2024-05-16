@@ -40,7 +40,6 @@ export default function DoctorDetails({ doctor }: Props) {
       body: body,
     };
 
-    // ${baseUrl}
     try {
       const response = await fetch(
         `${baseUrl}/api/doctors/delete`,
