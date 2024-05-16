@@ -18,16 +18,13 @@ export default function App() {
         <LinkContainer>
           <LinkStyled to={"/doctors"}>Doctors</LinkStyled>
           <LinkStyled to={"/foods"}>Cafés & Restaurants</LinkStyled>
-          <LinkStyled to={"sports-yoga"}>Sports & Yoga</LinkStyled>
+          {/* <LinkStyled to={"sports-yoga"}>Sports & Yoga</LinkStyled> */}
           <LinkStyled to={"/cultural"}>Cultural</LinkStyled>
           <LinkStyled to={"/trips"}>Trips</LinkStyled>
-          <LinkStyled to={"beauty-wellness"}>Beauty & Wellness</LinkStyled>
+          {/* <LinkStyled to={"beauty-wellness"}>Beauty & Wellness</LinkStyled> */}
         </LinkContainer>
-        {/* <ul>
-          {collectionNames.map((collection, index) => (
-            <li key={index}>{collection}</li>
-          ))}
-        </ul> */}
+
+        <p className="mt-10 mx-5 text-center w-3/5 leading-relaxed lg:w-2/5 lg:leading-7 lg:mt-28">Currently you can use the functionality for the Doctors section only. We are building full functionality for all other pages on high speed.</p>
         <NavBar />
       </main>
     </>

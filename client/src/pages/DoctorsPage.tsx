@@ -21,7 +21,7 @@ export default function DoctorsPage() {
 
     if (!token) {
       console.log("no token in doctors");
-      alert("Please log in first");
+      alert("Please login or register first. You are being navigated to the registration/login page now.");
       navigate("/auth");
     }
 
