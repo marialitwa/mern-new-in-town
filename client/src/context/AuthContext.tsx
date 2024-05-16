@@ -26,7 +26,7 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
   updateUser: (values: {
-    email: string;
+    // email: string;
     userName: string | undefined;
   }) => Promise<void>;
   isLoading: boolean;
@@ -150,7 +150,6 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      alert("Please log in first");
       setIsLoading(false);
     }
 
@@ -193,7 +192,7 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
   }
 
   async function updateUser(values: {
-    email: string;
+    // email: string;
     userName: string | undefined;
   }) {
     console.log("values", values);
@@ -205,11 +204,11 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
     }
 
     if (!token) alert("you need to login first");
-    if (values.email === "") {
-      alert("no empty email");
+    if (values.userName === "") {
+      alert("no empty username");
       return;
     }
-    if (values.email !== "") {
+    if (values.userName !== "") {
       const headers = new Headers();
       headers.append("Authorization", `Bearer ${token}`);
 
@@ -217,8 +216,10 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
 
       const body = new URLSearchParams();
       // body.append("values", bodyValues);
-      body.append("email", values.email);
-      body.append("userName", values.userName ? values.userName : "");
+      // body.append("email", values.email);
+      body.append("userName", values.userName!);
+
+      // body.append("userName", values.userName ? values.userName : "");
 
       const requestOptions = {
         method: "POST",

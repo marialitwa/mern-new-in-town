@@ -15,19 +15,19 @@ export default function ProfileCard() {
   console.log("user", user);
   const [userProfile, setUserProfile] = useState<User>({} as User);
   const [userName, setUserName] = useState(user?.userName || "");
-  const [email, setEmail] = useState(user ? user.email : "");
+  // const [email, setEmail] = useState(user ? user.email : "");
 
   async function handleSubmit(event: MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
 
-    await updateUser({ email, userName });
+    await updateUser({ userName });
   }
 
   async function getProfile() {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      alert("Please log in first");
+      alert("Please login first (Message coming from getProfile)");
     }
 
     if (token) {
@@ -88,7 +88,7 @@ export default function ProfileCard() {
         <StyledText>You can update your profile here:</StyledText>
 
         <StyledForm>
-          <label htmlFor="email" aria-label="Your email"></label>
+          {/* <label htmlFor="email" aria-label="Your email"></label>
           <StyledInput
             type="email"
             value={email}
@@ -96,7 +96,7 @@ export default function ProfileCard() {
             id="email"
             placeholder={user.email}
             onChange={(event) => setEmail(event.target.value)}
-          />
+          /> */}
 
           <label htmlFor="userName" aria-label="Your user name"></label>
           <StyledInput

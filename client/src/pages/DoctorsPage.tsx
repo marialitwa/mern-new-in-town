@@ -20,7 +20,9 @@ export default function DoctorsPage() {
     const token = localStorage.getItem("token");
 
     if (!token) {
+      console.log("no token in doctors");
       alert("Please log in first");
+      navigate("/auth");
     }
 
     if (token) {
@@ -54,6 +56,7 @@ export default function DoctorsPage() {
   }
 
   useEffect(() => {
+    // console.log("%c useEffect Run", "color: orange");
     fetchAllDoctors();
   }, []);
 

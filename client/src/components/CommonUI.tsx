@@ -10,7 +10,7 @@ const Main = styled.main`
 const PageTitle = styled.h1`
   text-align: center;
   font-size: 2rem;
-  margin-top: 1.5em;
+  margin-top: 2rem;
 `;
 
 const Button = styled.button`
@@ -35,7 +35,7 @@ const FormHeader = styled.header`
   text-align: center;
 `;
 
-const FromInstructionText = styled.p`
+const FormInstructionText = styled.p`
   margin-top: 1em;
 `;
 
@@ -48,4 +48,4 @@ const AuthForm = styled.form`
   margin-top: 1em;
 `;
 
-export { Main, PageTitle, Button, AuthForm, FormHeader, FromInstructionText };
+export { Main, PageTitle, Button, AuthForm, FormHeader, FormInstructionText };

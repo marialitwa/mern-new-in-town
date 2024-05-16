@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import GlobalStyles from "./components/GlobalStyles";
@@ -17,6 +17,7 @@ import SportsYogaPage from "./pages/SportsYogaPage.tsx";
 import { AuthContextProvider } from "./context/AuthContext.tsx";
 import { AuthPage } from "./pages/AuthPage.tsx";
 import ProfilePage from "./pages/ProfilePage.tsx";
+import { Toaster } from "react-hot-toast";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       <AuthContextProvider>
         <Layout>
           <Outlet />
+          <Toaster position="top-right" />
         </Layout>
       </AuthContextProvider>
     ),
@@ -57,19 +59,19 @@ const router = createBrowserRouter([
         element: <CulturalPage />,
       },
       {
-        path: "beauty-wellness",
+        path: "/beauty-wellness",
         element: <BeautyWellnessPage />,
       },
       {
-        path: "sports-yoga",
+        path: "/sports-yoga",
         element: <SportsYogaPage />,
       },
       {
-        path: "auth",
+        path: "/auth",
         element: <AuthPage />,
       },
       {
-        path: "profile",
+        path: "/profile",
         element: <ProfilePage />,
       },
     ],
@@ -82,9 +84,13 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    {/* <App /> */}
+  // NOTE Deactivated React Strict mode because alert in fetchAllDoctors() in DoctorsPage is rendering twice.
+  // Same result with toastify message
+  // <React.StrictMode>
+  // {/* // // <App /> */}
+  <>
     <GlobalStyles />
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </>
+  // </React.StrictMode>
 );
