@@ -17,6 +17,7 @@ import SportsYogaPage from "./pages/SportsYogaPage.tsx";
 import { AuthContextProvider } from "./context/AuthContext.tsx";
 import { AuthPage } from "./pages/AuthPage.tsx";
 import ProfilePage from "./pages/ProfilePage.tsx";
+import { Toaster } from "react-hot-toast";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       <AuthContextProvider>
         <Layout>
           <Outlet />
+          <Toaster position="top-right" />
         </Layout>
       </AuthContextProvider>
     ),
