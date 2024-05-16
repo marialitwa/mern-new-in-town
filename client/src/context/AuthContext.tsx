@@ -83,7 +83,7 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
       if (response.ok) {
         const result = (await response.json()) as User;
         setUser(result);
-        alert("Welcome! You are now registered with our wonderful app.");
+        alert("Welcome! You are now registered with our wonderful app. Please LOGIN now.");
         navigate("/auth");
       } else {
         const result = (await response.json()) as ResponseNotOk;

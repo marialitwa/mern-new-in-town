@@ -10,12 +10,15 @@ export default {
   theme: {
     
     extend: {
-      // colors: {
-    //   "twitter-blue": "#1DA1F2"
-    //   use twitter-blue like a regular className: bg-twitter-blue
-    // },
+      colors: {
+      "primary-btn": "#B5838D",
+      // "secondary-btn": "#E5989B",
+      // use "primary-btn" like a regular className: bg-primary-btn
+    },
 
     },
+
+
   },
   plugins: [],
 }

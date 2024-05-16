@@ -61,7 +61,7 @@ const Button = styled.button`
   padding: 0.5em 0.3em;
   border-radius: 0.4em;
   width: 40%;
-  background-color: lightpink;
-  background-color: plum;
+  // background-color: #f2d2d5;
+  background-color: #efdee0;
   font-size: 0.9rem;
 `;
