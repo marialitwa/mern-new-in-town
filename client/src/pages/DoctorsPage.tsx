@@ -13,18 +13,34 @@ export default function DoctorsPage() {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate("/form");
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      // console.log("no token in doctors");
+      alert(
+        "Please login or register first. You are being navigated to the registration/login page now."
+      );
+      navigate("/auth");
+    }
+
+    if (token) {
+      navigate("/form");
+    }
   }
 
   async function fetchAllDoctors() {
     const token = localStorage.getItem("token");
 
+    // if (!token) {
+    //   alert(
+    //     "Please login or register first. You are being navigated to the registration/login page now."
+    //   );
+    //   navigate("/auth");
+    // }
+
     if (!token) {
-      console.log("no token in doctors");
-      alert(
-        "Please login or register first. You are being navigated to the registration/login page now."
-      );
-      navigate("/auth");
+      console.log("No TOKEN in Doctors");
+      return;
     }
 
     if (token) {
@@ -66,6 +82,7 @@ export default function DoctorsPage() {
     <>
       <HeadingContainer>
         <h1 className="text-3xl font-semibold">My New Doctors.</h1>
+
         <button
           onClick={handleClick}
           className="z-[999] flex justify-center items-center absolute -bottom-6 left-1/2 -translate-x-1/2 h-[3.45rem] w-[3.45rem] rounded-full border border-white border-opacity-40
@@ -77,9 +94,7 @@ export default function DoctorsPage() {
       <Main>
         <div>
           {allDoctors.length === 0 ? (
-            <StyledText>
-              Nothing here. To add a doctor use the add button.
-            </StyledText>
+            <StyledText>Add a doctor by clicking the add button.</StyledText>
           ) : (
             allDoctors.map((doctor) => {
               return <DoctorCard key={doctor._id} doctor={doctor} />;

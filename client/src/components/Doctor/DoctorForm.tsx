@@ -107,7 +107,7 @@ export default function DoctorForm() {
   }
 
   useEffect(() => {
-    console.log(location);
+    // console.log(location);
 
     if (location.state) {
       const { getCurrentDoctor } = location.state;
@@ -152,7 +152,7 @@ export default function DoctorForm() {
               id="name"
               onChange={handleInputChange}
               value={inputValues.name}
-              placeholder="Dr. Anne Ärztin"
+              placeholder="Dr. Ada Lovelace"
               className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
               required
             />
@@ -172,7 +172,7 @@ export default function DoctorForm() {
               id="medical_specialty"
               onChange={handleInputChange}
               value={inputValues.medical_specialty}
-              placeholder="Orthopädin"
+              placeholder="Dentist"
               className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
             />
 
@@ -203,7 +203,7 @@ export default function DoctorForm() {
               id="city_district"
               onChange={handleInputChange}
               value={inputValues.city_district}
-              placeholder="Wedding"
+              placeholder="Mitte"
               className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
             />
 
@@ -217,7 +217,7 @@ export default function DoctorForm() {
               id="address"
               onChange={handleInputChange}
               value={inputValues.address}
-              placeholder="Straße usw."
+              placeholder="Street name etc."
               className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
             />
 

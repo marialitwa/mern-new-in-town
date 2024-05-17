@@ -12,8 +12,8 @@ export default function NavBar() {
   //   console.log("LOCATION", location.pathname);
 
   const { user, logout, isLoading } = useContext(AuthContext);
-  console.log("%c user navbar", "color:red", user);
-  console.log("isLoading", isLoading);
+  // console.log("%c user navbar", "color:red", user);
+  // console.log("isLoading", isLoading);
 
   return (
     <footer>

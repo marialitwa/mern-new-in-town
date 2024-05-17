@@ -83,11 +83,13 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
       if (response.ok) {
         const result = (await response.json()) as User;
         setUser(result);
-        alert("Welcome! You are now registered with our wonderful app. Please LOGIN now.");
+        alert(
+          "Welcome! You are now registered with our wonderful app. Please LOGIN now."
+        );
         navigate("/auth");
       } else {
         const result = (await response.json()) as ResponseNotOk;
-        console.log(result);
+        // console.log(result);
         alert(`${result.error}`);
       }
     } catch (error) {
@@ -96,7 +98,7 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
   }
 
   async function login(email: string, password: string) {
-    console.log("email, password", email, password);
+    // console.log("email, password", email, password);
     const headers = new Headers();
     headers.append("Content-Type", "application/x-www-form-urlencoded");
 
@@ -116,17 +118,17 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
         requestOptions
       );
 
-      console.log("response", response);
+      // console.log("response", response);
       if (!response.ok) {
         // TODO Handle response NOT ok comes here
-        console.log("Response not ok", response);
+        // console.log("Response not ok", response);
         const result = await response.json();
         console.log("Result", result);
       }
 
       if (response.ok) {
         const result = (await response.json()) as LoginResponse;
-        console.log("result", result);
+        // console.log("result", result);
         if (result.data.token) {
           // Store token in Local Storage
           localStorage.setItem("token", result.data.token);

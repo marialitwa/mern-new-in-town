@@ -12,7 +12,7 @@ type APIResponse<T> = {
 
 export default function ProfileCard() {
   const { user, updateUser } = useContext(AuthContext);
-  console.log("user", user);
+  // console.log("user", user);
   const [userProfile, setUserProfile] = useState<User>({} as User);
   const [userName, setUserName] = useState(user?.userName || "");
   // const [email, setEmail] = useState(user ? user.email : "");
@@ -47,7 +47,7 @@ export default function ProfileCard() {
 
         if (response.ok) {
           const result = (await response.json()) as APIResponse<User>;
-          console.log(result);
+          // console.log(result);
           setUserProfile(result.data);
         }
       } catch (error) {

@@ -17,18 +17,39 @@ export default function DoctorDetailsPage() {
   // console.log("ID", id);
 
   async function fetchData() {
-    try {
-      const response = await fetch(`${apiUrl}/${id}`);
-      const data = await response.json();
-      // console.log(data);
+    const token = localStorage.getItem("token");
 
-      if (response.ok) {
-        setDoctor(data);
-      } else {
-        console.error("Bad response");
+    if (!token) {
+      console.log("No TOKEN in Doctors");
+      return;
+    }
+
+    if (token) {
+      // TODO loading spinner here:
+      // setIsloading(true)
+      const headers = new Headers();
+      headers.append("Authorization", `Bearer ${token}`);
+
+      const requestOptions = {
+        method: "GET",
+        headers: headers,
+      };
+
+      try {
+        const response = await fetch(`${apiUrl}/${id}`, requestOptions);
+        const data = await response.json();
+        // console.log(data);
+
+        if (response.ok) {
+          setDoctor(data);
+          // TODO loading spinner here:
+          // setIsloading(false)
+        } else {
+          console.error("Bad response");
+        }
+      } catch (error) {
+        console.error("An error occurred");
       }
-    } catch (error) {
-      console.error("An error occurred");
     }
   }
 
@@ -37,12 +58,17 @@ export default function DoctorDetailsPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
+  // TODO loading spinner here
+  // if (isLoading) {
+  //   return <Spinner />;
+  // }
+
   return (
     <>
-      {doctor && <DoctorDetails doctor={doctor} />}
       <ButtonContainer>
         <Button onClick={() => navigate(-1)}>Back</Button>
       </ButtonContainer>
+      {doctor && <DoctorDetails doctor={doctor} />}
     </>
   );
 }
