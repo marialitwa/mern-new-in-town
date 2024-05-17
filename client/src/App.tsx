@@ -24,9 +24,12 @@ export default function App() {
           {/* <LinkStyled to={"beauty-wellness"}>Beauty & Wellness</LinkStyled> */}
         </LinkContainer>
 
-        <p className="mt-8 mx-5 text-[0.8rem] text-center opacity-80 w-4/6 leading-relaxed lg:w-2/5 lg:leading-7 lg:mt-28 sm:text-base sm:mt-16 md:text-base md:mt-20">
-          Currently you can use the functionality for the Doctors section only.
-          We are building full functionality for all other pages on high speed!
+        <p className="mt-8 mx-5 text-[0.8rem] text-center opacity-80 w-5/6 leading-relaxed lg:w-3/5 lg:leading-7 lg:mt-28 sm:text-base sm:mt-16 md:text-base md:mt-20">
+          <span className="font-medium italic">
+            Currently you can use the Doctors section only.
+          </span>
+          <br></br>We are building full functionality for all other pages on
+          high speed!
         </p>
         <NavBar />
       </main>
