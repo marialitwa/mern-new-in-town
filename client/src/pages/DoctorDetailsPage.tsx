@@ -14,7 +14,7 @@ export default function DoctorDetailsPage() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // console.log(id);
+  // console.log("ID", id);
 
   async function fetchData() {
     try {
@@ -52,12 +52,13 @@ export default function DoctorDetailsPage() {
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
 
 const Button = styled.button`
   margin: 2em 0;
-  width: 40%;
+  width: 6em;
   background-color: whitesmoke;
-  padding: 0.5em 0;
+  padding: 0.45em 0;
   border-radius: 1em;
 `;

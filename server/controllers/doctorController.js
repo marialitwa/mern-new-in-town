@@ -42,7 +42,7 @@ const getDoctorById = async(request, response) => {
 const addCard = async (request, response) => {
 
   const userId = request.user._id
-console.log('request.body Addcard', request.body )
+// console.log('request.body Addcard', request.body )
   // Start with test in Postman
   // response.send("testing");
   // console.log("req.body", request.body);

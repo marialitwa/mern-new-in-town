@@ -78,7 +78,7 @@ export default function DoctorsPage() {
         <div>
           {allDoctors.length === 0 ? (
             <StyledText>
-              Nothing here. To add a doctor use the add button below.
+              Nothing here. To add a doctor use the add button.
             </StyledText>
           ) : (
             allDoctors.map((doctor) => {
