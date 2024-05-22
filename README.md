@@ -23,6 +23,7 @@ I developed the web app as my _first MERN Stack project_ during my professional 
 - React
 - React Hooks
 - React Context
+- React State Management
 - MondoDB
 - mongoose
 - Express
