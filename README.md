@@ -6,7 +6,7 @@ With my web app **_New in Town_** you, as a user, can collect and save all new &
 
 I developed the web app as my _first MERN Stack project_ during my professional education as a **_Fullstack Web Developer_** at Code Academy Berlin. I've implemented the **_CRUD operations_** using **React** & **MongoDB** as database.
 
-**Please watch out: This app is work in progress** and designed mobile first. Have a look at the deployed work-in-progress-state here on [Vercel](https://new-in-town.vercel.app/) 
+**Please watch out: This app is work in progress** and designed mobile first. Next, I'm working on a global improvement of the UX/UI and the full functionallity of all pages and categories. Have a look at the deployed work-in-progress-version here on [Vercel](https://new-in-town.vercel.app/) 
 
 
 
