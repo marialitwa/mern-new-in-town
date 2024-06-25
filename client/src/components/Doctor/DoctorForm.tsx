@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import styled from "styled-components";
 import baseUrl from "../../utils/baseUrl.ts";
+import { BtnNavigateBackContainer, BtnNavigateBack } from "../CommonUI.tsx";
 
 type FormType = {
   name: string;
@@ -133,9 +133,9 @@ export default function DoctorForm() {
     <>
       <div>
         {/* DOCTOR FORM ============================== */}
-        <ButtonContainer>
-          <Button onClick={() => navigate(-1)}>Back</Button>
-        </ButtonContainer>
+        <BtnNavigateBackContainer>
+          <BtnNavigateBack onClick={() => navigate(-1)}>Back</BtnNavigateBack>
+        </BtnNavigateBackContainer>
         <form onSubmit={handleSubmit}>
           <fieldset className="flex flex-col m-10">
             <legend className="text-center font-light text-xl">
@@ -290,20 +290,3 @@ export default function DoctorForm() {
     </>
   );
 }
-
-// STYLING
-
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: flex-start;
-`;
-
-const Button = styled.button`
-  margin: 1em;
-  background-color: whitesmoke;
-  padding: 1em;
-  font-size: 1em;
-  border-radius: 1em;
-  line-height: 0;
-  text-align: center;
-`;

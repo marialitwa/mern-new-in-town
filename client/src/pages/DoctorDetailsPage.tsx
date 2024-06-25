@@ -4,8 +4,11 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Doctor } from "../@types/doctors";
 import DoctorDetails from "../components/Doctor/DoctorDetails";
-import styled from "styled-components";
 import baseUrl from "../utils/baseUrl.ts";
+import {
+  BtnNavigateBackContainer,
+  BtnNavigateBack,
+} from "../components/CommonUI.tsx";
 
 const apiUrl = `${baseUrl}/api/doctors`;
 
@@ -65,26 +68,10 @@ export default function DoctorDetailsPage() {
 
   return (
     <>
-      <ButtonContainer>
-        <Button onClick={() => navigate(-1)}>Back</Button>
-      </ButtonContainer>
+      <BtnNavigateBackContainer>
+        <BtnNavigateBack onClick={() => navigate(-1)}>Back</BtnNavigateBack>
+      </BtnNavigateBackContainer>
       {doctor && <DoctorDetails doctor={doctor} />}
     </>
   );
 }
-
-// STYLING
-
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Button = styled.button`
-  margin: 2em 0;
-  width: 6em;
-  background-color: whitesmoke;
-  padding: 0.45em 0;
-  border-radius: 1em;
-`;

@@ -48,4 +48,32 @@ const AuthForm = styled.form`
   margin-top: 1em;
 `;
 
-export { Main, PageTitle, Button, AuthForm, FormHeader, FormInstructionText };
+// -- NAVIGATION BUTTONS --
+
+const BtnNavigateBackContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+`;
+
+const BtnNavigateBack = styled.button`
+  margin: 0.75rem;
+  background-color: whitesmoke;
+  padding: 1rem;
+  font-size: 0.9rem;
+  border-radius: 0.9rem;
+  line-height: 0;
+  display: flex;
+  justify-content: center;
+  align-itens: center;
+`;
+
+export {
+  Main,
+  PageTitle,
+  Button,
+  AuthForm,
+  FormHeader,
+  FormInstructionText,
+  BtnNavigateBackContainer,
+  BtnNavigateBack,
+};
