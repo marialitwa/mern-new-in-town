@@ -4,7 +4,7 @@
 
 With my web app **_New in Town_** a registered user can collect and save all new & neccessary places to find after moving to a new city. New doctors to see. New cafés, restaurants and bars you get recommendations for and want to go out to. New places for trips in & around the city. New haircutters, spa & wellness spots, and so on and so forth.
 
-I developed the web app as my _first MERN Stack project_ during my professional education as a **_Fullstack Web Developer_** at Code Academy Berlin. I've implemented the **_CRUD operations_** using **React** & **MongoDB** as database.
+I developed this web app as my _first MERN Stack project_ during my professional education as a **_Fullstack Web Developer_** at Code Academy Berlin. I've implemented the **_CRUD operations_** using **React** & **MongoDB** as database.
 
 **Please note: This app is still a work in progress** and designed mobile first. Next, I'm working on a global improvement of the UX/UI and full functionality of all pages and categories. Have a look at the deployed work-in-progress-version here on [Vercel](https://new-in-town.vercel.app/) 
 
