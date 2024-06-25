@@ -79,18 +79,33 @@ export default function DoctorDetails({ doctor }: Props) {
       <CardContainer>
         {doctors.map((doctor) => (
           <Card key={doctor._id}>
-            <IconsContainer>
-              <FaEdit onClick={() => handleEdit(doctor)} size={20} />
-              <FaTrash onClick={() => handleDeleteCard(doctor._id)} size={20} />
-            </IconsContainer>
-            <p>{doctor.name}</p>
-            <p>{doctor.medical_specialty}</p>
-            <p>{doctor.city_district}</p>
-            {/* <p>{doctor.medical_practice}</p> */}
-            <p>{doctor.address}</p>
-            <p>{doctor.phone_number}</p>
-            <p>{doctor.website}</p>
-            <p>{doctor.notes}</p>
+            <IconContainerEdit>
+              <FaEdit
+                onClick={() => handleEdit(doctor)}
+                size={20}
+                aria-label="edit button"
+                type="button"
+              />
+            </IconContainerEdit>
+            <IconContainerTrash>
+              <FaTrash
+                onClick={() => handleDeleteCard(doctor._id)}
+                size={20}
+                aria-label="delete button"
+                type="button"
+              />
+            </IconContainerTrash>
+
+            <DoctorAddress>
+              <p>{doctor.name}</p>
+              <p>{doctor.medical_specialty}</p>
+              <p>{doctor.city_district}</p>
+              {/* <p>{doctor.medical_practice}</p> */}
+              <p>{doctor.address}</p>
+              <p>{doctor.phone_number}</p>
+              <p>{doctor.website}</p>
+            </DoctorAddress>
+            <Notes>{doctor.notes}</Notes>
           </Card>
         ))}
       </CardContainer>
@@ -99,13 +114,6 @@ export default function DoctorDetails({ doctor }: Props) {
 }
 // STYLING
 
-const IconsContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 1em;
-  margin-top: 0;
-`;
-
 const CardContainer = styled.main`
   display: flex;
   flex-direction: column;
@@ -113,8 +121,12 @@ const CardContainer = styled.main`
 `;
 
 const Card = styled.div`
-  margin-top: 6em;
-  padding: 1.5em 2em 2em;
+  padding: 3.5rem 2.5rem 3.5rem;
+  margin: 2rem 2.5rem 1rem;
+  min-width: 19rem;
+  width: 33%;
+  max-width: 30rem;
+  position: relative;
 
   //glass effect
   background: rgba(255, 255, 255, 0.2);
@@ -132,4 +144,28 @@ const Card = styled.div`
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
+`;
+
+const DoctorAddress = styled.div`
+  margin-bottom: 2rem;
+  _border: 1px solid hotpink;
+`;
+
+const Notes = styled.p`
+  font-style: italic;
+  margin-bottom: 1rem;
+  _border: 1px solid hotpink;
+`;
+
+const IconContainerEdit = styled.div`
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+`;
+
+const IconContainerTrash = styled.div`
+  position: absolute;
+  bottom: 1.2rem;
+  right: 50%;
+  transform: translate(50%);
 `;
