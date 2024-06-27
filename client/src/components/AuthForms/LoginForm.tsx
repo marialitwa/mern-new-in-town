@@ -1,7 +1,7 @@
 // import React from 'react'
 import { FormEvent, useContext, useState } from "react";
 import {
-  PageTitle,
+  PageTitleAuth,
   AuthForm,
   FormHeader,
   FormInstructionText,
@@ -48,13 +48,16 @@ export function LoginForm() {
   return (
     <>
       <FormHeader>
-        <PageTitle>Login</PageTitle>
+        <PageTitleAuth>Login</PageTitleAuth>
         <FormInstructionText>
           Enter your email address and password associated with your account.
         </FormInstructionText>
       </FormHeader>
       <AuthForm onSubmit={handleSubmit}>
-        <label htmlFor="email" className="text-stone-700 mt-8 text-[0.95rem]">
+        <label
+          htmlFor="email"
+          className=" text-stone-700 mt-6 text-[.9rem] md:text-base"
+        >
           Email*
         </label>
         <input
@@ -64,12 +67,12 @@ export function LoginForm() {
           placeholder="Your email"
           value={loginCredentials?.email}
           onChange={handleInputChange}
-          className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff]"
+          className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#c78290]/55"
           required
         />
         <label
           htmlFor="password"
-          className="text-stone-700 mt-4 text-[0.95rem]"
+          className=" text-stone-700 mt-6 text-[.9rem] md:text-base"
         >
           Password*
         </label>
@@ -80,28 +83,28 @@ export function LoginForm() {
           placeholder="Your password"
           value={loginCredentials?.password}
           onChange={handleInputChange}
-          className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
+          className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#c78290]/55"
           required
         />
 
-        <div className="flex flex-col justify-center items-center">
+        {/* -- SUBMIT & RESET BUTTONS -- */}
+        <div className="flex flex-col justify-center items-center mt-8 mb-6">
           <button
             type="submit"
-            className="w-full rounded-md py-2.5 px-4 mt-4 border text-sm bg-gray-800 text-gray-50"
+            className="flex justify-center items-center w-full rounded-md py-2.5 px-4 border text-sm text-gray-800 tracking-[0.01rem] bg-[#c78290]/75"
           >
             Login
           </button>
           <button
-            // onClick={() => console.log("Button clicked")}
             onClick={handleReset}
             type="reset"
-            className="w-full rounded-md py-2.5 px-4 mt-3 mb-5 border text-sm bg-gray-300"
+            className="flex justify-center items-center w-full rounded-md py-2.5 px-4 mt-2 border text-sm bg-gray-100 text-gray-600 tracking-[0.01rem]"
           >
             Reset all fields
           </button>
         </div>
-        {/* INFOTEXT: Required fields =========== */}
-        <p className="italic text-sm text-stone-600 mb-4">* required fields</p>
+        {/* -- REQUIRED FIELDS -- */}
+        <p className="italic text-sm text-stone-600 mb-4">*required fields</p>
       </AuthForm>
     </>
   );
