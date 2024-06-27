@@ -57,7 +57,7 @@ const BtnNavigateBackContainer = styled.div`
 
 const BtnNavigateBack = styled.button`
   margin: 0.75rem;
-  background-color: whitesmoke;
+  background-color: rgba(199, 130, 144, 0.3);
   padding: 1rem;
   font-size: 0.9rem;
   border-radius: 0.9rem;

@@ -2,11 +2,7 @@
 import DoctorForm from "../components/Doctor/DoctorForm.tsx";
 
 function FormPage() {
-  return (
-    <>
-      <DoctorForm />
-    </>
-  );
+  return <DoctorForm />;
 }
 
 export default FormPage;

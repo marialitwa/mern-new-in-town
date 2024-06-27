@@ -58,7 +58,6 @@ const Navigation = styled.nav`
   justify-content: space-between;
   gap: 1em;
   width: 100%;
-  _height: 60px;
   background-color: #eee;
 `;
 

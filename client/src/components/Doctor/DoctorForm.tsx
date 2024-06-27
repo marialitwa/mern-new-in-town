@@ -132,52 +132,61 @@ export default function DoctorForm() {
   return (
     <>
       <div>
-        {/* DOCTOR FORM ============================== */}
         <BtnNavigateBackContainer>
           <BtnNavigateBack onClick={() => navigate(-1)}>Back</BtnNavigateBack>
         </BtnNavigateBackContainer>
-        <form onSubmit={handleSubmit}>
-          <fieldset className="flex flex-col m-10">
-            <legend className="text-center font-light text-xl">
-              {isEdit ? `Edit details.` : `Add a new doctor.`}
-            </legend>
-            {/* NAME  =============== */}
-            <label htmlFor="name" className="text-stone-700 text-base mt-8">
-              Name*
-            </label>
-            <input
-              type="text"
-              // name property needs to be corresponding to model/database object-key naming!
-              name="name"
-              id="name"
-              onChange={handleInputChange}
-              value={inputValues.name}
-              placeholder="Dr. Ada Lovelace"
-              className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
-              required
-            />
 
-            {/* MEDICAL SPECIALTY  =============== */}
-            <label
-              htmlFor="medical_specialty"
-              className="text-stone-700 text-base"
-            >
-              Medical Specialty
-            </label>
-            <input
-              type="text"
-              // name value needs to be corresponding to Model/database object-key naming!
-              // must be medical_speciality, not medical-specialty!
-              name="medical_specialty"
-              id="medical_specialty"
-              onChange={handleInputChange}
-              value={inputValues.medical_specialty}
-              placeholder="Dentist"
-              className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
-            />
+        {/* -- FORM -- */}
+        <div className="flex flex-col items-center">
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col min-w-[19.5rem] w-2/3 max-w-[33rem]"
+          >
+            <fieldset className="flex flex-col">
+              <legend className="text-center font-light text-xl">
+                {isEdit ? `Edit details.` : `Add a new doctor.`}
+              </legend>
 
-            {/* MEDICAL PRACTICE  =============== */}
-            {/* 
+              {/* -- NAME -- */}
+              <label
+                htmlFor="name"
+                className="text-stone-700 mt-6 text-[.9rem] md:text-base"
+              >
+                Name*
+              </label>
+              <input
+                type="text"
+                // name property needs to be corresponding to model/database object-key naming!
+                name="name"
+                id="name"
+                onChange={handleInputChange}
+                value={inputValues.name}
+                placeholder="Dr. Ada Lovelace"
+                className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#c78290]/55 mb-5"
+                required
+              />
+
+              {/* -- MEDICAL SPECIALTY -- */}
+              <label
+                htmlFor="medical_specialty"
+                className="text-stone-700 text-[.9rem] md:text-base"
+              >
+                Medical Specialty
+              </label>
+              <input
+                type="text"
+                // name value needs to be corresponding to Model/database object-key naming!
+                // must be medical_speciality, not medical-specialty!
+                name="medical_specialty"
+                id="medical_specialty"
+                onChange={handleInputChange}
+                value={inputValues.medical_specialty}
+                placeholder="Dentist"
+                className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#c78290]/55 mb-5"
+              />
+
+              {/* -- MEDICAL PRACTICE -- */}
+              {/* 
           <label
             htmlFor="medical_practice"
             className="text-stone-700 text-base"
@@ -193,99 +202,115 @@ export default function DoctorForm() {
             className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
           /> */}
 
-            {/* CITY DISTRICT  =============== */}
-            <label htmlFor="city_district" className="text-stone-700 text-base">
-              City District
-            </label>
-            <input
-              type="text"
-              name="city_district"
-              id="city_district"
-              onChange={handleInputChange}
-              value={inputValues.city_district}
-              placeholder="Mitte"
-              className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
-            />
+              {/* -- CITY DISTRICT -- */}
+              <label
+                htmlFor="city_district"
+                className="text-stone-700 text-[.9rem] md:text-base"
+              >
+                City District
+              </label>
+              <input
+                type="text"
+                name="city_district"
+                id="city_district"
+                onChange={handleInputChange}
+                value={inputValues.city_district}
+                placeholder="Mitte"
+                className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#c78290]/55 mb-5"
+              />
 
-            {/* ADDRESS  =============== */}
-            <label htmlFor="address" className="text-stone-700 text-base">
-              Address
-            </label>
-            <input
-              type="text"
-              name="address"
-              id="address"
-              onChange={handleInputChange}
-              value={inputValues.address}
-              placeholder="Street name etc."
-              className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
-            />
+              {/* -- ADDRESS -- */}
+              <label
+                htmlFor="address"
+                className="text-stone-700 text-[.9rem] md:text-base"
+              >
+                Address
+              </label>
+              <input
+                type="text"
+                name="address"
+                id="address"
+                onChange={handleInputChange}
+                value={inputValues.address}
+                placeholder="Street, house number, city"
+                className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#c78290]/55 mb-5"
+              />
 
-            {/* PHONE NUMBER  =============== */}
-            <label htmlFor="phone_number" className="text-stone-700 text-base">
-              Phone Number
-            </label>
-            <input
-              type="tel"
-              name="phone_number"
-              id="phone_number"
-              onChange={handleInputChange}
-              value={inputValues.phone_number}
-              // RESEARCH: pattern=""
-              placeholder="030-1234567"
-              className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
-            />
+              {/* -- PHONE NUMBER -- */}
+              <label
+                htmlFor="phone_number"
+                className="text-stone-700 text-[.9rem] md:text-base"
+              >
+                Phone Number
+              </label>
+              <input
+                type="tel"
+                name="phone_number"
+                id="phone_number"
+                onChange={handleInputChange}
+                value={inputValues.phone_number}
+                // RESEARCH: pattern=""
+                placeholder="030-1234567"
+                className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#c78290]/55 mb-5"
+              />
 
-            {/* WEBSITE  =============== */}
-            <label htmlFor="url" className="text-stone-700 text-base">
-              Website
-            </label>
-            <input
-              type="url"
-              name="website"
-              id="url"
-              onChange={handleInputChange}
-              value={inputValues.website}
-              placeholder="www.arztpraxis.berlin"
-              className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
-            />
+              {/* -- WEBSITE -- */}
+              <label
+                htmlFor="url"
+                className="text-stone-700 text-[.9rem] md:text-base"
+              >
+                Website
+              </label>
+              <input
+                type="url"
+                name="website"
+                id="url"
+                onChange={handleInputChange}
+                value={inputValues.website}
+                placeholder="www.arztpraxis.berlin"
+                className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#c78290]/55 mb-5"
+              />
 
-            {/* TEXTFIELD FOR NOTES  =============== */}
-            <label htmlFor="notes" className="text-stone-700 text-base">
-              Notes
-            </label>
-            <textarea
-              name="notes"
-              id="notes"
-              onChange={handleInputChange}
-              value={inputValues.notes}
-              placeholder="Write your personal notes here ..."
-              className="w-auto rounded-md py-2.5 px-4 mb-3 border text-sm outline-[#007bff]"
-            ></textarea>
+              {/* -- TEXTFIELD FOR NOTES --*/}
+              <label
+                htmlFor="notes"
+                className="text-stone-700 text-[.9rem] md:text-base"
+              >
+                Notes
+              </label>
+              <textarea
+                name="notes"
+                id="notes"
+                onChange={handleInputChange}
+                value={inputValues.notes}
+                placeholder="Write your personal notes here ..."
+                className="w-auto rounded-md py-2.5 px-4 mb-1 border text-sm outline-[#c78290]/55 resize-y min-h-[8rem] md:min-h-40"
+              ></textarea>
 
-            {/* INFOTEXT: Required fields =========== */}
-            <p className="italic mt-2 text-sm text-stone-600">
-              * required fields
-            </p>
-          </fieldset>
+              {/* -- SUBMIT & RESET BUTTONS -- */}
+              <div className="flex flex-col justify-center items-center mt-8">
+                <button
+                  type="submit"
+                  className="w-full rounded-md py-2.5 px-4 border text-sm  text-gray-800 tracking-[0.01rem] bg-[#c78290]/75"
+                >
+                  {isEdit ? `Update` : `Add doctor`}
+                </button>
+                <button
+                  onClick={handleReset}
+                  type="reset"
+                  className="w-full rounded-md py-2.5 px-4 mt-3 border text-sm bg-gray-100 text-gray-600 tracking-[0.01rem]"
+                >
+                  Reset all fields
+                </button>
+              </div>
 
-          <div className="flex flex-col justify-center items-center">
-            <button
-              type="submit"
-              className="w-1/2 rounded-md py-2.5 px-4 mt-8 border text-sm  bg-gray-800 text-gray-50"
-            >
-              {isEdit ? `Update` : `Add doctor`}
-            </button>
-            <button
-              // onClick={() => console.log("Button clicked")}
-              onClick={handleReset}
-              type="reset"
-              className="w-1/2 rounded-md py-2.5 px-4 mt-4 mb-40 border text-sm bg-gray-300"
-            >
-              Reset all fields
-            </button>
-          </div>
-        </form>
+              {/* -- REQUIRED FIELDS -- */}
+              <p className="italic mt-14 text-sm text-stone-600 mb-[7rem]">
+                * required fields
+              </p>
+            </fieldset>
+          </form>
+        </div>
       </div>
     </>
   );
