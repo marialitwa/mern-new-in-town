@@ -2,7 +2,6 @@
 import "./App.css";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import NavBar from "./components/Footer/NavBar";
 // import baseUrl from "./utils/baseUrl.ts";
 
 export default function App() {
@@ -33,7 +32,6 @@ export default function App() {
           <br></br>We are building full functionality for all other pages on
           high speed!
         </p>
-        {/* <NavBar /> */}
       </main>
     </>
   );
