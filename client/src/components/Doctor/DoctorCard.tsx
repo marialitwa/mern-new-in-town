@@ -18,12 +18,18 @@ export default function DoctorCard({ doctor }: Props) {
 
   return (
     <>
-      <CardContainer>
-        <p>{doctor.name}</p>
-        <p>{doctor.medical_specialty}</p>
-        <p>{doctor.city_district}</p>
-        <Button onClick={handleClick}>Details</Button>
-      </CardContainer>
+      <main className="flex justify-center">
+        <CardContainer>
+          <div className="text-left">
+            <p>{doctor.name}</p>
+            <p>{doctor.medical_specialty}</p>
+            <p>{doctor.city_district}</p>
+          </div>
+          <div className="flex justify-center items-center">
+            <Button onClick={handleClick}>Details</Button>
+          </div>
+        </CardContainer>
+      </main>
     </>
   );
 }
@@ -34,8 +40,11 @@ const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 1em 1em 1em 3em;
-  margin: 1em 2em;
+  padding: 1.5em 2.5em;
+  margin: 1em 2.5em;
+  min-width: 280px;
+  width: 33%;
+  max-width: 400px;
 
   //glass effect
   background: rgba(255, 255, 255, 0.2);
@@ -56,12 +65,17 @@ const CardContainer = styled.div`
 `;
 
 const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 1em;
-  margin-bottom: 0.5em;
-  padding: 0.5em 0.3em;
+  padding: 0.65em 0.3em;
   border-radius: 0.4em;
-  width: 40%;
-  // background-color: #f2d2d5;
-  background-color: #efdee0;
+  width: 100%;
+  background-color: rgba(239, 222, 224, 0.5);
+  font-size: 0.9rem;
+  color: #44403c;
+  font-weight: 500;
+  letter-spacing: 0.01em;
   font-size: 0.9rem;
 `;

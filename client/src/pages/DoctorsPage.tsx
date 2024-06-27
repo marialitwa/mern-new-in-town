@@ -82,7 +82,6 @@ export default function DoctorsPage() {
     <>
       <HeadingContainer>
         <h1 className="text-3xl font-semibold">My New Doctors.</h1>
-
         <button
           onClick={handleClick}
           className="z-[999] flex justify-center items-center absolute -bottom-6 left-1/2 -translate-x-1/2 h-[3.45rem] w-[3.45rem] rounded-full border border-white border-opacity-40

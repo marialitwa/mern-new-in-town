@@ -2,14 +2,15 @@
 import "./App.css";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import NavBar from "./components/Footer/NavBar";
 // import baseUrl from "./utils/baseUrl.ts";
 
 export default function App() {
   return (
     <>
-      <main className="min-h-screen bg-gray-50 flex flex-col items-center text-gray-900">
-        <h1 className="mt-16 text-4xl font-semibold">New in Town.</h1>
+      <main className="min-h-screen bg-gray-50 flex flex-col items-center text-gray-90">
+        <h1 className="mt-16 sm:mt-28 md:mb-10 text-4xl font-semibold">
+          New in Town.
+        </h1>
         <p className="mt-7 mx-5 text-center">
           Collect all new favorite spots in one app to discover the place you
           have moved to.
@@ -24,14 +25,13 @@ export default function App() {
           {/* <LinkStyled to={"beauty-wellness"}>Beauty & Wellness</LinkStyled> */}
         </LinkContainer>
 
-        <p className="mt-8 mx-5 text-[0.8rem] text-center opacity-80 w-5/6 leading-relaxed lg:w-3/5 lg:leading-7 lg:mt-28 sm:text-base sm:mt-16 md:text-base md:mt-20">
+        <p className="mt-8 mx-5 text-[0.8rem] text-center opacity-80 w-5/6 leading-relaxed sm:text-base sm:mt-16 md:text-base md:mt-20">
           <span className="font-medium italic">
             Currently you can use the Doctors section only.
           </span>
           <br></br>We are building full functionality for all other pages on
           high speed!
         </p>
-        <NavBar />
       </main>
     </>
   );

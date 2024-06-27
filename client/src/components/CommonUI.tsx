@@ -10,7 +10,17 @@ const Main = styled.main`
 const PageTitle = styled.h1`
   text-align: center;
   font-size: 2rem;
+  margin-top: 10rem;
+`;
+
+const PageTitleAuth = styled.h1`
+  text-align: center;
+  font-size: 2rem;
   margin-top: 2rem;
+
+  @media (min-width: 640px) {
+    margin-top: 4.5rem;
+  }
 `;
 
 const Button = styled.button`
@@ -33,7 +43,7 @@ const FormHeader = styled.header`
   justify-content: center;
   margin: 0 1.5em;
   text-align: center;
-`;
+  `;
 
 const FormInstructionText = styled.p`
   margin-top: 1em;
@@ -42,10 +52,42 @@ const FormInstructionText = styled.p`
 const AuthForm = styled.form`
   display: flex;
   flex-direction: column;
-  border: 1px solid lightgray;
-  border-radius: 20px;
   padding: 0 4em;
-  margin-top: 1em;
+  width: 100%;
+
+  @media (min-width: 440px) {
+    min-width: 19.5rem;
+    max-width: 33rem;
+  }
 `;
 
-export { Main, PageTitle, Button, AuthForm, FormHeader, FormInstructionText };
+// -- NAVIGATION BUTTONS --
+
+const BtnNavigateBackContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+`;
+
+const BtnNavigateBack = styled.button`
+  margin: 0.75rem;
+  background-color: rgba(199, 130, 144, 0.3);
+  padding: 1rem;
+  font-size: 0.9rem;
+  border-radius: 0.9rem;
+  line-height: 0;
+  display: flex;
+  justify-content: center;
+  align-itens: center;
+`;
+
+export {
+  Main,
+  PageTitle,
+  PageTitleAuth,
+  Button,
+  AuthForm,
+  FormHeader,
+  FormInstructionText,
+  BtnNavigateBackContainer,
+  BtnNavigateBack,
+};
