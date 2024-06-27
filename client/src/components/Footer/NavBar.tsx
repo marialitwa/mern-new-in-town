@@ -59,6 +59,24 @@ const Navigation = styled.nav`
   gap: 1em;
   width: 100%;
   background-color: #eee;
+
+  @media (min-width: 440px) {
+    justify-content: center;
+    gap: 3rem;
+  }
+
+  @media (min-width: 640px) {
+    justify-content: center;
+    gap: 8rem;
+    top: 0;
+    height: 3rem;
+    padding: 1.5rem 0;
+  }
+
+  @media (min-width: 1024px) {
+    justify-content: center;
+    gap: 8rem;
+  }
 `;
 
 // ${({ isActive }) => isActive && css...} => "Tagged Template Literal"
