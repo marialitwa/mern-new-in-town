@@ -20,6 +20,8 @@ I developed this web app as my _first MERN Stack project_ during my professional
 
 ## Tech Stack
 
+- JavaScript
+- TypeScript
 - React
 - React Hooks
 - React Context
@@ -28,7 +30,6 @@ I developed this web app as my _first MERN Stack project_ during my professional
 - mongoose
 - Express
 - Node.js
-- Javascript
 - JSON Web Tokens
 - Styled Components
 - Tailwind CSS
