@@ -1,6 +1,6 @@
 <br />
 
-# MERN Stack web app project: New in Town.
+# MERN Stack web app: New in Town.
 
 With my web app **_New in Town_** a registered user can collect and save all new & neccessary places to find after moving to a new city. New doctors to see. New cafés, restaurants and bars you get recommendations for and want to go out to. New places for trips in & around the city. New haircutters, spa & wellness spots, and so on and so forth.
 
