@@ -24,7 +24,7 @@ I developed this web app as my _first MERN Stack project_ during my professional
 - React Hooks
 - React Context
 - React State Management
-- MondoDB
+- MongoDB
 - mongoose
 - Express
 - Node.js
