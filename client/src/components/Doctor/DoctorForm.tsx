@@ -152,7 +152,7 @@ export default function DoctorForm() {
                 htmlFor="name"
                 className="text-stone-700 mt-6 text-[.9rem] md:text-base"
               >
-                Name*
+                Name (required)*
               </label>
               <input
                 type="text"
@@ -162,8 +162,8 @@ export default function DoctorForm() {
                 onChange={handleInputChange}
                 value={inputValues.name}
                 placeholder="Dr. Ada Lovelace"
-                autoComplete="name"
                 className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#c78290]/55 mb-5"
+                autoComplete="name"
                 required
               />
 
@@ -236,7 +236,7 @@ export default function DoctorForm() {
                 id="address"
                 onChange={handleInputChange}
                 value={inputValues.address}
-                placeholder="Street, house number, city"
+                placeholder="Berliner Straße 44"
                 className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#c78290]/55 mb-5"
                 autoComplete="street-address postal-code address-level2"
               />
@@ -294,29 +294,29 @@ export default function DoctorForm() {
                 className="w-auto rounded-md py-2.5 px-4 mb-1 border text-sm outline-[#c78290]/55 resize-y min-h-[8rem] md:min-h-40"
                 autoComplete="on"
               ></textarea>
-
-              {/* -- SUBMIT & RESET BUTTONS -- */}
-              <div className="flex flex-col justify-center items-center mt-8">
-                <button
-                  type="submit"
-                  className="w-full rounded-md py-2.5 px-4 border text-sm  text-gray-800 tracking-[0.01rem] bg-[#c78290]/75"
-                >
-                  {isEdit ? `Update` : `Add doctor`}
-                </button>
-                <button
-                  onClick={handleReset}
-                  type="reset"
-                  className="w-full rounded-md py-2.5 px-4 mt-3 border text-sm bg-gray-100 text-gray-600 tracking-[0.01rem]"
-                >
-                  Reset all fields
-                </button>
-              </div>
-
-              {/* -- REQUIRED FIELDS -- */}
-              <p className="italic mt-14 text-sm text-stone-600 mb-[7rem]">
-                * required fields
-              </p>
             </fieldset>
+
+            {/* -- SUBMIT & RESET BUTTONS -- */}
+            <div className="flex flex-col justify-center items-center mt-8">
+              <button
+                type="submit"
+                className="w-full rounded-md py-2.5 px-4 border text-sm  text-gray-800 tracking-[0.01rem] bg-[#c78290]/75"
+              >
+                {isEdit ? `Update` : `Add doctor`}
+              </button>
+              <button
+                onClick={handleReset}
+                type="reset"
+                className="w-full rounded-md py-2.5 px-4 mt-3 border text-sm bg-gray-100 text-gray-600 tracking-[0.01rem]"
+              >
+                Reset all fields
+              </button>
+            </div>
+
+            {/* -- REQUIRED FIELDS -- */}
+            <p className="italic mt-14 text-sm text-stone-600 mb-[7rem]">
+              * required fields
+            </p>
           </form>
         </div>
       </div>

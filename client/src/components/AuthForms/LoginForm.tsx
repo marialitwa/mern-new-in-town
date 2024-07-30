@@ -58,7 +58,7 @@ export function LoginForm() {
           htmlFor="email"
           className=" text-stone-700 mt-6 text-[.9rem] md:text-base"
         >
-          Email*
+          Email (required)*
         </label>
         <input
           type="email"
@@ -75,7 +75,7 @@ export function LoginForm() {
           htmlFor="password"
           className=" text-stone-700 mt-6 text-[.9rem] md:text-base"
         >
-          Password*
+          Password (required)*
         </label>
         <input
           type="password"
@@ -86,8 +86,15 @@ export function LoginForm() {
           onChange={handleInputChange}
           className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#c78290]/55"
           autoComplete="current-password"
+          aria-describedby="password-validation"
           required
         />
+        <span
+          id="password-validation"
+          className="text-stone-700 my-2 text-[.75rem] md:text-base"
+        >
+          Please provide your password with at least 6 characters.
+        </span>
 
         {/* -- SUBMIT & RESET BUTTONS -- */}
         <div className="flex flex-col justify-center items-center mt-8 mb-6">

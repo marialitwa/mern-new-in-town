@@ -63,7 +63,7 @@ export function RegisterForm() {
           htmlFor="email"
           className=" text-stone-700 mt-6 text-[.9rem] md:text-base"
         >
-          Email*
+          Email (required)*
         </label>
         <input
           type="email"
@@ -78,9 +78,9 @@ export function RegisterForm() {
         />
         <label
           htmlFor="password"
-          className="text-stone-700 mt-4 text-[.9rem] md:text-base"
+          className="text-stone-700 mt-6 text-[.9rem] md:text-base"
         >
-          Password*
+          Password (required)*
         </label>
         <input
           type="password"
@@ -91,13 +91,20 @@ export function RegisterForm() {
           onChange={handleChange}
           className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#c78290]/55"
           autoComplete="new-password"
+          aria-describedby="password-validation"
           required
         />
+        <span
+          id="password-validation"
+          className="text-stone-700 mt-2 text-[.75rem] md:text-base"
+        >
+          Please provide a password with at least 6 characters.
+        </span>
         <label
           htmlFor="userName"
-          className="text-stone-700 mt-4 text-[.9rem] md:text-base"
+          className="text-stone-700 mt-6 text-[.9rem] md:text-base"
         >
-          User Name*
+          User Name (required)*
         </label>
         <input
           type="text"
