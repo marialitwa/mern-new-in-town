@@ -86,14 +86,15 @@ export function LoginForm() {
           onChange={handleInputChange}
           className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#c78290]/55"
           autoComplete="current-password"
-          aria-describedby="password-validation"
+          aria-describedby="password-minlength"
+          minLength="6"
           required
         />
         <span
-          id="password-validation"
+          id="password-minlength"
           className="text-stone-700 my-2 text-[.75rem] md:text-base"
         >
-          Please provide your password with at least 6 characters.
+          Enter your password with at least 6 characters.
         </span>
 
         {/* -- SUBMIT & RESET BUTTONS -- */}

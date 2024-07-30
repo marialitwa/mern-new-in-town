@@ -91,11 +91,12 @@ export function RegisterForm() {
           onChange={handleChange}
           className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#c78290]/55"
           autoComplete="new-password"
-          aria-describedby="password-validation"
+          aria-describedby="password-minlength"
+          minLength="6"
           required
         />
         <span
-          id="password-validation"
+          id="password-minlength"
           className="text-stone-700 mt-2 text-[.75rem] md:text-base"
         >
           Please provide a password with at least 6 characters.
