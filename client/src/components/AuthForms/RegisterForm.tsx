@@ -73,6 +73,7 @@ export function RegisterForm() {
           value={inputValues.email}
           onChange={handleChange}
           className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#c78290]/55"
+          autoComplete="email"
           required
         />
         <label
@@ -89,6 +90,7 @@ export function RegisterForm() {
           value={inputValues.password}
           onChange={handleChange}
           className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#c78290]/55"
+          autoComplete="new-password"
           required
         />
         <label
@@ -105,6 +107,7 @@ export function RegisterForm() {
           value={inputValues.userName}
           onChange={handleChange}
           className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#c78290]/55"
+          autoComplete="username"
           required
         />
 

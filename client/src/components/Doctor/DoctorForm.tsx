@@ -162,6 +162,7 @@ export default function DoctorForm() {
                 onChange={handleInputChange}
                 value={inputValues.name}
                 placeholder="Dr. Ada Lovelace"
+                autoComplete="name"
                 className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#c78290]/55 mb-5"
                 required
               />
@@ -183,6 +184,7 @@ export default function DoctorForm() {
                 value={inputValues.medical_specialty}
                 placeholder="Dentist"
                 className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#c78290]/55 mb-5"
+                autoComplete="organization-title"
               />
 
               {/* -- MEDICAL PRACTICE -- */}
@@ -200,6 +202,7 @@ export default function DoctorForm() {
             onChange={handleInputChange}
             placeholder="Arztpraxis Berlin"
             className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#007bff] mb-5"
+            autoComplete="organization"
           /> */}
 
               {/* -- CITY DISTRICT -- */}
@@ -217,6 +220,7 @@ export default function DoctorForm() {
                 value={inputValues.city_district}
                 placeholder="Mitte"
                 className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#c78290]/55 mb-5"
+                autoComplete="address-level4"
               />
 
               {/* -- ADDRESS -- */}
@@ -234,6 +238,7 @@ export default function DoctorForm() {
                 value={inputValues.address}
                 placeholder="Street, house number, city"
                 className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#c78290]/55 mb-5"
+                autoComplete="street-address postal-code address-level2"
               />
 
               {/* -- PHONE NUMBER -- */}
@@ -252,6 +257,7 @@ export default function DoctorForm() {
                 // RESEARCH: pattern=""
                 placeholder="030-1234567"
                 className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#c78290]/55 mb-5"
+                autoComplete="tel"
               />
 
               {/* -- WEBSITE -- */}
@@ -269,6 +275,7 @@ export default function DoctorForm() {
                 value={inputValues.website}
                 placeholder="www.arztpraxis.berlin"
                 className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#c78290]/55 mb-5"
+                autoComplete="url"
               />
 
               {/* -- TEXTFIELD FOR NOTES --*/}
@@ -285,6 +292,7 @@ export default function DoctorForm() {
                 value={inputValues.notes}
                 placeholder="Write your personal notes here ..."
                 className="w-auto rounded-md py-2.5 px-4 mb-1 border text-sm outline-[#c78290]/55 resize-y min-h-[8rem] md:min-h-40"
+                autoComplete="on"
               ></textarea>
 
               {/* -- SUBMIT & RESET BUTTONS -- */}

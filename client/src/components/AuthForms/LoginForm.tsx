@@ -68,6 +68,7 @@ export function LoginForm() {
           value={loginCredentials?.email}
           onChange={handleInputChange}
           className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#c78290]/55"
+          autoComplete="email"
           required
         />
         <label
@@ -84,6 +85,7 @@ export function LoginForm() {
           value={loginCredentials?.password}
           onChange={handleInputChange}
           className="w-auto rounded-md py-2.5 px-4 border text-sm outline-[#c78290]/55"
+          autoComplete="current-password"
           required
         />
 

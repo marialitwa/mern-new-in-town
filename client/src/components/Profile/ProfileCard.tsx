@@ -105,6 +105,7 @@ export default function ProfileCard() {
             id="userName"
             placeholder={user.userName ? user.userName : "Choose a user name"}
             onChange={(event) => setUserName(event.target.value)}
+            autoComplete="username"
           />
           <StyledUpdateBtn type="submit" onClick={handleSubmit}>
             Update profile
